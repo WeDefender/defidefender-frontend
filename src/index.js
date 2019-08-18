@@ -1,8 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./Components/App";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { Provider } from "react-redux"
+import * as serviceWorker from './serviceWorker'
+import { store } from './_store'
 
-import "./styles.css";
+const rootElement = document.getElementById("root")
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// console.log(store.getState()) // 可以拿到状态
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, document.getElementById('root')
+)
+
+serviceWorker.register()
