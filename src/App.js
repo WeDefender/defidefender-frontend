@@ -7,7 +7,7 @@ import { UserRegister, LoanRequest, ListCredential, RequestCredential } from './
 import { HomeContent } from './_pages/homeContent'
 
 import Blacklist from './_containers/blacklistContainer'
-
+import Card1 from './_components/Card'
 
 class App extends Component {
   render() {
@@ -28,6 +28,7 @@ class App extends Component {
             <Route path="/loanRequest" component={LoanRequest}></Route>
             <Route path="/listCredential" component={ListCredential}></Route>
             <Route path="/requestCredential" component={RequestCredential}></Route>
+            <Card1/>
           </Switch >
         </Layout>
       </BrowserRouter >
