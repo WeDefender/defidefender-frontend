@@ -11,38 +11,38 @@ export const companyService = {
     addToBlacklist
 }
 
-function listBlacklist() {
+listBlacklist = () => {
 
 }
 
-function listBlacklistByWeid(weid) {
+listBlacklistByWeid = (weid) => {
 
 }
 
-function listLoanRequestRecords(companyName) {
+listLoanRequestRecords = (companyName) => {
 
 }
 
-function verifyCredential(weid, issuer, type) {
+verifyCredential = (weid, issuer, type) => {
 
 }
 
-function verifyUserAuthenticity(weid) {
+verifyUserAuthenticity = (weid) => {
 
 }
 
-function verifyMultiParityLoan() {
+verifyMultiParityLoan = () => {
 
 }
 
-function listLoanRecords(companyName) {
+listLoanRecords = (companyName) => {
 
 }
 
-function handleLoanRequest(id, handleType) {
+handleLoanRequest = (id, handleType) => {
 
 }
 
-function addToBlacklist(id) {
+addToBlacklist = (id) => {
 
 }
