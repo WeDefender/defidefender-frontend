@@ -1,4 +1,4 @@
-const server = 'http://localhost:8080'
+const SERVER = 'http://localhost:8080'
 
 const BASE_URLS = {
     COMPANY: server + '/company',
