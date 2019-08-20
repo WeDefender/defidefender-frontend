@@ -33,8 +33,9 @@ const initialState = {
 
 const middlewares = [ thunkMiddleware ]
 
+// 注意applyMiddleware放置的位置
 export const store = createStore(
     BlacklistReducer, 
-    applyMiddleware(...middlewares),
-    initialState
+    initialState,
+    applyMiddleware(...middlewares)
 )

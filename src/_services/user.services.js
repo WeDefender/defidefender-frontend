@@ -1,24 +1,13 @@
 import { API_URLS } from '../_constants/api.url'
-import { fetch_get_helper, fetch_post_helper } from './utils'
-
-export const userServices = {
-    createWeId,
-    createSelectiveCredential,
-    createPresentation,
-    requestVerifyWeId,
-    requestLoan,
-    listLoanRequests,
-    listLoanRecords,
-    returnLoan
-}
+import { fetch_post_helper } from './utils'
 
 /**
  * @method POST
  * 新建DID
  */
-createWeId = (name, type) => {
-    url = API_URLS.USER_CREATEWEID_URL
-    body = JSON.stringify(
+const createWeId = (name, type) => {
+    const url = API_URLS.USER_CREATEWEID_URL
+    const body = JSON.stringify(
         {
             name: name,
             type: type
@@ -42,9 +31,9 @@ createWeId = (name, type) => {
 	}
 }
 */
-createSelectiveCredential = (weid, claimPolicyJson) => {
-    url = API_URLS.USER_CREATESELECTIVECREDENTIAL_URL
-    body = JSON.stringify({
+const createSelectiveCredential = (weid, claimPolicyJson) => {
+    const url = API_URLS.USER_CREATESELECTIVECREDENTIAL_URL
+    const body = JSON.stringify({
         weid: weid,
         claimPolicyJson: claimPolicyJson
     })
@@ -76,9 +65,9 @@ createSelectiveCredential = (weid, claimPolicyJson) => {
 	}
 }
 */
-createPresentation = (ownerWeId, policyJson) => {
-    url = API_URLS.USER_CREATEPRESENTATION_URL
-    body = JSON.stringify(
+const createPresentation = (ownerWeId, policyJson) => {
+    const url = API_URLS.USER_CREATEPRESENTATION_URL
+    const body = JSON.stringify(
         {
             ownerWeId: ownerWeId,
             policyJson: policyJson
@@ -100,7 +89,7 @@ createPresentation = (ownerWeId, policyJson) => {
 	"phoneNumber":"18862173084"
 }
 */
-requestVerifyWeId = (weid, 
+const requestVerifyWeId = (weid, 
                     name, 
                     gender, 
                     birthday,
@@ -108,8 +97,8 @@ requestVerifyWeId = (weid,
                     identityNumber,
                     phoneNumber
                      ) => {
-    url  = API_URLS.USER_REQUESTVERIFIEDWEID_URL
-    body = JSON.stringify({
+    const url  = API_URLS.USER_REQUESTVERIFIEDWEID_URL
+    const body = JSON.stringify({
         weid: weid,
         name: name, 
         gender: gender,
@@ -131,12 +120,12 @@ requestVerifyWeId = (weid,
 	"credentialOwner": "did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441"
 }
  */
-requestLoan = (companyName, 
+const requestLoan = (companyName, 
                amount, 
                expiredDate, 
                credentialOwner) => {
-    url = API_URLS.USER_REQUESTLOAN_URL
-    body = JSON.stringify({
+    const url = API_URLS.USER_REQUESTLOAN_URL
+    const body = JSON.stringify({
             companyName: companyName,
             amount: amount,
             expiredDate: expiredDate,
@@ -153,9 +142,9 @@ requestLoan = (companyName,
 	"weid":"did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441"
 }
  */
-listLoanRequests = (weid) => {
-    url = API_URLS.USER_LISTLOANREQUESTS_URL
-    body = JSON.stringify({
+const listLoanRequests = (weid) => {
+    const url = API_URLS.USER_LISTLOANREQUESTS_URL
+    const body = JSON.stringify({
         weid: weid
     })
     return fetch_post_helper(url, body)
@@ -168,9 +157,9 @@ listLoanRequests = (weid) => {
 	"weid":"did:weid:1:0x0f76f3c6dceb8bc5f1ca59c641572ff15af3d648"
 }
 */
-listLoanRecords = (weid) => {
-    url = API_URLS.USER_LISTLOANRECORDS_URL
-    body = JSON.stringify({
+const listLoanRecords = (weid) => {
+    const url = API_URLS.USER_LISTLOANRECORDS_URL
+    const body = JSON.stringify({
         weid: weid
     })
     return fetch_post_helper(url, body)
@@ -183,11 +172,22 @@ listLoanRecords = (weid) => {
 	"id": 1
 }
  */
-returnLoan = (id) => {
-    url = API_URLS.USER_REQUESTLOAN_URL
-    body = JSON.stringify({
+const returnLoan = (id) => {
+    const url = API_URLS.USER_REQUESTLOAN_URL
+    const body = JSON.stringify({
         id: id
     })
     return fetch_post_helper(url, body)
 }
 
+
+export const userServices = {
+    createWeId,
+    createSelectiveCredential,
+    createPresentation,
+    requestVerifyWeId,
+    requestLoan,
+    listLoanRequests,
+    listLoanRecords,
+    returnLoan
+}

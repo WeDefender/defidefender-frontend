@@ -1,15 +1,6 @@
 import { API_URLS } from '../_constants/api.url'
 import { fetch_get_helper, fetch_post_helper } from './utils'
 
-// 统一对外暴露fetch接口
-export const governmentServices = {
-    createCredential,
-    listIssuedCredentials,
-    listToBeCheckedUsers,
-    checkUser,
-    listVerifiedUsers
-}
-
 /**
  * @method POST
  * @param {body} : {
@@ -25,7 +16,7 @@ export const governmentServices = {
 	}
 }
  */
-createCredential = (cptId, 
+const createCredential = (cptId, 
                     issuer, 
                     weid, 
                     name, 
@@ -34,8 +25,8 @@ createCredential = (cptId,
                     address, 
                     identityNumber 
                     ) => {
-    url = API_URLS.GOVERNMENT_CREATECREDENTIAL_URL
-    claimData = {
+    const url = API_URLS.GOVERNMENT_CREATECREDENTIAL_URL
+    const claimData = {
         weid: weid,
         name: name,
         gender: gender,
@@ -43,7 +34,7 @@ createCredential = (cptId,
         address: address,
         identityNumber: identityNumber
     }
-    body = JSON.stringify({
+    const body = JSON.stringify({
             cptId: cptId,
             issuer: issuer,
             claimData: claimData
@@ -54,7 +45,7 @@ createCredential = (cptId,
 /**
  * @method GET
  */
-listIssuedCredentials = () => {
+const listIssuedCredentials = () => {
     url = API_URLS.GOVERNMENT_LISTISSUEDCREDENTIALS_URL
     return fetch_get_helper(url)
 }
@@ -62,25 +53,33 @@ listIssuedCredentials = () => {
 /**
  * @method GET
  */
-listToBeCheckedUsers = () => {
-    url = API_URLS.GOVERNMENT_LISTTOBECHECKEDUSERS_URL
+const listToBeCheckedUsers = () => {
+    const url = API_URLS.GOVERNMENT_LISTTOBECHECKEDUSERS_URL
     return fetch_get_helper(url)
 }
 
 /**
  * @method GET
  */
-listVerifiedUsers = () => {
-    url = API_URLS.GOVERNMENT_LISTVERIFIEDUSERS_URL
+const listVerifiedUsers = () => {
+    const url = API_URLS.GOVERNMENT_LISTVERIFIEDUSERS_URL
     return fetch_get_helper(url)
 }
 
-checkUser = (weid, type) => {
-    url = API_URLS.GOVERNMENT_CHECKUSER_URL
-    body = JSON.stringify({
+const checkUser = (weid, type) => {
+    const url = API_URLS.GOVERNMENT_CHECKUSER_URL
+    const body = JSON.stringify({
         weid: weid,
         type: type
     })
     return fetch_post_helper(url, body)
 }
 
+// 统一对外暴露fetch接口
+export const governmentServices = {
+    createCredential,
+    listIssuedCredentials,
+    listToBeCheckedUsers,
+    checkUser,
+    listVerifiedUsers
+}

@@ -1,16 +1,6 @@
 import { API_URLS } from '../_constants/api.url'
 import { fetch_get_helper, fetch_post_helper } from './utils'
 
-export const commonServices = {
-    createCPT,
-    getCPTById,
-    registerIssuer,
-    getCredential,
-    getPresentation,
-    initializeAndDeploy,
-    getCredentialsByWeid
-}
-
 /**
  * 新建CPT模板
  * @method POST
@@ -61,9 +51,9 @@ export const commonServices = {
 	}
 }
  */
-createCPT = (publisher, cptSchema) => {
-    url = API_URLS.COMMON_CREATECPT_URL
-    body = JSON.stringify({
+const createCPT = (publisher, cptSchema) => {
+	const listBlacklisturl = API_URLS.COMMON_CREATECPT_URL
+    const body = JSON.stringify({
         publisher: publisher,
         cptSchema: cptSchema
     })
@@ -77,9 +67,9 @@ createCPT = (publisher, cptSchema) => {
 	"cptId":2000000
 }
 */
-getCPTById = (cptId) => {
-    url = API_URLS.COMMON_GETCPTBYID_URL
-    body = JSON.stringify({
+const getCPTById = (cptId) => {
+    const url = API_URLS.COMMON_GETCPTBYID_URL
+    const body = JSON.stringify({
         cptId: cptId
     })
     return fetch_post_helper(url, body)
@@ -93,9 +83,9 @@ getCPTById = (cptId) => {
 	"authorityName":"Government"
 }
 */
-registerIssuer = (issuer, authorityName) => {
-    url = API_URLS.COMMON_REGISTERISSUER_URL
-    body = JSON.stringify({
+const registerIssuer = (issuer, authorityName) => {
+    const url = API_URLS.COMMON_REGISTERISSUER_URL
+    const body = JSON.stringify({
         issuer: issuer,
         authorityName: authorityName
     })
@@ -109,9 +99,9 @@ registerIssuer = (issuer, authorityName) => {
 	"id":1
 }
 */
-getCredential = (id) => {
-    url = API_URLS.COMMON_GETCREDENTIAL_URL
-    body = JSON.stringify({
+const getCredential = (id) => {
+    const url = API_URLS.COMMON_GETCREDENTIAL_URL
+    const body = JSON.stringify({
         id: id
     })
     return fetch_post_helper(url, body)
@@ -124,9 +114,9 @@ getCredential = (id) => {
 	"weid":"did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd"
 }
 */
-getPresentation = (weid) => {
-    url = API_URLS.COMMON_GETPRESENTATION_URL
-    body = JSON.stringify({
+const getPresentation = (weid) => {
+    const url = API_URLS.COMMON_GETPRESENTATION_URL
+    const body = JSON.stringify({
         weid: weid
     })
     return fetch_post_helper(url, body)
@@ -136,9 +126,9 @@ getPresentation = (weid) => {
  * @method POST
  * @param {body} {}
  */
-initializeAndDeploy = () => {
-    url = API_URLS.COMMON_INITIALIZEANDDEPLOY_URL
-    body = JSON.stringify({
+const initializeAndDeploy = () => {
+    const url = API_URLS.COMMON_INITIALIZEANDDEPLOY_URL
+    const body = JSON.stringify({
     })
     return fetch_post_helper(url, body)
 }
@@ -150,11 +140,20 @@ initializeAndDeploy = () => {
 	"weid":"did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441"
 }
 */
-getCredentialsByWeid = (weid) => {
-    url = API_URLS.COMMON_GETCREDENTIALSBYWEID_URL
-    body = JSON.stringify({
+const getCredentialsByWeid = (weid) => {
+	const  url = API_URLS.COMMON_GETCREDENTIALSBYWEID_URL
+    const body = JSON.stringify({
         weid: weid
     })
     return fetch_post_helper(url, body)
 }
 
+export const commonServices = {
+	createCPT,
+	getCPTById,
+	registerIssuer,
+	getCredential,
+	getPresentation,
+	initializeAndDeploy,
+	getCredentialsByWeid
+}
