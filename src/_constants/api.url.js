@@ -1,10 +1,10 @@
 const SERVER = 'http://localhost:8080'
 
 const BASE_URLS = {
-    COMPANY: server + '/company',
-    GOVERNMENT: server + '/government',
-    COMMON: server + '/server',
-    USER: server + '/user',
+    COMPANY: SERVER + '/company',
+    GOVERNMENT: SERVER + '/government',
+    COMMON: SERVER + '/server',
+    USER: SERVER + '/user',
 }
 
 export const API_URLS = {
