@@ -41,24 +41,28 @@
 ```json
 {
     "company": [
-        "blacklist":[
-            {
-                "weid": "did:weid:1:0xbd88a3e27798a28970a358fa315673d11cc599a3",
-                "record": "应该于2019年8月1日还款10万元，但逾期未换",
-                "publisher": "did:weid:1:0xf3d3b86dfe9e551af2fc908a47663e921705f855",
-                "createdTime": " 2019-08-19"
-            },
+        "blacklist":
+        	"fetching": false, 
+            "result": [
+                {
+                    "weid": "did:weid:1:0xbd88a3e27798a28970a358fa315673d11cc599a3",
+                    "record": "应该于2019年8月1日还款10万元，但逾期未换",
+                    "publisher": "did:weid:1:0xf3d3b86dfe9e551af2fc908a47663e921705f855",
+                    "createdTime": " 2019-08-19"
+                },
     	],
-    	"loanRequests": [ // 单个公司的借贷请求列表
-            {
-                "id": 2,
-                "weid": "did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd",
-                "companyName": "WeBank",
-                "amount": 10000,
-                "expiredDate": "2019-08-20",
-                "credentialOwner": "did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd",
-                "status": 0 // 
-        	},
+    	"loanRequests": 
+			"fetching": false,
+			"result": [ // 单个公司的借贷请求列表
+                {
+                    "id": 2,
+                    "weid": "did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd",
+                    "companyName": "WeBank",
+                    "amount": 10000,
+                    "expiredDate": "2019-08-20",
+                    "credentialOwner": "did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd",
+                    "status": 0 // 
+                },
         ],
 		"allLoanRecords": [],
 		"multiPartyInfo": [
