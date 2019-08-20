@@ -24,10 +24,10 @@ export const fetch_get_helper = async (url) => {
 export const fetch_post_helper = async (url, body) => {
     try {
         const response = await fetch(url, {
-            method: 'POST',
-            headers: headers,
-            body: body
-        }
+                method: 'POST',
+                headers: headers,
+                body: body
+            }
         )
         return await response.json()
     } catch (error) {

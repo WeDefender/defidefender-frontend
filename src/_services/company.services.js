@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch'
 import { API_URLS } from '../_constants/api.url'
 import {fetch_get_helper, fetch_post_helper} from './utils'
 
@@ -14,7 +13,6 @@ export const companyService = {
     handleLoanRequest,
     addToBlacklist
 }
-
 // 返回JSON类型的结果，用于在异步action creator中调用
 /*
  * @param {Function} 
