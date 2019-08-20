@@ -17,10 +17,22 @@
 #### 3.政府
 
 - 核验WeID过程
-- 所有用户信息 
+- 所有用户信息 (已经核验用户信息)
 - 待核验用户WeID绑定身份信息
+- 所有已经颁发的**根凭证**
 
 #### 4.通用
+
+重点：风控体现不出来。
+
+添加一个评分体系。
+
+贷前风控：
+
+- 确定用户是真实的
+- 确定用户是否黑名单
+- 借贷记录
+- 扩展性：接入用户的各种数据
 
 ### 需要修改state的行为
 
@@ -57,58 +69,20 @@
     ]，
 	"common": [
         "loanCompanies": [], // 借贷结构名称列表
-        "credential": [
-         {
-            "context": "https://github.com/WeBankFinTech/WeIdentity/blob/master/context/v1",
-            "id": "9ce9e33c-795d-4433-9db7-053f4a13ea91",
-            "cptId": 2000000,
-            "issuer": "did:weid:1:0x1a708bfa3b302163b60b2044e8c6befcb08fa017",
-            "issuanceDate": 1566221600,
-            "expirationDate": 1566271665,
-            "claim": {
-                "birthday": "1995-05-09",
-                "address": "浙江省",
-                "gender": "M",
-                "identityNumber": "666",
-                "name": "Sher",
-                "weid": "did:weid:1:0xa1bd5ff47db4afb554004c25d846a9fe14f726cd"
-            },
-            "proof": {
-                "creator": "did:weid:1:0x1a708bfa3b302163b60b2044e8c6befcb08fa017#key0",
-                "salt": {
-                    "birthday": "vxdru",
-                    "address": "3PK9I",
-                    "gender": "f5nkf",
-                    "identityNumber": "Tp2YA",
-                    "name": "irWo3",
-                    "weid": "A4soA"
-                },
-                "created": 1566221600,
-                "type": "EcdsaSignature",
-                "signatureValue": "HPpudj27GjwHWlclcF/2SylgKPrTXYwxoI5ZTtUDSBjoUYXwNd+nDJj8pgDHfCr2soPMKbgZlBU0kMUXx2Jg9lw="
-            },
-            "type": [
-                "VerifiableCredential"
-            ],
-            "signature": "HPpudj27GjwHWlclcF/2SylgKPrTXYwxoI5ZTtUDSBjoUYXwNd+nDJj8pgDHfCr2soPMKbgZlBU0kMUXx2Jg9lw=",
-            "salt": {
-                "birthday": "vxdru",
-                "address": "3PK9I",
-                "gender": "f5nkf",
-                "identityNumber": "Tp2YA",
-                "name": "irWo3",
-                "weid": "A4soA"
-            },
-            "proofType": "EcdsaSignature"
-        }
         ]
     ], 
     "government": [
-        
+        "verifiedUsers": [
+        	{},
+    	],
+		"unverifiedUsers": [],
+		"weids": [],
+		"allCredentialsInfo": []
 	],
 	"user": [  
         "userLoanRequests": [], // 用户当前待完成借贷记录
-		"userLoanRecords": [], // 用户已放款的借贷记录
+		"userLoanRecords": [], // 用户已放款的借贷记录,
+		"userCredentials": [] // 用户自己的存放根凭证和子凭证
     ]
 }
 ```
