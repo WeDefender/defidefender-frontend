@@ -37,9 +37,9 @@ const useStyles = theme => ({
 class Blacklist extends Component {
     // 返回DID和违约记录
     createData(weid, violate_record) {
-        return { weid, violate_record}
+        return { weid, violate_record }
     }
-    constructor(props){
+    constructor(props) {
         super(props)
         // this.state = store.getState().company[0].blacklist
     }
@@ -49,6 +49,8 @@ class Blacklist extends Component {
         const rows = []
 
         // alert(this.props.blacklist[0].weid)
+        alert("黑名单：", typeof (this.props.blacklist))
+        console.log("黑名单：", this.props.blacklist)
 
         this.props.blacklist.map((item, i) => {
             rows.push(this.createData(item.weid, item.description))
