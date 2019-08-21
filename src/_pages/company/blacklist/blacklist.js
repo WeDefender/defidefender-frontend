@@ -49,11 +49,7 @@ class Blacklist extends Component {
         const rows = []
 
         // alert(this.props.blacklist[0].weid)
-<<<<<<< HEAD
-        alert("黑名单：", typeof (this.props.blacklist))
-=======
         alert("黑名单：", typeof(this.props.blacklist))
->>>>>>> e1436e84478d211b09711c3d2e40504ffd2cf85f
         console.log("黑名单：", this.props.blacklist)
 
         this.props.blacklist.map((item, i) => {
