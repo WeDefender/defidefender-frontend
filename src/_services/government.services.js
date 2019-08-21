@@ -46,7 +46,7 @@ const createCredential = (cptId,
  * @method GET
  */
 const listIssuedCredentials = () => {
-    url = API_URLS.GOVERNMENT_LISTISSUEDCREDENTIALS_URL
+    const url = API_URLS.GOVERNMENT_LISTISSUEDCREDENTIALS_URL
     return fetch_get_helper(url)
 }
 

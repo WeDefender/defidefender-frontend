@@ -1,6 +1,5 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-// import rootReducer from '../_reducers'
 import { BlacklistReducer } from '../_reducers'
 
 const initialState = {
@@ -31,11 +30,18 @@ const initialState = {
     ]
 }
 
+// 在store中我们完成多个reducers的组合
+// 键：state的属性
+// 值：reducer函数
+// state属性决定了分reducer传入的state参数值
+const rootReducer = combineReducers({
+    blacklist: BlacklistReducer
+})
 const middlewares = [ thunkMiddleware ]
 
 // 注意applyMiddleware放置的位置
 export const store = createStore(
-    BlacklistReducer, 
+    rootReducer, 
     initialState,
     applyMiddleware(...middlewares)
 )
