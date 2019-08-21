@@ -1,3 +1,4 @@
+import apiUrl from '../_constants'
 
 export const companyService = {
     listBlacklist,
