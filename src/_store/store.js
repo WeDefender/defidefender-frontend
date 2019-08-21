@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 // import rootReducer from '../_reducers'
 import { BlacklistReducer } from '../_reducers'
 
@@ -30,6 +31,11 @@ const initialState = {
     ]
 }
 
+const middlewares = [ thunkMiddleware ]
+
+// 注意applyMiddleware放置的位置
 export const store = createStore(
-    BlacklistReducer, initialState
+    BlacklistReducer, 
+    initialState,
+    applyMiddleware(...middlewares)
 )
