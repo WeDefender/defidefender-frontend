@@ -1,4 +1,6 @@
 export * from './listCredential'
-export * from './loanRequest'
+export * from './requestLoan'
 export * from './requestCredential'
 export * from './userRegister'
+export * from './loanRequestsList'
+export * from './userLoanRecordsList'

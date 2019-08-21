@@ -58,7 +58,8 @@ var userInfo = {
     gender: '',
     birthday: '',
     address: '',
-    id_image: ''
+    identityNumber: '',
+    phoneNumber: ''
 }
 
 export function UserRegisterInfoList() {
@@ -89,13 +90,13 @@ export function UserRegisterInfoList() {
 
     return (
         <div>
-            <h3 className={classes.title}>用户注册信息列表</h3>
+            <h2 className={classes.title}>用户注册信息列表</h2>
             <Container maxWidth="lg" className={classes.container}>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">weid</TableCell>
+                                <TableCell align="center">数字身份</TableCell>
                                 <TableCell align="center">姓名</TableCell>
                                 <TableCell align="center">性别</TableCell>
                             </TableRow>
@@ -106,7 +107,7 @@ export function UserRegisterInfoList() {
                                     <TableCell align="center">{row.weid} </TableCell>
                                     <TableCell align="center">{row.name} </TableCell>
                                     <TableCell align="center">{row.gender}</TableCell>
-                                    <TableCell>
+                                    <TableCell align="center">
                                         <Button size="medium" color="primary" variant="contained" onClick={() => handleClickOpen && handleClickOpen(row)}>查看请求</Button>
                                     </TableCell>
                                 </TableRow>
@@ -129,7 +130,7 @@ export function UserRegisterInfoList() {
                                     <TableCell colSpan={3}>数字身份</TableCell>
                                     <TableCell align="right">
                                         <Typography className={classes.cardLabel}>
-                                            <div style={{color: 'green'}}>{userInfo.weid}</div>
+                                            <div style={{ color: 'green' }}>{userInfo.weid}</div>
                                         </Typography>
                                     </TableCell>
                                 </TableRow>

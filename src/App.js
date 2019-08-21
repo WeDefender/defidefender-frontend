@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Layout } from './_pages/layout'
 import { UserInfo, ListAllCredential, UserRegisterInfoList } from './_pages/government'
-import { LoanRequestInfoList } from './_pages/company'
-import { UserRegister, LoanRequest, ListCredential, RequestCredential } from './_pages/user'
+import { LoanRequestInfoList, LoanRecordsList } from './_pages/company'
+import { UserRegister, RequestLoan, ListCredential, RequestCredential, LoanRequestsList, UserLoanRecordsList } from './_pages/user'
 import { HomeContent } from './_pages/homeContent'
 
 import Blacklist from './_containers/blacklistContainer'
@@ -23,12 +23,15 @@ class App extends Component {
             {/* 机构 */}
             <Route path="/blacklist" component={Blacklist}></Route>
             <Route path="/loanRequestInfoList" component={LoanRequestInfoList}></Route>
+            <Route path="/loanRecordsList" component={LoanRecordsList}></Route>
             {/* 用户 */}
             <Route path="/userRegister" component={UserRegister}></Route>
-            <Route path="/loanRequest" component={LoanRequest}></Route>
+            <Route path="/requestLoan" component={RequestLoan}></Route>
             <Route path="/listCredential" component={ListCredential}></Route>
             <Route path="/requestCredential" component={RequestCredential}></Route>
-            <Card1/>
+            <Route path="/loanRequestsList" component={LoanRequestsList}></Route>
+            <Route path="/userLoanRecordsList" component={UserLoanRecordsList}></Route>
+            <Card1 />
           </Switch >
         </Layout>
       </BrowserRouter >
