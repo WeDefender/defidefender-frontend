@@ -8,7 +8,7 @@ import { HomeContent } from './_pages/homeContent'
 
 import Blacklist from './_containers/company/blacklistContainer'
 import Card1 from './_components/Card'
-import { ListToBeCheckedUsersContainer, ListLoanRequestRecordsContainer } from './_containers'
+import { ListToBeCheckedUsersContainer, ListLoanRequestRecordsContainer, ListLoanRecordsContainer } from './_containers'
 
 class App extends Component {
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
             {/* 机构 */}
             <Route path="/blacklist" component={Blacklist}></Route>
             <Route path="/loanRequestInfoList" component={ListLoanRequestRecordsContainer}></Route>
-            <Route path="/loanRecordsList" component={LoanRecordsList}></Route>
+            <Route path="/loanRecordsList" component={ListLoanRecordsContainer}></Route>
             {/* 用户 */}
             <Route path="/userRegister" component={UserRegister}></Route>
             <Route path="/requestLoan" component={RequestLoan}></Route>

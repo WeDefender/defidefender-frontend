@@ -67,17 +67,16 @@ const listLoanRequestRecordsAsync = () => {
     }
 }
 
-const listLoanRecords = () => {
+const listLoanRecords = (json) => {
     return {
-        type: ""
+        type: types.LOAN_RECORDS,
+        payload: json.data
     }
 }
 const listLoanRecordsAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.listLoanRecords().then(
+        companyServices.listLoanRecords("WeBank").then(
             json => {
-                console.log("")
                 dispatch(listLoanRecords(json))
             }
         )

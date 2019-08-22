@@ -59,18 +59,11 @@ function PaperComponent(props) {
 }
 
 // 放款记录列表
-export function LoanRecordsList() {
+export function ListLoanRecords(props) {
 
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
     }
-
-    const rows = [
-        createData(`did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441`, 10000, '0.4%', '三个月', '2019-08-01'),
-        createData(`did:weid:1:0x02d37251f31f2dc205abef81d2c674de425f1781`, 20000, '0.5%', '三个月', '2019-08-02'),
-        createData(`did:weid:1:0x5ef98d1c967f869f8f2c19eadfabd847b346e21c`, 50000, '0.6%', '六个月', '2019-08-03'),
-    ]
-
     const classes = useStyles()
 
     const [open, setOpen] = React.useState(false)
@@ -82,6 +75,12 @@ export function LoanRecordsList() {
 
     const handleClose = () => {
         setOpen(false)
+    }
+
+    let rows = []
+    props.listLoanRecordsAsync()
+    if (props.loanRecords !== undefined) {
+        rows = props.loanRecords
     }
 
     return (
@@ -113,13 +112,13 @@ export function LoanRecordsList() {
                                         {row.amount}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.rate}
+                                        {row.dailyRate}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.duration}
+                                        {row.durationMonth}个月
                                     </TableCell>
                                     <TableCell align="center">
-                                        未还款
+                                        {row.status === 1 ? "未还款" : row.status === 3 ? <div style={{ color: 'red' }}>已超时</div> : row.status === 5? <div style={{ color: 'red' }}>已入黑名单</div>: "未还款"}
                                     </TableCell>
                                     <TableCell align="center">
                                         <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看记录</Button>
@@ -162,15 +161,19 @@ export function LoanRecordsList() {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>日利率</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.rate}</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.dailyRate}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>借贷日期</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.createdTime}</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.effectiveTime}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>还款期限</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.duration}</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.durationMonth}个月</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={3}>最晚还款日期</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.endTime}</TableCell>
                                 </TableRow>
                             </TableBody>
                         </DialogContent>
