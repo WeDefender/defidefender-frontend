@@ -28,20 +28,28 @@ export const fetch_get_helper = (url) => {
  * @param {body} dictory
  * @param {url} API endpoint
  */
-export const fetch_post_helper = async (url, body) => {
-    try {
-        const response = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: body
-            }
+// export const fetch_post_helper = async (url, body) => {
+//     try {
+//         const response = await fetch(url, {
+//                 method: 'POST',
+//                 headers: headers,
+//                 body: body
+//             }
+//         ).then(response => response.json())
+
+//         return response
+
+//     } catch (error) {
+//         return console.log("Error Occured", error);
+//     }
+// }
+export const fetch_post_helper = (url, body) => {
+    return fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: body
+        }
         ).then(response => response.json())
-
-        return response
-
-    } catch (error) {
-        return console.log("Error Occured", error);
-    }
 }
 
 

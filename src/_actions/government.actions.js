@@ -1,32 +1,38 @@
+import { GOVERNMENT_ACTION_TYPES as types } from '../_constants/actions.types'
+import { governmentServices } from '../_services/government.services'
+
 const listVerifiedUsers = (json) => {
     return {
-        type: ""
+        type: types.LIST_TO_BE_CHECKED_USERS,
+        payload: json
     }
 }
 const listVerifiedUsersAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.listVerifiedUsers().then(
+        governmentServices.listVerifiedUsers().then(
             json => {
                 console.log("")
-                dispatch(listVerifiedUsers(json))
+                dispatch(listVerifiedUsers(json.data))
             }
         )
+        console.log("请求结束...")
     }
 }
 
-const istToBeCheckedUsers = (json) => {
+const listToBeCheckedUsers = (json) => {
     return {
-        type: ""
+        type: types.LIST_TO_BE_CHECKED_USERS,
+        payload: json.data
     }
 }
-const istToBeCheckedUsersAsync = (json) => {
+const listToBeCheckedUsersAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.istToBeCheckedUsers().then(
+        console.log("列出待核验用户请求开始...")
+        governmentServices.listToBeCheckedUsers().then(
             json => {
-                console.log("")
-                dispatch(istToBeCheckedUsers(json))
+                console.log("actions,待核验用户列表：", json)
+                dispatch(listToBeCheckedUsers(json))
             }
         )
     }
@@ -40,7 +46,7 @@ const listIssuedCredentials = (json) => {
 const listIssuedCredentialsAsync = (json) => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.listIssuedCredentials().then(
+        governmentServices.listIssuedCredentials().then(
             json => {
                 console.log("")
                 dispatch(listIssuedCredentials(json))
@@ -57,7 +63,7 @@ const createCredential = (json) => {
 const createCredentialAsync = (json) => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createCredential().then(
+        governmentServices.createCredential().then(
             json => {
                 console.log("")
                 dispatch(createCredential(json))
@@ -74,7 +80,7 @@ const checkUser = (json) => {
 const checkUserAsync = (json) => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.checkUser().then(
+        governmentServices.checkUser().then(
             json => {
                 console.log("")
                 dispatch(checkUser(json))

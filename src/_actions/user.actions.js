@@ -1,3 +1,6 @@
+import { USER_ACTION_TYPES as types } from '../_constants/actions.types'
+import { userServices } from '../_services/user.services'
+
 // 1.创建weid
 const createWeId = () => {
     return {
@@ -7,7 +10,7 @@ const createWeId = () => {
 const createWeIdAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createWeId().then(
+        userServices.createWeId().then(
             json => {
                 console.log("")
                 dispatch(createWeId(json))
@@ -25,7 +28,7 @@ const createSelectiveCredential = () => {
 const createSelectiveCredentialAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createSelectiveCredential().then(
+        userServices.createSelectiveCredential().then(
             json => {
                 console.log("")
                 dispatch(createSelectiveCredential(json))
@@ -43,7 +46,7 @@ const createPresentation = () => {
 const createPresentationAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createPresentationAsync().then(
+        userServices.createPresentationAsync().then(
             json => {
                 console.log("")
                 dispatch(createPresentationAsync(json))
@@ -61,7 +64,7 @@ const requestVerifyWeId = () => {
 const requestVerifyWeIdAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.requestVerifyWeId().then(
+        userServices.requestVerifyWeId().then(
             json => {
                 console.log("")
                 dispatch(requestVerifyWeId(json))
@@ -80,7 +83,7 @@ const getCompanies = () => {
 const getCompaniesAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.getCompaniesAsync().then(
+        userServices.getCompaniesAsync().then(
             json => {
                 console.log("")
                 dispatch(getCompaniesAsync(json))
@@ -98,7 +101,7 @@ const requestLoan = () => {
 const requestLoanAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.requestLoan().then(
+        userServices.requestLoan().then(
             json => {
                 console.log("")
                 dispatch(requestLoan(json))
@@ -116,7 +119,7 @@ const listCredentials = () => {
 const listCredentialsAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.listCredentials().then(
+        userServices.listCredentials().then(
             json => {
                 console.log("")
                 dispatch(listCredentials(json))
@@ -134,7 +137,7 @@ const listLoanRequests = () => {
 const listLoanRequestsAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.listLoanRequestsAsync().then(
+        userServices.listLoanRequestsAsync().then(
             json => {
                 console.log("")
                 dispatch(listLoanRequestsAsync(json))
@@ -152,7 +155,7 @@ const listLoanRecords = () => {
 const listLoanRecordsAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.listLoanRecords().then(
+        userServices.listLoanRecords().then(
             json => {
                 console.log("")
                 dispatch(listLoanRecords(json))
@@ -170,7 +173,7 @@ const returnLoan = () => {
 const returnLoanAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.returnLoan().then(
+        userServices.returnLoan().then(
             json => {
                 console.log("")
                 dispatch(returnLoan(json))

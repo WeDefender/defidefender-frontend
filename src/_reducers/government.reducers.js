@@ -1,10 +1,25 @@
 import { GOVERNMENT_ACTION_TYPES as types } from '../_constants/actions.types'
 
+export const listToBeCheckedUsersReducer = (state=[], action) => {
+    switch (action.type) {
+        case types.LIST_TO_BE_CHECKED_USERS:
+            return [
+                ...state,
+                ...action.payload
+            ]
+        default:
+            return state
+    }
+}
+
 // 对应state.government的reducer
 export const governmentReducer = (state={}, action) => {
     switch (action.type) {
-        case types.ALL_CREDENTIALS_INFO: 
-            return 
+        case types.LIST_TO_BE_CHECKED_USERS: 
+            return {
+                ...state,
+                listToBeCheckedUsers: listToBeCheckedUsersReducer([], action)
+            }
         case types.UNVERIFIED_USERS:
             return 
         case types.VERIFIED_USERS:

@@ -47,7 +47,7 @@ class Blacklist extends Component {
         const rows = []
         this.props.listBlacklistAsync() // 先分发查询修改状态树
         // 需要根据状态判定是否已经结束获取
-
+        
         console.log("组件内显示黑名单：", this.props.blacklist)
 
         if (this.props.blacklist !== undefined) {

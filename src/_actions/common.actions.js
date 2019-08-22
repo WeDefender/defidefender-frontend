@@ -1,3 +1,7 @@
+import { COMMON_ACTION_TYPES as types } from '../_constants/actions.types'
+import { commonServices } from '../_services/common.services'
+
+
 // 创建CPT
 const createCPT = (json) => {
     return {
@@ -8,7 +12,7 @@ const createCPT = (json) => {
 const createCPTAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createCPT().then(
+        commonServices.createCPT().then(
             json => {
                 console.log("")
                 dispatch(createCPT(json))
@@ -27,7 +31,7 @@ const getCPTById = (json) => {
 const getCPTByIdAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.getCPTById().then(
+        commonServices.getCPTById().then(
             json => {
                 console.log("")
                 dispatch(getCPTById(json))
@@ -45,7 +49,7 @@ const registerIssuer = (json) => {
 const registerIssuerAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.registerIssuer().then(
+        commonServices.registerIssuer().then(
             json => {
                 console.log("")
                 dispatch(registerIssuer(json))
@@ -63,7 +67,7 @@ const getCredential = (json) => {
 const getCredentialAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.getCredential().then(
+        commonServices.getCredential().then(
             json => {
                 console.log("")
                 dispatch(getCredential(json))
@@ -81,7 +85,7 @@ const getPresentation = (json) => {
 const getPresentationAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.getPresentation().then(
+        commonServices.getPresentation().then(
             json => {
                 console.log("")
                 dispatch(getPresentation(json))
@@ -98,10 +102,10 @@ const initializeAndDeploy = (json) => {
 const initializeAndDeployAsync = () => {
     return dispatch => {
         console.log("请求开始...")
-        companyServices.createWeId().then(
+        commonServices.initializeAndDeploy().then(
             json => {
                 console.log("")
-                dispatch(createWeId(json))
+                dispatch(initializeAndDeploy(json))
             }
         )
     }

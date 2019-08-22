@@ -1,6 +1,6 @@
-import { LoanRequestInfoList } from '../_pages/company'
+import { LoanRequestInfoList } from '../../_pages/company'
 import { connect } from 'react-redux'
-import { ShowAllLoanRequests, VerifyCredentialHash, QueryMultiPartyLoan, QueryMalRecords } from '../_actions'
+import { ShowAllLoanRequests, VerifyCredentialHash, QueryMultiPartyLoan, QueryMalRecords } from '../../_actions'
 
 // 容器组件，过滤数据
 const getAllLoanRequests = (blacklist, filter) => {

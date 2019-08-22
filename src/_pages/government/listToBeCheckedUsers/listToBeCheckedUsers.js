@@ -62,31 +62,27 @@ var userInfo = {
     phoneNumber: ''
 }
 
-export function UserRegisterInfoList() {
+export function ListToBeCheckedUsers(props) {
     const classes = useStyles()
-
     const [open, setOpen] = React.useState(false)
-
     const createData = (weid, name, gender, birthday, address, identityNumber, phoneNumber) => {
         return { weid, name, gender, birthday, address, identityNumber, phoneNumber }
     }
-
     const handleClickOpen = (row) => {
         setOpen(true)
         userInfo = row
     }
-
     const handleClose = () => {
         setOpen(false)
     }
 
-    const rows = [
-        createData(`did:weid:1:0x5ef98d1c967f869f8f2c19eadfabd847b346e21c`, `高天尧`, '男', '1995-07-01', '杭州', '330xxxxxxxxxxxxxx', '188xxxxxxxx'),
-        createData(`did:weid:1:0x02d37251f31f2dc205abef81d2c674de425f1781`, `李其柄`, '男', '1993-07-01', '杭州', '331xxxxxxxxxxxxxx', '185xxxxxxxx'),
-        createData(`did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441`, `林泽培`, '男', '1995-07-01', '杭州', '332xxxxxxxxxxxxxx', '186xxxxxxxx'),
-        createData(`did:weid:1:0x0d8c0b900595f23a5c0276a53e1bf9e39a5a6e18`, `王兵`, '男', '1993-01-13', '杭州', '335xxxxxxxxxxxxxx', '187xxxxxxxx'),
-        createData(`did:weid:1:0x7ab7bbe0a03b24979aaf51bf4472ea146932d11c`, `应昊`, '男', '1993-07-01', '杭州', '230xxxxxxxxxxxxxx', '189xxxxxxxx')
-    ]
+    let rows = []
+    props.listToBeCheckedUsersAsync()
+    
+    // 判断是否为空
+    if (props.listToBeCheckedUsers !== undefined) {
+        rows = props.listToBeCheckedUsers
+    }
 
     return (
         <div>
