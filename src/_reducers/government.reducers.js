@@ -20,6 +20,8 @@ export const governmentReducer = (state={}, action) => {
                 ...state,
                 listToBeCheckedUsers: listToBeCheckedUsersReducer([], action)
             }
+        case types.CHECK_USER: // POST请求核验用户
+            return state
         case types.UNVERIFIED_USERS:
             return 
         case types.VERIFIED_USERS:

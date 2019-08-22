@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 
 // 注入到展示组件的props中的回调方法
 const mapDispatchToProps = dispatch => ({
-    listToBeCheckedUsersAsync: () => dispatch(governmentActions.listToBeCheckedUsersAsync())
+    listToBeCheckedUsersAsync: () => dispatch(governmentActions.listToBeCheckedUsersAsync()),
+    checkUserAsync: (weid, type) => dispatch(governmentActions.checkUserAsync(weid, type))
 })
 
 // 连接到展示组件
