@@ -8,7 +8,11 @@ import { HomeContent } from './_pages/homeContent'
 
 import Blacklist from './_containers/company/blacklistContainer'
 import Card1 from './_components/Card'
-import { ListToBeCheckedUsersContainer } from './_containers'
+import { 
+  ListToBeCheckedUsersContainer,
+  ListVerifiedUsersContainer,
+} 
+from './_containers'
 
 class App extends Component {
   render() {
@@ -18,7 +22,7 @@ class App extends Component {
           <Switch>
             {/* 政府 */}
             <Route path="/home" component={HomeContent}></Route>
-            <Route path="/userInfo" component={UserInfo}></Route>
+            <Route path="/listVerifiedUsers" component={ListVerifiedUsersContainer}></Route>
             <Route path="/listToBeCheckedUsers" component={ListToBeCheckedUsersContainer}></Route>
             <Route path="/listAllCredential" component={ListAllCredential}></Route>
             {/* 机构 */}

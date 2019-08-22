@@ -8481,6 +8481,11 @@ react-error-overlay@^6.0.0:
   resolved "https://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-6.0.0.tgz#485beca3db57e8ec2d934d4ee598754467229499"
   integrity sha1-SFvso9tX6Owtk01O5Zh1RGcilJk=
 
+react-flippy@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.npm.taobao.org/react-flippy/download/react-flippy-0.1.5.tgz#ba097fbd671ef315e7726dc26ea918e0b19be343"
+  integrity sha1-ugl/vWce8xXncm3CbqkY4LGb40M=
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.6:
   version "16.9.0"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.9.0.tgz?cache=0&sync_timestamp=1565317930066&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-is%2Fdownload%2Freact-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"

@@ -12,6 +12,18 @@ export const listToBeCheckedUsersReducer = (state=[], action) => {
     }
 }
 
+export const listVerifiedUsersReducer = (state=[], action) => {
+    switch (action.type) {
+        case types.LIST_VERIFIED_USERS:
+            return [
+                ...state,
+                ...action.payload
+            ]
+        default:
+            return state
+    }
+}
+
 // 对应state.government的reducer
 export const governmentReducer = (state={}, action) => {
     switch (action.type) {
@@ -20,8 +32,11 @@ export const governmentReducer = (state={}, action) => {
                 ...state,
                 listToBeCheckedUsers: listToBeCheckedUsersReducer([], action)
             }
-        case types.CHECK_USER: // POST请求核验用户
-            return state
+        case types.LIST_VERIFIED_USERS: 
+            return {
+                ...state,
+                listVerifiedUsers: listVerifiedUsersReducer([], action)
+            }
         case types.UNVERIFIED_USERS:
             return 
         case types.VERIFIED_USERS:
