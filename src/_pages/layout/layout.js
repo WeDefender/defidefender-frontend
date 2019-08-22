@@ -175,7 +175,7 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                     {/* <ListItem component={Link} to="/home" selected={'/home' === pathname} className={classes.nested}>
                         <ListItemText primary={"主页"} />
                     </ListItem> */}
-                    <ListItem button component={Link} to="/userInfo" selected={'/userInfo' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/listVerifiedUsers" selected={'/listVerifiedUsers' === pathname} className={classes.nested}>
                         <ListItemText primary={"查看用户信息"} />
                     </ListItem>
                     <ListItem button component={Link} to="/listToBeCheckedUsers" selected={'/listToBeCheckedUsers' === pathname} className={classes.nested}>

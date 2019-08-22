@@ -1,2 +1,2 @@
-export * from './listToBeCheckedUsers/index.js'
-export * from './userInfo'
+export * from './listToBeCheckedUsers'
+export * from './listVerifiedUsers'

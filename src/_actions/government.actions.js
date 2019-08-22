@@ -3,20 +3,20 @@ import { governmentServices } from '../_services/government.services'
 
 const listVerifiedUsers = (json) => {
     return {
-        type: types.LIST_TO_BE_CHECKED_USERS,
-        payload: json
+        type: types.LIST_VERIFIED_USERS,
+        payload: json.data
     }
 }
 const listVerifiedUsersAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        console.log("已核验用户列表请求开始...")
         governmentServices.listVerifiedUsers().then(
             json => {
                 console.log("")
-                dispatch(listVerifiedUsers(json.data))
+                dispatch(listVerifiedUsers(json))
             }
         )
-        console.log("请求结束...")
+        console.log("已核验用户列表请求结束...")
     }
 }
 
@@ -84,7 +84,7 @@ const checkUserAsync = (weid, type) => {
         console.log("请求开始...")
         governmentServices.checkUser(weid, type).then(
             json => {
-                console.log("")
+                console.log("开始核验用户")
                 dispatch(checkUser(json))
             }
         )
