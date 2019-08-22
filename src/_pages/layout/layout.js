@@ -181,9 +181,6 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                     <ListItem button component={Link} to="/userRegisterInfoList" selected={'/userRegisterInfoList' === pathname} className={classes.nested}>
                         <ListItemText primary={"用户注册审核"} />
                     </ListItem>
-                    {/* <ListItem component={Link} to="/listAllCredential" selected={'/listAllCredential' === pathname} className={classes.nested}>
-                        <ListItemText primary={"列出所有凭证"} />
-                    </ListItem> */}
 
                     <ListItem button>
                         <ListItemIcon>
@@ -196,6 +193,9 @@ const LayoutWithRouter = withRouter(function Layout(props) {
 
                     <ListItem button component={Link} to="/loanRequestInfoList" selected={'/loanRequestInfoList' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷请求列表"} />
+                    </ListItem>
+                    <ListItem button component={Link} to="/loanRecordsList" selected={'/loanRecordsList' === pathname} className={classes.nested}>
+                        <ListItemText primary={"借贷记录"} />
                     </ListItem>
                     <ListItem button component={Link} to="/blacklist" selected={'/blacklist' === pathname} className={classes.nested}>
                         <ListItemText primary={"黑名单"} />
@@ -219,13 +219,18 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                     {/* <ListItem component={Link} to="/requestCredential" selected={'/requestCredential' === pathname} className={classes.nested}>
                         <ListItemText primary={"生成凭证"} />
                     </ListItem> */}
-                    <ListItem button component={Link} to="/loanRequest" selected={'/loanRequest' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/requestLoan" selected={'/requestLoan' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷"} />
                     </ListItem>
-
+                    <ListItem button component={Link} to="/loanRequestsList" selected={'/loanRequestsList' === pathname} className={classes.nested}>
+                        <ListItemText primary={"借贷请求记录"} />
+                    </ListItem>
+                    <ListItem button component={Link} to="/userLoanRecordsList" selected={'/userLoanRecordsList' === pathname} className={classes.nested}>
+                        <ListItemText primary={"借贷记录"} />
+                    </ListItem>
                 </List>
             </Drawer>
-            
+
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 {children}

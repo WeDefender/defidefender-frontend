@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography"
 import JSONTree from 'react-json-tree'
 import jsonTheme from '../../company/jsonResult'
 import Modal from '@material-ui/core/Modal'
+import { CredentialCard } from '../../credential';
 
 const useStyles = theme => ({
     root: {
@@ -88,6 +89,16 @@ const useStyles = theme => ({
 
 var openCredential = false
 
+var userInfo = {
+    weid: '',
+    name: '',
+    gender: '',
+    birthday: '',
+    address: '',
+    identityNumber: '',
+    phoneNumber: ''
+}
+
 // 列出所有凭证
 class ListCredential extends Component {
     createData(weid, cpt, ipfs_hash) {
@@ -113,11 +124,11 @@ class ListCredential extends Component {
     }
 
     handleOpenCredential = () => {
-        this.setState({openCredential:true})
+        this.setState({ openCredential: true })
     }
 
     handleCloseCredential = () => {
-        this.setState({openCredential:false})
+        this.setState({ openCredential: false })
     }
 
     render() {
@@ -135,6 +146,7 @@ class ListCredential extends Component {
             this.createData(`0xc83b2cf7665acc2def`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
             this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
         ]
+
         const images = [
             "https://cdn.dribbble.com/users/42659/screenshots/6988457/aquila_logo_4x.png",
             "https://cdn.dribbble.com/users/74401/screenshots/6990193/ivory.png",
@@ -209,7 +221,7 @@ class ListCredential extends Component {
                     {
                         rows.map((row, i) => (
                             <Grid item xs={4}>
-                                <Card className={classes.card}>
+                                {/* <Card className={classes.card}>
                                     <CardContent className={classes.content}>
                                         <Typography
                                             className={classes.cardContent}
@@ -248,7 +260,12 @@ class ListCredential extends Component {
                                             </div>
                                         </Modal>
                                     </CardContent>
-                                </Card>
+                                </Card> */}
+                                <CredentialCard userInfo={userInfo} />
+                                <br></br>
+                                <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                    查看原始凭证
+                                </Button>
                             </Grid>
                         ))
                     }

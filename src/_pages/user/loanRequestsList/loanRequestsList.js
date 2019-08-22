@@ -1,5 +1,4 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -59,8 +58,8 @@ function PaperComponent(props) {
     )
 }
 
-// 个人借贷请求列表
-export function LoanRequestInfoList() {
+// 用户借贷请求列表
+export function LoanRequestsList() {
 
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
@@ -93,8 +92,7 @@ export function LoanRequestInfoList() {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">时间</TableCell>
-                                <TableCell align="center">数字身份</TableCell>
+                                <TableCell align="center">创建日期</TableCell>
                                 <TableCell align="center">借贷金额</TableCell>
                                 <TableCell align="center">日利率</TableCell>
                                 <TableCell align="center">还款期限</TableCell>
@@ -107,9 +105,6 @@ export function LoanRequestInfoList() {
                                         {row.createdTime}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.weid}
-                                    </TableCell>
-                                    <TableCell align="center">
                                         {row.amount}
                                     </TableCell>
                                     <TableCell align="center">
@@ -119,7 +114,7 @@ export function LoanRequestInfoList() {
                                         {row.duration}
                                     </TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看详情</Button>
+                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看请求</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -146,46 +141,11 @@ export function LoanRequestInfoList() {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell colSpan={3}>凭证未被盗用</TableCell>
-                                    <TableCell align="right">
-                                        <Typography className={classes.cardLabel}>
-                                            <div style={{ color: 'blue' }}>核验通过</div>
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>凭证合规</TableCell>
-                                    <TableCell align="right">
-                                        <Typography className={classes.cardLabel}>
-                                            <div style={{ color: 'blue' }}>核验通过</div>
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
                                         <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
                                             查看凭证
                                         </Button>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>黑名单</TableCell>
-                                    <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
-                                            黑名单查询
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>多头借贷情况</TableCell>
-                                    <TableCell align="right">
-                                        <Typography>
-                                            已借平台:<div style={{ color: 'red' }}>2个</div>
-                                        </Typography>
-                                        <Typography>
-                                            已借金额:<div style={{ color: 'red' }}>3万</div>
-                                        </Typography>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -197,19 +157,11 @@ export function LoanRequestInfoList() {
                                     <TableCell align="right">{loanRequestInfo.rate}</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell colSpan={3}>借款期限</TableCell>
+                                    <TableCell colSpan={3}>还款期限</TableCell>
                                     <TableCell align="right">{loanRequestInfo.duration}</TableCell>
                                 </TableRow>
                             </TableBody>
                         </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="primary">
-                                允许
-                            </Button>
-                            <Button onClick={handleClose} variant="contained" color="secondary">
-                                拒绝
-                            </Button>
-                        </DialogActions>
                     </Dialog>
                 </Paper>
             </Container>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -59,8 +58,8 @@ function PaperComponent(props) {
     )
 }
 
-// 个人借贷请求列表
-export function LoanRequestInfoList() {
+// 放款记录列表
+export function LoanRecordsList() {
 
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
@@ -87,17 +86,18 @@ export function LoanRequestInfoList() {
 
     return (
         <div>
-            <h2 className={classes.title}>借贷请求列表</h2>
+            <h2 className={classes.title}>放款记录列表</h2>
             <Container maxWidth="lg" className={classes.container}>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">时间</TableCell>
+                                <TableCell align="center">放款日期</TableCell>
                                 <TableCell align="center">数字身份</TableCell>
                                 <TableCell align="center">借贷金额</TableCell>
                                 <TableCell align="center">日利率</TableCell>
                                 <TableCell align="center">还款期限</TableCell>
+                                <TableCell align="center">还款日期</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -119,7 +119,10 @@ export function LoanRequestInfoList() {
                                         {row.duration}
                                     </TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看详情</Button>
+                                        未还款
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看记录</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -133,7 +136,7 @@ export function LoanRequestInfoList() {
                         maxWidth={100}
                     >
                         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                            <Typography align="center" variant="h6">借贷请求详情</Typography>
+                            <Typography align="center" variant="h6">借贷记录详情</Typography>
                         </DialogTitle>
                         <DialogContent>
                             <TableBody>
@@ -146,46 +149,11 @@ export function LoanRequestInfoList() {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell colSpan={3}>凭证未被盗用</TableCell>
-                                    <TableCell align="right">
-                                        <Typography className={classes.cardLabel}>
-                                            <div style={{ color: 'blue' }}>核验通过</div>
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>凭证合规</TableCell>
-                                    <TableCell align="right">
-                                        <Typography className={classes.cardLabel}>
-                                            <div style={{ color: 'blue' }}>核验通过</div>
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
                                         <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
                                             查看凭证
                                         </Button>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>黑名单</TableCell>
-                                    <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
-                                            黑名单查询
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>多头借贷情况</TableCell>
-                                    <TableCell align="right">
-                                        <Typography>
-                                            已借平台:<div style={{ color: 'red' }}>2个</div>
-                                        </Typography>
-                                        <Typography>
-                                            已借金额:<div style={{ color: 'red' }}>3万</div>
-                                        </Typography>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -197,17 +165,18 @@ export function LoanRequestInfoList() {
                                     <TableCell align="right">{loanRequestInfo.rate}</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell colSpan={3}>借款期限</TableCell>
+                                    <TableCell colSpan={3}>借贷日期</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.createdTime}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={3}>还款期限</TableCell>
                                     <TableCell align="right">{loanRequestInfo.duration}</TableCell>
                                 </TableRow>
                             </TableBody>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="primary">
-                                允许
-                            </Button>
-                            <Button onClick={handleClose} variant="contained" color="secondary">
-                                拒绝
+                            <Button onClick={handleClose} variant="contained" color="primary" align="right">
+                                加入黑名单
                             </Button>
                         </DialogActions>
                     </Dialog>

@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 用户请求贷款
-export function LoanRequest() {
+export function RequestLoan() {
     const classes = useStyles()
     const [state, setState] = React.useState({
         checkedA: true,
