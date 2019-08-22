@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Layout } from './_pages/layout'
 import { UserInfo, ListAllCredential } from './_pages/government'
-import { LoanRequestInfoList, LoanRecordsList } from './_pages/company'
+import { LoanRecordsList } from './_pages/company'
 import { UserRegister, RequestLoan, ListCredential, RequestCredential, LoanRequestsList, UserLoanRecordsList } from './_pages/user'
 import { HomeContent } from './_pages/homeContent'
 
@@ -11,6 +11,7 @@ import Card1 from './_components/Card'
 import { 
   ListToBeCheckedUsersContainer,
   ListVerifiedUsersContainer,
+  ListLoanRequestRecordsContainer
 } 
 from './_containers'
 
@@ -27,7 +28,7 @@ class App extends Component {
             <Route path="/listAllCredential" component={ListAllCredential}></Route>
             {/* 机构 */}
             <Route path="/blacklist" component={Blacklist}></Route>
-            <Route path="/loanRequestInfoList" component={LoanRequestInfoList}></Route>
+            <Route path="/loanRequestInfoList" component={ListLoanRequestRecordsContainer}></Route>
             <Route path="/loanRecordsList" component={LoanRecordsList}></Route>
             {/* 用户 */}
             <Route path="/userRegister" component={UserRegister}></Route>

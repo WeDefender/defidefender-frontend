@@ -1,3 +1,3 @@
 export * from './blacklist'
-export * from './loanRequestInfoList'
+export * from './listLoanRequestRecords'
 export * from './loanRecordsList'

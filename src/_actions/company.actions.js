@@ -51,17 +51,16 @@ const listBlacklistByWeidAsync = () => {
     }
 }
 
-const listLoanRequestRecords = () => {
+const listLoanRequestRecords = (json) => {
     return {
-        type: ""
+        type: types.LOAN_REQUEST_RECORDS,
+        payload: json.data
     }
 }
 const listLoanRequestRecordsAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.listLoanRequestRecords().then(
+        companyServices.listLoanRequestRecords("WeBank").then(
             json => {
-                console.log("")
                 dispatch(listLoanRequestRecords(json))
             }
         )
@@ -180,7 +179,7 @@ export const companyActions = {
     verifyUserAuthenticityAsync,
     verifyMultiParityLoanAsync,
     handleLoanRequestAsync,
-    addToBlacklistAsync, 
+    addToBlacklistAsync,
 }
 
 
