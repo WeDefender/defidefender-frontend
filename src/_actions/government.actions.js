@@ -69,23 +69,26 @@ const createCredentialAsync = (json) => {
                 dispatch(createCredential(json))
             }
         )
+        console.log("请求结束...")
     }
 }
 
 const checkUser = (json) => {
     return {
-        type: ""
+        type: types.CHECK_USER,
+        payload: json.data
     }
 }
-const checkUserAsync = (json) => {
+const checkUserAsync = (weid, type) => {
     return dispatch => {
         console.log("请求开始...")
-        governmentServices.checkUser().then(
+        governmentServices.checkUser(weid, type).then(
             json => {
                 console.log("")
                 dispatch(checkUser(json))
             }
         )
+        console.log("请求结束...")
     }
 }
 

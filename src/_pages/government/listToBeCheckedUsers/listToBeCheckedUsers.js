@@ -72,7 +72,13 @@ export function ListToBeCheckedUsers(props) {
         setOpen(true)
         userInfo = row
     }
+
     const handleClose = () => {
+        setOpen(false)
+    }
+    const onHandleCheckUser = (weid, type) =>  {
+        // dispatch checkUser
+        props.checkUserAsync(weid, type)
         setOpen(false)
     }
 
@@ -157,10 +163,10 @@ export function ListToBeCheckedUsers(props) {
                             </TableBody>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="primary">
+                            <Button onClick={() => onHandleCheckUser && onHandleCheckUser(userInfo.weid, 0)} variant="contained" color="primary">
                                 通过
                             </Button>
-                            <Button onClick={handleClose} variant="contained" color="secondary">
+                            <Button onClick={() => onHandleCheckUser && onHandleCheckUser(userInfo.weid, 1)} variant="contained" color="secondary">
                                 拒绝
                             </Button>
                         </DialogActions>
