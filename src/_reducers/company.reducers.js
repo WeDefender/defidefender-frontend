@@ -12,6 +12,7 @@ export function blacklistReducer(state = [], action) {
     }
 }
 
+// 获取用户请求列表
 export function loanRequestRecordsReducer(state=[], action) {
     switch (action.type) {
         case types.LOAN_REQUEST_RECORDS:
