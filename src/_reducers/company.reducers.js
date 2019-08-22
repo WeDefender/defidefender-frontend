@@ -12,7 +12,7 @@ export function blacklistReducer(state = [], action) {
     }
 }
 
-export function loanRequestRecords(state=[], action) {
+export function loanRequestRecordsReducer(state=[], action) {
     switch (action.type) {
         case types.LOAN_REQUEST_RECORDS:
             return [...state, ...action.payload]
@@ -21,7 +21,7 @@ export function loanRequestRecords(state=[], action) {
     }
 }
 
-export function loanRecords(state = [], action) {
+export function loanRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_RECORDS:
             return [...state, ...action.payload]
@@ -30,7 +30,7 @@ export function loanRecords(state = [], action) {
     }
 }
 
-export function multiPartyInfo(state = [], action) {
+export function multiPartyInfoReducer(state = [], action) {
     switch (action.type) {
         case types.MULTI_PARTY_INFO:
             return [...state, ...action.payload]
@@ -50,17 +50,17 @@ export function companyReducer(state = {}, action) {
         case types.LOAN_REQUEST_RECORDS: 
             return {
                 ...state,
-                loanRequestRecords: loanRequestRecords([], action)
+                loanRequestRecords: loanRequestRecordsReducer([], action)
             }
         case types.LOAN_RECORDS:
             return {
                 ...state,
-                loanRecords: loanRecords([], action)
+                loanRecords: loanRecordsReducer([], action)
             }
         case types.MULTI_PARTY_INFO:
             return {
                 ...state,
-                multiPartyInfo: multiPartyInfo([], action)
+                multiPartyInfo: multiPartyInfoReducer([], action)
             }
         default:
             return state

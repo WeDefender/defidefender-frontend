@@ -52,7 +52,7 @@ import { fetch_get_helper, fetch_post_helper } from './utils'
 }
  */
 const createCPT = (publisher, cptSchema) => {
-	const listBlacklisturl = API_URLS.COMMON_CREATECPT_URL
+	const url = API_URLS.COMMON_CREATECPT_URL
     const body = JSON.stringify({
         publisher: publisher,
         cptSchema: cptSchema

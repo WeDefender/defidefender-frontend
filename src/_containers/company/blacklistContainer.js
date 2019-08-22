@@ -1,7 +1,6 @@
-import { Blacklist } from '../_pages/company'
+import { Blacklist } from '../../_pages/company'
 import { connect } from 'react-redux'
-import { listBlacklistAsync } from '../_actions/company.actions'
-
+import { listBlacklistAsync } from '../../_actions/company.actions'
 
 // store状态映射到组件
 // blacklist是用于props的键
