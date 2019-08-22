@@ -1,47 +1,56 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { BlacklistReducer } from '../_reducers'
+import { userReducer, companyReducer, governmentReducer } from '../_reducers'
 
-const initialState = {
-    "company": [
-        {
-            "blacklist": [
-                {
-                    "weid": "did:weid:1:0xbd88a3e27798a28970a358fa315673d11cc599a3",
-                    "description": "应该于2019年8月1日还款6万元，但逾期未还"
-                },
-                {
-                    "weid": "did:weid:1:0xbd88a3e27798a28970a358fa315673d11cc599a3",
-                    "description": "应该于2019年7月4日还款1万元，但逾期未还"
-                },
-                {
-                    "weid": "did:weid:1:0x8dc34e4cad4d86f5f20f5b63d96230f759f3bbe7",
-                    "description": "应该于2019年7月3日还款3万元，但逾期未还"
-                }
-            ],
-            "allLoanRequests": [
-
-            ]
+let initialState = {
+    "company": {
+        "blacklist": [
+            {
+                "weid": "did:weid:1:0xbd88a3e27798a28970a358fa315673d11cc599a3",
+                "record": "应该于2019年8月1日还款10万元，但逾期未换",
+                "publisher": "did:weid:1:0xf3d3b86dfe9e551af2fc908a47663e921705f855",
+                "createdTime": " 2019-08-19"
+            },
+        ],
+        "loanRequestRecords":[],
+        "loanRecords": [],
+        "multiPartyInfo": {
+            "usedCompanyCount": 0,
+            "loanAmount": 10000
         }
-    ],
-    "government": [
-    ],
-    "user": [
-    ]
+    },
+
+    "government": {},
+    "user": {
+        "userLoanRequests": [], // 用户当前待完成借贷记录
+        "userLoanRecords": [], // 用户已放款的借贷记录,
+        "userCredentials": [] // 用户自己的存放根凭证和子凭证
+    }
 }
 
-// 在store中我们完成多个reducers的组合
-// 键：state的属性
-// 值：reducer函数
-// state属性决定了分reducer传入的state参数值
 const rootReducer = combineReducers({
-    blacklist: BlacklistReducer
+    company: companyReducer,
+    government: governmentReducer,
+    user: userReducer
 })
+
 const middlewares = [ thunkMiddleware ]
 
-// 注意applyMiddleware放置的位置
+// 配置Redux-devtools
+const composeEnhancers =
+    typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        }) : compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(...middlewares),
+    // other store enhancers if any
+);
+
 export const store = createStore(
     rootReducer, 
     initialState,
-    applyMiddleware(...middlewares)
+    enhancer
 )

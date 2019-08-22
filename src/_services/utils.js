@@ -6,15 +6,22 @@ const headers = {
 }
 
 /**
+ * 返回已经调用了.json()的Promise对象，后序自己再用then取回数据即可
  * @param {url} API endpoint
  */
-export const fetch_get_helper = async (url) => {
+export const fetch_get_helper_async = async (url) => {
     try {
-        const response = await fetch(url);
-        return await response.json();
+        return await fetch(url).then(
+            response => response.json()
+        )
     } catch (error) {
         return console.log("Error occured", error);
     }
+}
+
+// 返回已经json化的Promise对象，在异步action creator中再用then取出数据即可
+export const fetch_get_helper = (url) => {
+    return fetch(url).then( response => response.json() )
 }
 
 /**
@@ -28,8 +35,10 @@ export const fetch_post_helper = async (url, body) => {
                 headers: headers,
                 body: body
             }
-        )
-        return await response.json()
+        ).then(response => response.json())
+
+        return response
+
     } catch (error) {
         return console.log("Error Occured", error);
     }
