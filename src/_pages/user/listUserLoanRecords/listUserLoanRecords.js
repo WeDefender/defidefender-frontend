@@ -85,9 +85,9 @@ export function ListUserLoanRecords(props) {
     }
 
     let rows = []
-    props.listLoanRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
-    if (props.userLoanRecords !== undefined) {
-        rows = props.userLoanRecords
+    props.listUserLoanRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+    if (props.listUserLoanRecords !== undefined) {
+        rows = props.listUserLoanRecords
     }
 
     return (

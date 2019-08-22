@@ -191,10 +191,10 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                         </Typography>
                     </ListItem>
 
-                    <ListItem button component={Link} to="/loanRequestInfoList" selected={'/loanRequestInfoList' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/listLoanRequestRecords" selected={'/listLoanRequestRecords' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷请求列表"} />
                     </ListItem>
-                    <ListItem button component={Link} to="/loanRecordsList" selected={'/loanRecordsList' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/listLoanRecords" selected={'/listLoanRecords' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷记录"} />
                     </ListItem>
                     <ListItem button component={Link} to="/blacklist" selected={'/blacklist' === pathname} className={classes.nested}>
@@ -222,10 +222,10 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                     <ListItem button component={Link} to="/requestLoan" selected={'/requestLoan' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷"} />
                     </ListItem>
-                    <ListItem button component={Link} to="/loanRequestsList" selected={'/loanRequestsList' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/listUserLoanRequestRecords" selected={'/listUserLoanRequestRecords' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷请求记录"} />
                     </ListItem>
-                    <ListItem button component={Link} to="/userLoanRecordsList" selected={'/userLoanRecordsList' === pathname} className={classes.nested}>
+                    <ListItem button component={Link} to="/listUserLoanRecords" selected={'/listUserLoanRecords' === pathname} className={classes.nested}>
                         <ListItemText primary={"借贷记录"} />
                     </ListItem>
                 </List>

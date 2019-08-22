@@ -1,17 +1,17 @@
 import { USER_ACTION_TYPES as types } from '../_constants/actions.types'
 
-const userLoanRequestsReducer = (state = [], action) => {
+const listUserLoanRequestRecordsReducer = (state = [], action) => {
     switch (action.type) {
-        case types.USER_LOAN_REQUEST:
-            return [...state]
+        case types.LIST_USER_LOAN_REQUEST_RECORDS:
+            return [...state, ...action.payload]
         default:
             return state
     }
 }
 
-const userLoanRecordsReducer = (state = [], action) => {
+const listUserLoanRecordsReducer = (state = [], action) => {
     switch (action.type) {
-        case types.USER_LOAN_RECORDS:
+        case types.LIST_USER_LOAN_RECORDS:
             return [...state, ...action.payload]
         default:
             return state
@@ -25,13 +25,16 @@ export const userReducer = (state = {}, action) => {
             return {
                 ...state,
             }
-        case types.USER_LOAN_RECORDS:
+        case types.LIST_USER_LOAN_REQUEST_RECORDS:
             return {
                 ...state,
-                userLoanRecords: userLoanRecordsReducer([], action)
+                listUserLoanRequestRecords: listUserLoanRequestRecordsReducer([], action)
             }
-        case types.USER_LOAN_REQUEST:
-            return
+        case types.LIST_USER_LOAN_RECORDS:
+            return {
+                ...state,
+                listUserLoanRecords: listUserLoanRecordsReducer([], action)
+            }
         default:
             return state
     }
