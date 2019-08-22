@@ -12,7 +12,8 @@ import {
   ListToBeCheckedUsersContainer,
   ListVerifiedUsersContainer,
   ListLoanRequestRecordsContainer,
-  ListLoanRecordsContainer
+  ListLoanRecordsContainer,
+  ListUserLoanRecordsContainer
 } 
 from './_containers'
 
@@ -37,7 +38,7 @@ class App extends Component {
             <Route path="/listCredential" component={ListCredential}></Route>
             <Route path="/requestCredential" component={RequestCredential}></Route>
             <Route path="/loanRequestsList" component={LoanRequestsList}></Route>
-            <Route path="/userLoanRecordsList" component={UserLoanRecordsList}></Route>
+            <Route path="/userLoanRecordsList" component={ListUserLoanRecordsContainer}></Route>
             <Card1 />
           </Switch >
         </Layout>

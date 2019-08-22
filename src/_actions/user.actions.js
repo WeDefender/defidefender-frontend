@@ -147,17 +147,16 @@ const listLoanRequestsAsync = () => {
 }
 
 // 9.查询所有借贷记录
-const listLoanRecords = () => {
+const listLoanRecords = (json) => {
     return {
-        type: "",
+        type: types.USER_LOAN_RECORDS,
+        payload: json.data
     }
 }
-const listLoanRecordsAsync = () => {
+const listLoanRecordsAsync = (weid) => {
     return dispatch => {
-        console.log("请求开始...")
-        userServices.listLoanRecords().then(
+        userServices.listLoanRecords(weid).then(
             json => {
-                console.log("")
                 dispatch(listLoanRecords(json))
             }
         )
