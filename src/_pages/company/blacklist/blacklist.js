@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
-
 const useStyles = theme => ({
     title: {
         textAlign: 'center'
@@ -41,26 +40,24 @@ class Blacklist extends Component {
     }
     constructor(props) {
         super(props)
-        // this.state = store.getState().company[0].blacklist
     }
 
     render() {
         // this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, "xx于xx年xx月xx日未还款金额xx元"),
         const rows = []
+        this.props.listBlacklistAsync() // 先分发查询修改状态树
+        // 需要根据状态判定是否已经结束获取
 
-        // alert(this.props.blacklist[0].weid)
-<<<<<<< HEAD
-        alert("黑名单：", typeof (this.props.blacklist))
-=======
-        alert("黑名单：", typeof(this.props.blacklist))
->>>>>>> e1436e84478d211b09711c3d2e40504ffd2cf85f
-        console.log("黑名单：", this.props.blacklist)
+        console.log("组件内显示黑名单：", this.props.blacklist)
 
-        this.props.blacklist.map((item, i) => {
-            rows.push(this.createData(item.weid, item.description))
-        })
+        if (this.props.blacklist !== undefined) {
+            this.props.blacklist.map((item, i) => {
+                rows.push(this.createData(item.weid, item.record))
+            })
+        }
 
         const { classes } = this.props
+
         return (
             <div>
                 <h3 className={classes.title}>查看黑名单</h3>

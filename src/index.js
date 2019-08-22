@@ -7,7 +7,8 @@ import { store } from './_store'
 
 const rootElement = document.getElementById("root")
 
-// console.log(store.getState()) // 可以拿到状态
+console.log("store状态：", store.getState()) // 可以拿到状态
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
