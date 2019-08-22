@@ -110,7 +110,7 @@ export function ListVerifiedUsers(props) {
                                 <TableRow >
                                     <TableCell align="center">{row.weid}</TableCell>
                                     <TableCell align="center">{row.name} </TableCell>
-                                    <TableCell align="center">{row.gender}</TableCell>
+                                    <TableCell align="center">{row.gender === "M"? "男":"女"}</TableCell>
                                     <TableCell align="center">
                                         <Button size="medium" color="primary" variant="contained" onClick={() => handleClickOpen && handleClickOpen(row)}>查看用户</Button>
                                     </TableCell>

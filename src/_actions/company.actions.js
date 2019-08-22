@@ -83,35 +83,33 @@ const listLoanRecordsAsync = () => {
     }
 }
 
-const verifyCredential = () => {
+const verifyCredential = (json) => {
     return {
-        type: ""
+        type: types.VERIFY_CREDENTIAL,
+        payload: json.data
     }
 }
 
-const verifyCredentialAsync = () => {
+const verifyCredentialAsync = (id, weid, issuer, type, verifyType) => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.verifyCredential().then(
+        companyServices.verifyCredential(id, weid, issuer, type, verifyType).then(
             json => {
-                console.log("")
                 dispatch(verifyCredential(json))
             }
         )
     }
 }
 
-const verifyUserAuthenticity = () => {
+const verifyUserAuthenticity = (json) => {
     return {
-        type: ""
+        type: types.VERIFY_USER_AUTHENTICITY,
+        payload: json.data
     }
 }
-const verifyUserAuthenticityAsync = () => {
+const verifyUserAuthenticityAsync = (id) => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.verifyUserAuthenticity().then(
+        companyServices.verifyUserAuthenticity(id).then(
             json => {
-                console.log("")
                 dispatch(verifyUserAuthenticity(json))
             }
         )
@@ -135,17 +133,16 @@ const verifyMultiParityLoanAsync = () => {
     }
 }
 
-const handleLoanRequest = () => {
+const handleLoanRequest = (json) => {
     return {
-        type: ""
+        type: types.HANDLE_LOAN_REQUEST,
+        payload: json.data
     }
 }
-const handleLoanRequestAsync = () => {
+const handleLoanRequestAsync = (id, type) => {
     return dispatch => {
-        console.log("请求开始...")
-        companyServices.handleLoanRequest().then(
+        companyServices.handleLoanRequest(id, type).then(
             json => {
-                console.log("")
                 dispatch(handleLoanRequest(json))
             }
         )

@@ -17,7 +17,7 @@ let initialState = {
         "multiPartyInfo": {
             "usedCompanyCount": 0,
             "loanAmount": 10000
-        }
+        },
     },
 
     "government": {},
