@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import Modal from '@material-ui/core/Modal'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -44,26 +45,28 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid',
         borderColor: 'red',
         textAlign: 'center'
-    }
+    },
+    modalPaper: {
+        position: 'relative',
+        width: 1000,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(5, 5, 5),
+    },
 }))
 
-let loanRequestInfo = {
-    "id": -1,
-    "weid": "",
-    "companyName": "",
-    "amount": 0.0,
-    "durationMonth": 0,
-    "credentialOwner": "",
-    "isUserSelf": 0,
-    "isCredentialVerified": 0,
-    "dailyRate": 0.04,
-    "createdTime": "",
-    "effectiveTime": "",
-    "repayTime": "",
-    "endTime": "",
-    "status": 0
+function getModalStyle() {
+    const top = 30
+    const left = 35
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    }
 }
-let index = 0
+
+let loanRequestInfo = {}
 
 function PaperComponent(props) {
     return (
@@ -75,10 +78,19 @@ function PaperComponent(props) {
 
 // 个人借贷请求列表
 export function ListLoanRequestRecords(props) {
-
+    const [modalStyle] = React.useState(getModalStyle)
     const classes = useStyles()
 
     const [open, setOpen] = React.useState(false)
+
+    const [modalOpen, setModalOpen] = React.useState(false)
+
+    const handleClickModalOpen = () => {
+        setModalOpen(true)
+    }
+    const handleClickModalClose = () => {
+        setModalOpen(false)
+    }
 
     const handleClickOpen = (row, i) => {
         setOpen(true)
@@ -90,7 +102,7 @@ export function ListLoanRequestRecords(props) {
     }
 
     const onHandleLoanRequest = (id, type) => {
-        props.handleLoanRequestAsync(id,type)
+        props.handleLoanRequestAsync(id, type)
         setOpen(false)
     }
 
@@ -107,12 +119,22 @@ export function ListLoanRequestRecords(props) {
         loanRequestInfo.isCredentialVerified = 1
     }
 
+    const onHandleGetBlacklistByWeid = (weid) => {
+        props.listBlacklistByWeidAsync(weid)
+        setModalOpen(true)
+    }
+
     let rows = []
+    let blacklistByWeid = []
 
     props.listLoanRequestRecordsAsync()
 
     if (props.loanRequestRecords !== undefined) {
         rows = props.loanRequestRecords
+    }
+
+    if (props.blacklistByWeid !== undefined) {
+        blacklistByWeid = props.blacklistByWeid
     }
 
     return (
@@ -222,7 +244,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>黑名单</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                        <Button onClick={() => onHandleGetBlacklistByWeid && onHandleGetBlacklistByWeid(loanRequestInfo.weid)} variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
                                             黑名单查询
                                         </Button>
                                     </TableCell>
@@ -261,6 +283,39 @@ export function ListLoanRequestRecords(props) {
                             </Button>
                         </DialogActions>
                     </Dialog>
+                    <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={modalOpen}
+                        onClose={handleClickModalClose}
+                    >
+                        <div style={modalStyle} className={classes.modalPaper}>
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center">WeID</TableCell>
+                                        <TableCell align="center">违约记录</TableCell>
+                                        <TableCell align="center">创建时间</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {blacklistByWeid.map(row => (
+                                        <TableRow>
+                                            <TableCell>
+                                                {row.weid}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.record}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.createdTime}
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </Modal>
                 </Paper>
             </Container>
         </div>

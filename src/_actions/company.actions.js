@@ -35,16 +35,15 @@ export const listBlacklistAsync = () => {
 
 const listBlacklistByWeid = (json) => {
     return {
-        type: ""
+        type: types.LIST_BLACKLIST_BY_WEID,
+        payload: json.data
     }
 }
-const listBlacklistByWeidAsync = () => {
+const listBlacklistByWeidAsync = (weid) => {
     return dispatch => {
-        console.log("请求开始...")
         // 异步请求
-        companyServices.listBlacklistByWeid().then(
+        companyServices.listBlacklistByWeid(weid).then(
             json => {
-                console.log("根据WEID获取黑名单")
                 dispatch(listBlacklistByWeid(json))
             }
         )

@@ -31,10 +31,10 @@ export function loanRecordsReducer(state = [], action) {
     }
 }
 
-function verifyUserAuthenticityReducer(state = [], action) {
+function verifyUserAuthenticityReducer(state = {}, action) {
     switch (action.type) {
         case types.VERIFY_USER_AUTHENTICITY:
-            return state
+            return 1
         default:
             return state
     }
@@ -43,7 +43,7 @@ function verifyUserAuthenticityReducer(state = [], action) {
 function verifyCredentialReducer(state = [], action) {
     switch (action.type) {
         case types.VERIFY_CREDENTIAL:
-            return action
+            return 1
         default:
             return state
     }
@@ -53,6 +53,15 @@ function handleLoanRequestReducer(state = [], action) {
     switch (action.type) {
         case types.HANDLE_LOAN_REQUEST:
             return action
+        default:
+            return state
+    }
+}
+
+function listBlacklistByWeidReducer(state = [], action) {
+    switch (action.type) {
+        case types.LIST_BLACKLIST_BY_WEID:
+            return [...state, ...action.payload]
         default:
             return state
     }
@@ -88,7 +97,7 @@ export function companyReducer(state = {}, action) {
         case types.VERIFY_USER_AUTHENTICITY:
             return {
                 ...state,
-                verifyUserAuthenticity: verifyUserAuthenticityReducer([], action)
+                verifyUserAuthenticity: verifyUserAuthenticityReducer({}, action)
             }
         case types.VERIFY_CREDENTIAL:
             return {
@@ -99,6 +108,11 @@ export function companyReducer(state = {}, action) {
             return {
                 ...state,
                 handleLoanRequest: handleLoanRequestReducer([], action)
+            }
+        case types.LIST_BLACKLIST_BY_WEID:
+            return {
+                ...state,
+                blacklistByWeid: listBlacklistByWeidReducer([], action)
             }
         case types.MULTI_PARTY_INFO:
             return {

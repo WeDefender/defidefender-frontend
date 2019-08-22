@@ -178,9 +178,12 @@ export function ListLoanRecords(props) {
                             </TableBody>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="primary" align="right">
-                                加入黑名单
-                            </Button>
+                            {loanRequestInfo.status === 3 ?
+                                <Button onClick={handleClose} variant="contained" color="primary" align="right">
+                                    加入黑名单
+                                </Button>:
+                                <div></div>
+                        }
                         </DialogActions>
                     </Dialog>
                 </Paper>
