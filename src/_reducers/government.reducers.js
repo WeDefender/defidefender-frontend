@@ -1,4 +1,5 @@
 import { GOVERNMENT_ACTION_TYPES as types } from '../_constants/actions.types'
+import { FETCH_STATUS } from "../_constants";
 
 export const listToBeCheckedUsersReducer = (state=[], action) => {
     switch (action.type) {
@@ -27,6 +28,21 @@ export const listVerifiedUsersReducer = (state=[], action) => {
 // 对应state.government的reducer
 export const governmentReducer = (state={}, action) => {
     switch (action.type) {
+        case FETCH_STATUS.FETCH_BEGIN:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_SUCCESS:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_FAIL:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
         case types.LIST_TO_BE_CHECKED_USERS: 
             return {
                 ...state,

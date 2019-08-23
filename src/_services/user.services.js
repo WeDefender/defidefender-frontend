@@ -143,6 +143,7 @@ const requestLoan = (companyName,
 }
  */
 const listLoanRequests = (weid) => {
+    console.log("分发请求了...")
     const url = API_URLS.USER_LISTLOANREQUESTS_URL
     const body = JSON.stringify({
         weid: weid

@@ -1,7 +1,6 @@
 import { COMMON_ACTION_TYPES as types } from '../_constants/actions.types'
 import { commonServices } from '../_services/common.services'
 
-
 // 创建CPT
 const createCPT = (json) => {
     return {
@@ -9,6 +8,7 @@ const createCPT = (json) => {
         payload: ""
     }
 }
+
 const createCPTAsync = () => {
     return dispatch => {
         console.log("请求开始...")

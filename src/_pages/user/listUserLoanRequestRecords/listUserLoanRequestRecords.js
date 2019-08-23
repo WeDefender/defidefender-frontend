@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -14,6 +14,9 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import { FETCH_STATUS } from "../../../_constants"
+// import { SpinningButton } from '../../../_components/Spinning'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -64,109 +67,133 @@ export function ListUserLoanRequestRecords(props) {
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
     }
-
     const classes = useStyles()
-
     const [open, setOpen] = React.useState(false)
-
     const handleClickOpen = (row) => {
         setOpen(true)
         loanRequestInfo = row
     }
-
     const handleClose = () => {
         setOpen(false)
     }
-
     let rows = []
-    // TODO weid 后续要抓的
-    props.listUserLoanRequestRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+    
+    useEffect(() => {
+        // TODO weid 后续要抓的
+        props.listUserLoanRequestRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+        return () => {
+        };
+    }, [])
+
     if (props.listUserLoanRequestRecords !== undefined) {
         rows = props.listUserLoanRequestRecords
     }
 
-    return (
-        <div>
-            <h2 className={classes.title}>借贷请求列表</h2>
-            <Container maxWidth="lg" className={classes.container}>
-                <Paper className={classes.root}>
-                    <Table className={classes.table}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center">创建日期</TableCell>
-                                <TableCell align="center">借贷金额</TableCell>
-                                <TableCell align="center">日利率</TableCell>
-                                <TableCell align="center">还款期限</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map(row => (
+    // 根据fetch状态判断是否加载数据
+    if (props.fetchStatus === FETCH_STATUS.FETCH_BEGIN) {
+        // 加载spining组件
+        return (
+            <div>
+                <h2 className={classes.title}>借贷请求列表</h2>
+                <Container maxWidth="lg" className={classes.container}>
+                    <CircularProgress />
+                </Container>
+            </div>
+        )
+    }
+    else if (props.fetchStatus === FETCH_STATUS.FETCH_SUCCESS) {
+        // 加载数据组件
+        return (
+            <div>
+                <h2 className={classes.title}>借贷请求列表</h2>
+                <Container maxWidth="lg" className={classes.container}>
+                    <Paper className={classes.root}>
+                        <Table className={classes.table}>
+                            <TableHead>
                                 <TableRow>
-                                    <TableCell align="center">
-                                        {row.createdTime}
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        {row.amount}
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        {row.dailyRate}
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        {row.durationMonth}个月
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看请求</Button>
-                                    </TableCell>
+                                    <TableCell align="center">创建日期</TableCell>
+                                    <TableCell align="center">借贷金额</TableCell>
+                                    <TableCell align="center">日利率</TableCell>
+                                    <TableCell align="center">还款期限</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        PaperComponent={PaperComponent}
-                        aria-labelledby="draggable-dialog-title"
-                        maxWidth={100}
-                    >
-                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                            <Typography align="center" variant="h6">借贷请求详情</Typography>
-                        </DialogTitle>
-                        <DialogContent>
+                            </TableHead>
                             <TableBody>
-                                <TableRow>
-                                    <TableCell colSpan={3}>数字身份</TableCell>
-                                    <TableCell align="right">
-                                        <Typography className={classes.cardLabel}>
-                                            <div style={{ color: 'green' }}>{loanRequestInfo.weid}</div>
-                                        </Typography>
+                                {rows.map(row => (
+                                    <TableRow>
+                                        <TableCell align="center">
+                                            {row.createdTime}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.amount}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.dailyRate}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.durationMonth}个月
                                     </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>凭证</TableCell>
-                                    <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
-                                            查看凭证
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>借贷金额</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.amount}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>日利率</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.dailyRate}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>还款期限</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.durationMonth}个月</TableCell>
-                                </TableRow>
+                                        <TableCell align="center">
+                                            <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看请求</Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
                             </TableBody>
-                        </DialogContent>
-                    </Dialog>
-                </Paper>
-            </Container>
-        </div>
-    )
+                        </Table>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            PaperComponent={PaperComponent}
+                            aria-labelledby="draggable-dialog-title"
+                            maxWidth={100}
+                        >
+                            <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                                <Typography align="center" variant="h6">借贷请求详情</Typography>
+                            </DialogTitle>
+                            <DialogContent>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell colSpan={3}>数字身份</TableCell>
+                                        <TableCell align="right">
+                                            <Typography className={classes.cardLabel}>
+                                                <div style={{ color: 'green' }}>{loanRequestInfo.weid}</div>
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={3}>凭证</TableCell>
+                                        <TableCell align="center">
+                                            <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                                查看凭证
+                                        </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={3}>借贷金额</TableCell>
+                                        <TableCell align="right">{loanRequestInfo.amount}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={3}>日利率</TableCell>
+                                        <TableCell align="right">{loanRequestInfo.dailyRate}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={3}>还款期限</TableCell>
+                                        <TableCell align="right">{loanRequestInfo.durationMonth}个月</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </DialogContent>
+                        </Dialog>
+                    </Paper>
+                </Container>
+            </div>
+        )
+    }
 
+    else {
+        return (
+            <div>
+                暂时无fetch状态~~，因为还没有分发获取请求，无state.user.fetchStatus
+            </div>
+        )
+    }
+    
 }

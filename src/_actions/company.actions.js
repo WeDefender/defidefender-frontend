@@ -1,11 +1,6 @@
 import { COMPANY_ACTION_TYPES as types } from '../_constants/actions.types'
 import { companyServices } from '../_services/company.services'
-
-const fetch_blacklist_begin = () => {
-    return {
-        type: "BEGIN_FETCHING"
-    }
-}
+import { FETCH_STATUS } from '../_constants'
 
 /*
  * 同步action创建函数, action中包含payload，描述要修改的state数据部分
@@ -20,16 +15,16 @@ export const listBlacklist = (json) => {
 // 异步action creator
 export const listBlacklistAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
-        dispatch(fetch_blacklist_begin()) // 请求开始
+        dispatch(fetchBegin())
         // 开始请求
         companyServices.listBlacklist().then(
             json => {
-                console.log("异步action creator查看数据：", json)
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listBlacklist(json)) // 分发action对象
             }
         )
-        console.log("请求结束！")
     }
 }
 
@@ -41,9 +36,12 @@ const listBlacklistByWeid = (json) => {
 }
 const listBlacklistByWeidAsync = (weid) => {
     return dispatch => {
-        // 异步请求
+        dispatch(fetchBegin())
         companyServices.listBlacklistByWeid(weid).then(
             json => {
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listBlacklistByWeid(json))
             }
         )
@@ -58,8 +56,12 @@ const listLoanRequestRecords = (json) => {
 }
 const listLoanRequestRecordsAsync = () => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.listLoanRequestRecords("WeBank").then(
             json => {
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listLoanRequestRecords(json))
             }
         )
@@ -74,8 +76,12 @@ const listLoanRecords = (json) => {
 }
 const listLoanRecordsAsync = () => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.listLoanRecords("WeBank").then(
             json => {
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listLoanRecords(json))
             }
         )
@@ -91,8 +97,12 @@ const verifyCredential = (json) => {
 
 const verifyCredentialAsync = (id, weid, issuer, type, verifyType) => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.verifyCredential(id, weid, issuer, type, verifyType).then(
             json => {
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(verifyCredential(json))
             }
         )
@@ -107,8 +117,12 @@ const verifyUserAuthenticity = (json) => {
 }
 const verifyUserAuthenticityAsync = (id) => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.verifyUserAuthenticity(id).then(
             json => {
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(verifyUserAuthenticity(json))
             }
         )
@@ -122,10 +136,12 @@ const verifyMultiParityLoan = () => {
 }
 const verifyMultiParityLoanAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         companyServices.verifyMultiParityLoan().then(
             json => {
-                console.log("")
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(verifyMultiParityLoan(json))
             }
         )
@@ -140,6 +156,7 @@ const handleLoanRequest = (json) => {
 }
 const handleLoanRequestAsync = (id, type) => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.handleLoanRequest(id, type).then(
             json => {
                 dispatch(handleLoanRequest(json))
@@ -155,13 +172,34 @@ const addToBlacklist = () => {
 }
 const addToBlacklistAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         companyServices.addToBlacklist().then(
             json => {
-                console.log("")
+                if (json.status === "200") {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(addToBlacklist(json))
             }
         )
+    }
+}
+
+const fetchBegin = () => {
+    return {
+        type: FETCH_STATUS.FETCH_BEGIN,
+        payload: "FETCH_BEGIN",
+    }
+}
+const fetchSuccess = () => {
+    return {
+        type: FETCH_STATUS.FETCH_SUCCESS,
+        payload: "FETCH_SUCCESS",
+    }
+}
+const fetchFail = () => {
+    return {
+        type: FETCH_STATUS.FETCH_FAIL,
+        payload: "FETCH_FAIL"
     }
 }
 

@@ -1,4 +1,5 @@
 import { COMPANY_ACTION_TYPES as types } from '../_constants/actions.types'
+import { FETCH_STATUS } from "../_constants";
 
 // 更新黑名单数组列表，在companyReducer会给出键，显示出state的层次结构
 export function blacklistReducer(state = [], action) {
@@ -79,6 +80,21 @@ export function multiPartyInfoReducer(state = [], action) {
 // 对应state.company的reducer
 export function companyReducer(state = {}, action) {
     switch (action.type) {
+        case FETCH_STATUS.FETCH_BEGIN:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_SUCCESS:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_FAIL:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
         case types.BLACKLIST:
             return {
                 ...state,

@@ -1,4 +1,5 @@
-import { USER_ACTION_TYPES as types } from '../_constants/actions.types'
+import { USER_ACTION_TYPES as types } from '../_constants'
+import { FETCH_STATUS } from "../_constants";
 
 const listUserLoanRequestRecordsReducer = (state = [], action) => {
     switch (action.type) {
@@ -21,6 +22,21 @@ const listUserLoanRecordsReducer = (state = [], action) => {
 // 对应state.user的reducer
 export const userReducer = (state = {}, action) => {
     switch (action.type) {
+        case FETCH_STATUS.FETCH_BEGIN:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_SUCCESS: 
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
+        case FETCH_STATUS.FETCH_FAIL:
+            return {
+                ...state,
+                fetchStatus: action.payload
+            }
         case types.USER_CREDENTIALS:
             return {
                 ...state,

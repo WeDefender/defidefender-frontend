@@ -42,12 +42,14 @@ class Blacklist extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.listBlacklistAsync() // 先分发查询修改状态树
+    }
+
     render() {
         // this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, "xx于xx年xx月xx日未还款金额xx元"),
         const rows = []
-        this.props.listBlacklistAsync() // 先分发查询修改状态树
         // 需要根据状态判定是否已经结束获取
-        
         console.log("组件内显示黑名单：", this.props.blacklist)
 
         if (this.props.blacklist !== undefined) {
