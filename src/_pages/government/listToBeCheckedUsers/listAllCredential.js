@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper'
 import { Button } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import { Link } from 'react-router-dom'
+// 测试卡片
+import PaymentCard from 'react-payment-card-component'
+
 
 const useStyles = theme => ({
     title: {
@@ -41,6 +44,13 @@ class ListAllCredential extends Component {
         return { weid, ipfs_hash }
     }
 
+    flipped = false;
+
+    onFlippedCard = () => {
+        // alert("翻转:", typeof(this.flipped))
+        this.flipped = this.flipped ? false : true
+        console.log("flipped: ", this.flipped)
+    }
     render() {
         const { classes } = this.props
         const rows = [
@@ -50,9 +60,22 @@ class ListAllCredential extends Component {
             this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
             this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`)
         ]
+        
         return (
             <div>
                 <h3 className={classes.title}>查看凭证</h3>
+                <PaymentCard
+                    bank="itau"
+                    model="personnalite"
+                    type="black"
+                    brand="mastercard"
+                    number="4111111111111111"
+                    cvv="202"
+                    holderName="Owen Lars"
+                    expiration="12/20"
+                    flipped={this.flipped}
+                />
+                <Button onClick={this.onFlippedCard}>翻转</Button>
                 <Container maxWidth="lg" className={classes.container}>
                     <Paper className={classes.root}>
                         <Table className={classes.table}>

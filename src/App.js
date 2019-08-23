@@ -36,7 +36,7 @@ class App extends Component {
             <Route path="/requestLoan" component={RequestLoan}></Route>
             <Route path="/listCredential" component={ListCredential}></Route>
             <Route path="/requestCredential" component={RequestCredential}></Route>
-            <Route path="/loanRequestsList" component={LoanRequestsList}></Route>
+            <Route path="/listLoanRequests" component={LoanRequestsList}></Route>
             <Route path="/userLoanRecordsList" component={UserLoanRecordsList}></Route>
             <Card1 />
           </Switch >
