@@ -12,12 +12,15 @@ let initialState = {
                 "createdTime": " 2019-08-19"
             },
         ],
-        "loanRequestRecords":[],
+        "loanRequestRecords": [],
         "loanRecords": [],
         "multiPartyInfo": {
             "usedCompanyCount": 0,
             "loanAmount": 10000
-        }
+        },
+        "blacklistByWeid": [],
+        "verifyUserAuthenticity": 0,
+        "verifyCredential": 0,
     },
 
     "government": {},
@@ -34,7 +37,7 @@ const rootReducer = combineReducers({
     user: userReducer
 })
 
-const middlewares = [ thunkMiddleware ]
+const middlewares = [thunkMiddleware]
 
 // 配置Redux-devtools
 const composeEnhancers =
@@ -50,7 +53,7 @@ const enhancer = composeEnhancers(
 );
 
 export const store = createStore(
-    rootReducer, 
+    rootReducer,
     initialState,
     enhancer
 )

@@ -58,18 +58,12 @@ function PaperComponent(props) {
     )
 }
 
-// 放款记录列表
-export function UserLoanRecordsList() {
+// 用户借贷请求列表
+export function ListUserLoanRequestRecords(props) {
 
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
     }
-
-    const rows = [
-        createData(`did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441`, 10000, '0.4%', '三个月', '2019-08-01'),
-        createData(`did:weid:1:0x02d37251f31f2dc205abef81d2c674de425f1781`, 20000, '0.5%', '三个月', '2019-08-02'),
-        createData(`did:weid:1:0x5ef98d1c967f869f8f2c19eadfabd847b346e21c`, 50000, '0.6%', '六个月', '2019-08-03'),
-    ]
 
     const classes = useStyles()
 
@@ -84,19 +78,25 @@ export function UserLoanRecordsList() {
         setOpen(false)
     }
 
+    let rows = []
+    // TODO weid 后续要抓的
+    props.listUserLoanRequestRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+    if (props.listUserLoanRequestRecords !== undefined) {
+        rows = props.listUserLoanRequestRecords
+    }
+
     return (
         <div>
-            <h2 className={classes.title}>借贷记录列表</h2>
+            <h2 className={classes.title}>借贷请求列表</h2>
             <Container maxWidth="lg" className={classes.container}>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">借贷日期</TableCell>
+                                <TableCell align="center">创建日期</TableCell>
                                 <TableCell align="center">借贷金额</TableCell>
                                 <TableCell align="center">日利率</TableCell>
                                 <TableCell align="center">还款期限</TableCell>
-                                <TableCell align="center">还款日期</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -109,16 +109,13 @@ export function UserLoanRecordsList() {
                                         {row.amount}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.rate}
+                                        {row.dailyRate}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.duration}
+                                        {row.durationMonth}个月
                                     </TableCell>
                                     <TableCell align="center">
-                                        未还款
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看记录</Button>
+                                        <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看请求</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -132,7 +129,7 @@ export function UserLoanRecordsList() {
                         maxWidth={100}
                     >
                         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                            <Typography align="center" variant="h6">借贷记录详情</Typography>
+                            <Typography align="center" variant="h6">借贷请求详情</Typography>
                         </DialogTitle>
                         <DialogContent>
                             <TableBody>
@@ -145,32 +142,27 @@ export function UserLoanRecordsList() {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
+                                    <TableCell colSpan={3}>凭证</TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                            查看凭证
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
                                     <TableCell colSpan={3}>借贷金额</TableCell>
                                     <TableCell align="right">{loanRequestInfo.amount}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>日利率</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.rate}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>借贷日期</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.createdTime}</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.dailyRate}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>还款期限</TableCell>
-                                    <TableCell align="right">{loanRequestInfo.duration}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>应还金额</TableCell>
-                                    <TableCell align="right">10323.5</TableCell>
+                                    <TableCell align="right">{loanRequestInfo.durationMonth}个月</TableCell>
                                 </TableRow>
                             </TableBody>
                         </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="secondary" align="right">
-                                还款
-                            </Button>
-                        </DialogActions>
                     </Dialog>
                 </Paper>
             </Container>

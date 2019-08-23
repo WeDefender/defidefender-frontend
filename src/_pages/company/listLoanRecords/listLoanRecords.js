@@ -118,7 +118,7 @@ export function ListLoanRecords(props) {
                                         {row.durationMonth}个月
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.status === 1 ? "未还款" : row.status === 3 ? <div style={{ color: 'red' }}>已超时</div> : row.status === 5? <div style={{ color: 'red' }}>已入黑名单</div>: "未还款"}
+                                        {row.status === 1 ? "未还款" : row.status === 2 ? <div style={{ color: 'green' }}>已还款</div> : row.status === 3 ? <div style={{ color: 'red' }}>已超时</div> : row.status === 5 ? <div style={{ color: 'red' }}>已入黑名单</div> : "未还款"}
                                     </TableCell>
                                     <TableCell align="center">
                                         <Button variant="contained" color="primary" onClick={() => handleClickOpen && handleClickOpen(row)}>查看记录</Button>
@@ -178,9 +178,12 @@ export function ListLoanRecords(props) {
                             </TableBody>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} variant="contained" color="primary" align="right">
-                                加入黑名单
-                            </Button>
+                            {loanRequestInfo.status === 3 ?
+                                <Button onClick={handleClose} variant="contained" color="primary" align="right">
+                                    加入黑名单
+                                </Button>:
+                                <div></div>
+                        }
                         </DialogActions>
                     </Dialog>
                 </Paper>

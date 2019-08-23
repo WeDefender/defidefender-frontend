@@ -13,7 +13,7 @@ export function blacklistReducer(state = [], action) {
 }
 
 // 获取用户请求列表
-export function loanRequestRecordsReducer(state=[], action) {
+export function loanRequestRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_REQUEST_RECORDS:
             return [...state, ...action.payload]
@@ -25,6 +25,42 @@ export function loanRequestRecordsReducer(state=[], action) {
 export function loanRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_RECORDS:
+            return [...state, ...action.payload]
+        default:
+            return state
+    }
+}
+
+function verifyUserAuthenticityReducer(state = {}, action) {
+    switch (action.type) {
+        case types.VERIFY_USER_AUTHENTICITY:
+            return 1
+        default:
+            return state
+    }
+}
+
+function verifyCredentialReducer(state = [], action) {
+    switch (action.type) {
+        case types.VERIFY_CREDENTIAL:
+            return 1
+        default:
+            return state
+    }
+}
+
+function handleLoanRequestReducer(state = [], action) {
+    switch (action.type) {
+        case types.HANDLE_LOAN_REQUEST:
+            return action
+        default:
+            return state
+    }
+}
+
+function listBlacklistByWeidReducer(state = [], action) {
+    switch (action.type) {
+        case types.LIST_BLACKLIST_BY_WEID:
             return [...state, ...action.payload]
         default:
             return state
@@ -45,10 +81,10 @@ export function companyReducer(state = {}, action) {
     switch (action.type) {
         case types.BLACKLIST:
             return {
-                ...state, 
+                ...state,
                 blacklist: blacklistReducer([], action)
             }
-        case types.LOAN_REQUEST_RECORDS: 
+        case types.LOAN_REQUEST_RECORDS:
             return {
                 ...state,
                 loanRequestRecords: loanRequestRecordsReducer([], action)
@@ -57,6 +93,26 @@ export function companyReducer(state = {}, action) {
             return {
                 ...state,
                 loanRecords: loanRecordsReducer([], action)
+            }
+        case types.VERIFY_USER_AUTHENTICITY:
+            return {
+                ...state,
+                verifyUserAuthenticity: verifyUserAuthenticityReducer({}, action)
+            }
+        case types.VERIFY_CREDENTIAL:
+            return {
+                ...state,
+                verifyCredential: verifyCredentialReducer([], action)
+            }
+        case types.HANDLE_LOAN_REQUEST:
+            return {
+                ...state,
+                handleLoanRequest: handleLoanRequestReducer([], action)
+            }
+        case types.LIST_BLACKLIST_BY_WEID:
+            return {
+                ...state,
+                blacklistByWeid: listBlacklistByWeidReducer([], action)
             }
         case types.MULTI_PARTY_INFO:
             return {

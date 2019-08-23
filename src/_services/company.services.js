@@ -1,5 +1,5 @@
 import { API_URLS } from '../_constants/api.url'
-import {fetch_get_helper, fetch_post_helper} from './utils'
+import { fetch_get_helper, fetch_post_helper } from './utils'
 
 // 返回JSON类型的结果，用于在异步action creator中调用
 /*
@@ -17,9 +17,9 @@ const listBlacklist = () => {
 const listBlacklistByWeid = (weid) => {
     const url = API_URLS.COMPANY_LISTBLACKLISTBYWEID_URL
     const body = JSON.stringify(
-            {
-                weid: weid
-            })
+        {
+            weid: weid
+        })
     return fetch_post_helper(url, body)
 }
 /**
@@ -29,33 +29,35 @@ const listBlacklistByWeid = (weid) => {
 const listLoanRequestRecords = (companyName) => {
     const url = API_URLS.COMPANY_LISTLOANREQUESTRECORDS_URL
     const body = JSON.stringify(
-            {
-                companyName: companyName
-            })
+        {
+            companyName: companyName
+        })
     return fetch_post_helper(url, body)
 }
 
 /**
  * @method POST
  */
-const verifyCredential = (weid, issuer, type) => {
+const verifyCredential = (id, weid, issuer, type, verifyType) => {
     const url = API_URLS.COMPANY_VERIFYCREDENTIAL_URL
     const body = JSON.stringify({
-                    weid: weid,
-                    issuer: issuer,
-                    type: type
-                })
+        id: id,
+        weid: weid,
+        issuer: issuer,
+        type: type,
+        verifyType: verifyType
+    })
     return fetch_post_helper(url, body)
 }
 
 /**
  * @method POST
  */
-const verifyUserAuthenticity = (weid) => {
+const verifyUserAuthenticity = (id) => {
     const url = API_URLS.COMPANY_VERIFYUSERAUTHENTICITY_URL
     const body = JSON.stringify({
-                    weid: weid
-                })
+        id: id
+    })
     return fetch_post_helper(url, body)
 }
 
@@ -72,8 +74,8 @@ const verifyMultiParityLoan = () => {
 const listLoanRecords = (companyName) => {
     const url = API_URLS.COMPANY_LISTLOANREARDS_URL
     const body = JSON.stringify({
-                    companyName: companyName
-                })
+        companyName: companyName
+    })
     return fetch_post_helper(url, body)
 }
 
@@ -83,9 +85,9 @@ const listLoanRecords = (companyName) => {
 const handleLoanRequest = (id, handleType) => {
     const url = API_URLS.COMPANY_HANDLELOANREQUEST_URL
     const body = JSON.stringify({
-                    id: id,
-                    handleType: handleType
-                })
+        id: id,
+        handleType: handleType
+    })
     return fetch_post_helper(url, body)
 }
 /**
@@ -94,8 +96,8 @@ const handleLoanRequest = (id, handleType) => {
 const addToBlacklist = (id) => {
     const url = API_URLS.COMPANY_ADDTOBLACKLIST_URL
     const body = JSON.stringify({
-                    id: id
-                })
+        id: id
+    })
     return fetch_post_helper(url, body)
 }
 

@@ -129,36 +129,34 @@ const listCredentialsAsync = () => {
 }
 
 // 8.查询所有借贷请求
-const listLoanRequests = () => {
+const listLoanRequestRecords = (json) => {
     return {
-        type: ""
+        type: types.LIST_USER_LOAN_REQUEST_RECORDS,
+        payload: json.data
     }
 }
-const listLoanRequestsAsync = () => {
+const listUserLoanRequestRecordsAsync = (weid) => {
     return dispatch => {
-        console.log("请求开始...")
-        userServices.listLoanRequestsAsync().then(
+        userServices.listLoanRequests(weid).then(
             json => {
-                console.log("")
-                dispatch(listLoanRequestsAsync(json))
+                dispatch(listLoanRequestRecords(json))
             }
         )
     }
 }
 
 // 9.查询所有借贷记录
-const listLoanRecords = () => {
+const listUserLoanRecords = (json) => {
     return {
-        type: "",
+        type: types.LIST_USER_LOAN_RECORDS,
+        payload: json.data
     }
 }
-const listLoanRecordsAsync = () => {
+const listUserLoanRecordsAsync = (weid) => {
     return dispatch => {
-        console.log("请求开始...")
-        userServices.listLoanRecords().then(
+        userServices.listLoanRecords(weid).then(
             json => {
-                console.log("")
-                dispatch(listLoanRecords(json))
+                dispatch(listUserLoanRecords(json))
             }
         )
     }
@@ -189,8 +187,8 @@ export const userActions = {
     requestVerifyWeIdAsync,
     getCompaniesAsync,
     requestLoanAsync,
-    listLoanRequestsAsync,
+    listUserLoanRequestRecordsAsync,
     listCredentialsAsync,
-    listLoanRecordsAsync,
+    listUserLoanRecordsAsync,
     returnLoanAsync,
 }
