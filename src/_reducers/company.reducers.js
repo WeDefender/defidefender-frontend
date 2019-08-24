@@ -68,9 +68,37 @@ function listBlacklistByWeidReducer(state = [], action) {
     }
 }
 
-export function multiPartyInfoReducer(state = [], action) {
+function multiPartyInfoReducer(state = [], action) {
     switch (action.type) {
         case types.MULTI_PARTY_INFO:
+            return [...state, ...action.payload]
+        default:
+            return state
+    }
+}
+
+function listRequestVerifyMultiParityLoanRecordsReducer(state = [], action) {
+    switch (action.type) {
+        case types.LIST_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
+            return [...state, ...action.payload]
+        default:
+            return state
+    }
+}
+
+function hanleRequestVerifyMultiParityLoanRecordReducer(state = [], action) {
+    switch (action.type) {
+        case types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
+            return action.payload
+        default:
+            return state
+    }
+}
+
+
+function listMultiParityLoanInfoReducer(state = [], action) {
+    switch (action.type) {
+        case types.LIST_MULTI_PARITY_LOAN_INFO:
             return [...state, ...action.payload]
         default:
             return state
@@ -139,6 +167,25 @@ export function companyReducer(state = {}, action) {
             return {
                 ...state,
                 blacklistByWeid: listBlacklistByWeidReducer([], action)
+            }
+        case types.REQUEST_VERIFY_MULTI_PARITY_LOAN:
+            return {
+                ...state,
+            }
+        case types.LIST_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
+            return {
+                ...state,
+                requestMultiParityLoanRecords: listRequestVerifyMultiParityLoanRecordsReducer([], action)
+            }
+        case types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
+            return {
+                ...state,
+                hanleRequestVerifyMultiParityLoanRecord: hanleRequestVerifyMultiParityLoanRecordReducer([], action)
+            }
+        case types.LIST_MULTI_PARITY_LOAN_INFO:
+            return {
+                ...state,
+                multiParityLoanInfo: listMultiParityLoanInfoReducer([], action)
             }
         case types.MULTI_PARTY_INFO:
             return {

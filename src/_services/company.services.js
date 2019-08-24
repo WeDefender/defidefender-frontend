@@ -79,6 +79,43 @@ const listLoanRecords = (companyName) => {
     return fetch_post_helper(url, body)
 }
 
+const requestVerifyMultiParityLoan = (requester, loanRecordId, weid) => {
+    const url = API_URLS.COMPNAY_REQUEST_VERIFY_MULTIPARITY_LOAN
+    const body = JSON.stringify({
+        requester: requester,
+        loanRecordId: loanRecordId,
+        weid: weid,
+    })
+    return fetch_post_helper(url, body)
+}
+
+
+const listRequestVerifyMultiParityLoanRecords = (companyName) => {
+    const url = API_URLS.COMPANY_LIST_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS
+    const body = JSON.stringify({
+        companyName: companyName
+    })
+    return fetch_post_helper(url, body)
+}
+
+
+const hanleRequestVerifyMultiParityLoanRecord = (id, type) => {
+    const url = API_URLS.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS
+    const body = JSON.stringify({
+        id: id,
+        type: type
+    })
+    return fetch_post_helper(url, body)
+}
+
+const listMultiParityLoanInfo = (recordId) => {
+    const url = API_URLS.LIST_MULTI_PARITY_LOAN_INFO
+    const body = JSON.stringify({
+        recordId: recordId
+    })
+    return fetch_post_helper(url, body)
+}
+
 /**
  * @method POST
  */
@@ -129,5 +166,9 @@ export const companyServices = {
     verifyUserAuthenticity,
     verifyMultiParityLoan,
     handleLoanRequest,
-    addToBlacklist
+    addToBlacklist,
+    requestVerifyMultiParityLoan,
+    listRequestVerifyMultiParityLoanRecords,
+    hanleRequestVerifyMultiParityLoanRecord,
+    listMultiParityLoanInfo,
 }

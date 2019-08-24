@@ -29,30 +29,50 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+const durationMonths = [
+    {
+        value: 1,
+        label: '一个月'
+    },
+    {
+        value: 2,
+        label: '两个月'
+    },
+    {
+        value: 3,
+        label: '三个月'
+    },
+]
+
 // 用户请求贷款
-export function RequestLoan() {
+export function RequestLoan(props) {
     const classes = useStyles()
-    const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-    })
+    const [values, setValues] = React.useState({
+        companyName: 'WeBank',
+        amount: 0,
+        durationMonth: 1,
+    });
 
     const handleChange = name => event => {
-        setState({ ...state, [name]: event.target.checked })
+        setValues({ ...values, [name]: event.target.value })
+    }
+
+    const onHandleRequestLoan = () => {
+        props.requestLoanAsync(values.companyName, values.amount, values.durationMonth, "did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d")
     }
 
     return (
         <Container maxWidth="lg" className={classes.container}>
             <Grid alignContent="center">
-                <Typography variant="h4">借贷</Typography>
+                <Typography variant="h4">小额信贷</Typography>
             </Grid>
             <Grid alignContent="space-between">
                 <TextField
                     id="filled-select-currency-native"
                     select
-                    label="微众银行"
+                    label="WeBank"
                     className={classes.textField}
-                    onChange={handleChange('currency')}
+                    onChange={handleChange('company')}
                     SelectProps={{
                         native: true,
                         MenuProps: {
@@ -68,7 +88,7 @@ export function RequestLoan() {
                 <TextField
                     id="outlined-number"
                     label="金额"
-                    onChange={handleChange('age')}
+                    onChange={handleChange('amount')}
                     type="number"
                     className={classes.textField}
                     InputLabelProps={{
@@ -80,28 +100,31 @@ export function RequestLoan() {
             </Grid>
             <Grid>
                 <TextField
-                    id="date"
-                    label="还款日期"
-                    style={{ margin: 8 }}
-                    type="date"
-                    defaultValue="2019-08-24"
+                    id="outlined-select-currency-native"
+                    select
                     className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
+                    value={values.durationMonth}
+                    onChange={handleChange('durationMonth')}
+                    SelectProps={{
+                        native: true,
+                        MenuProps: {
+                            className: classes.menu,
+                        },
                     }}
-                />
+                    helperText="选择还款期限"
+                    margin="normal"
+                    variant="outlined"
+                >
+                    {durationMonths.map(option => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </TextField>
             </Grid>
             <Grid>
-                <FormControlLabel
-                    control={
-                        <Switch checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
-                    }
-                    label="自动上传相关凭证"
-                />
+                <Button variant="contained" color="primary" onClick={onHandleRequestLoan}>借贷</Button>
             </Grid>
-            <Grid>
-                <Button variant="contained" color="primary" component={Link} to="/loanRequestInfoList">借贷</Button>
-            </Grid>
-        </Container >
+        </Container>
     )
 }

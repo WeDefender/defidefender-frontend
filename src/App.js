@@ -8,15 +8,17 @@ import { HomeContent } from './_pages/homeContent'
 
 import Blacklist from './_containers/company/blacklistContainer'
 import Card1 from './_components/Card'
-import { 
+import {
   ListToBeCheckedUsersContainer,
   ListVerifiedUsersContainer,
   ListLoanRequestRecordsContainer,
   ListLoanRecordsContainer,
   ListUserLoanRecordsContainer,
   ListUserLoanRequestRecordsContainer,
-} 
-from './_containers'
+  ListMultiParityLoanRecordsContainer,
+  RequestLoanContainer,
+}
+  from './_containers'
 
 class App extends Component {
   render() {
@@ -33,8 +35,9 @@ class App extends Component {
             <Route path="/blacklist" component={Blacklist}></Route>
             <Route path="/listLoanRequestRecords" component={ListLoanRequestRecordsContainer}></Route>
             <Route path="/listLoanRecords" component={ListLoanRecordsContainer}></Route>
+            <Route path="/listMultiParityLoanRecords" component={ListMultiParityLoanRecordsContainer}></Route>
             {/* 用户 */}
-            <Route path="/requestLoan" component={RequestLoan}></Route>
+            <Route path="/requestLoan" component={RequestLoanContainer}></Route>
             <Route path="/listCredential" component={ListCredential}></Route>
             <Route path="/requestCredential" component={RequestCredential}></Route>
             <Route path="/listUserLoanRequestRecords" component={ListUserLoanRequestRecordsContainer}></Route>
