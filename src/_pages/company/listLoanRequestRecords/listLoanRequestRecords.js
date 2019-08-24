@@ -314,7 +314,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        {getElementForCredential(props.fetchStatusForCredential)}
+                                        { getElementForCredential(props.fetchStatusForCredential) }
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
