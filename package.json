@@ -8,6 +8,7 @@
     "cross-fetch": "^3.0.4",
     "n": "^5.0.2",
     "react": "^16.9.0",
+    "react-credit-cards": "^0.7.0",
     "react-dom": "^16.9.0",
     "react-draggable": "^3.3.2",
     "react-flippy": "^0.1.5",
@@ -23,7 +24,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-react": "^0.87.3",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
