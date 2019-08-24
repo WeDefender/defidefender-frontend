@@ -203,18 +203,17 @@ export function ListLoanRequestRecords(props) {
             </Button>
         )
     }
-
     const getElementForCredential = (status) => {
         if (status === FETCH_STATUS.FETCH_BEGIN_FOR_CREDENTIAL) {
             return <CircularProgress />
         }
         return (
-            <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('', 0)}>
+            <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d', 1)}>
                 查看凭证
             </Button>
         )
     }
-    
+
     return (
         <div>
             <h2 className={classes.title}>借贷请求列表</h2>
@@ -315,10 +314,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen(loanRequestInfo.weid, 1)}>
-                                            查看凭证
-                                        </Button>
-                                        { getElementForCredential(props.fetchStatusForCredential) }
+                                        {getElementForCredential(props.fetchStatusForCredential)}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>

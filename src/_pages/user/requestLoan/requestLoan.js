@@ -4,9 +4,6 @@ import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import { Button, Typography } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 
 const useStyles = makeStyles(theme => ({
     content: {
