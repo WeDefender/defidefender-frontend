@@ -71,6 +71,7 @@ const getCredentialAsync = (weid, type) => {
         commonServices.getCredential(weid, type).then(
             json => {
                 if (json.status === 200) {
+                    console.log("分发获取成功...")
                     dispatch(fetchSuccessForCredential())
                 }
                 dispatch(getCredential(json))
