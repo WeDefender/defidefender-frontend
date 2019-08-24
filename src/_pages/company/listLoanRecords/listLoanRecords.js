@@ -78,6 +78,7 @@ export function ListLoanRecords(props) {
     }
 
     const handleClose = () => {
+        
         setOpen(false)
     }
     const onHandleAddToBlacklist = (id) => {
@@ -122,7 +123,7 @@ export function ListLoanRecords(props) {
 
     return (
         <div>
-            <h2 className={classes.title}>放款记录列表</h2>
+            <h2 className={classes.title}>用户借贷记录列表</h2>
             <Container maxWidth="lg" className={classes.container}>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>

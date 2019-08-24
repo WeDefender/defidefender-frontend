@@ -65,12 +65,14 @@ const getCredential = (json) => {
         payload: json.data
     }
 }
+
 const getCredentialAsync = (weid, type) => {
     return dispatch => {
         dispatch(fetchBeginForCredential())
         commonServices.getCredential(weid, type).then(
             json => {
                 if (json.status === 200) {
+                    console.log("分发获取成功...")
                     dispatch(fetchSuccessForCredential())
                 }
                 dispatch(getCredential(json))

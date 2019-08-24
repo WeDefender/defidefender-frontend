@@ -98,8 +98,7 @@ const listRequestVerifyMultiParityLoanRecords = (companyName) => {
     return fetch_post_helper(url, body)
 }
 
-
-const hanleRequestVerifyMultiParityLoanRecord = (id, type) => {
+const handleRequestVerifyMultiParityLoanRecord = (id, type) => {
     const url = API_URLS.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS
     const body = JSON.stringify({
         id: id,
@@ -169,6 +168,6 @@ export const companyServices = {
     addToBlacklist,
     requestVerifyMultiParityLoan,
     listRequestVerifyMultiParityLoanRecords,
-    hanleRequestVerifyMultiParityLoanRecord,
+    handleRequestVerifyMultiParityLoanRecord,
     listMultiParityLoanInfo,
 }

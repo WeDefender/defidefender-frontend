@@ -213,35 +213,39 @@ const listRequestVerifyMultiParityLoanRecords = (json) => {
 
 const listRequestVerifyMultiParityLoanRecordsAsync = (companyName) => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.listRequestVerifyMultiParityLoanRecords(companyName).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listRequestVerifyMultiParityLoanRecords(json))
             }
         )
     }
 }
 
-
-const hanleRequestVerifyMultiParityLoanRecord = (json) => {
+const handleRequestVerifyMultiParityLoanRecord = (json) => {
     return {
         type: types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS,
         payload: json.data
     }
 }
 
-
-
-const hanleRequestVerifyMultiParityLoanRecordAsync = (id, type) => {
+const handleRequestVerifyMultiParityLoanRecordAsync = (id, type) => {
     return dispatch => {
-        companyServices.hanleRequestVerifyMultiParityLoanRecord(id, type).then(
+        // dispatch(fetchBegin())
+        companyServices.handleRequestVerifyMultiParityLoanRecord(id, type).then(
             json => {
-                console.log('handleRequestLoan', json)
-                dispatch(hanleRequestVerifyMultiParityLoanRecord(json))
+                console.log("处理请求验证多方借贷：",json)
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
+                dispatch(handleRequestVerifyMultiParityLoanRecord(json))
             }
         )
     }
 }
-
 
 const listMultiParityLoanInfo = (json) => {
     return {
@@ -253,8 +257,12 @@ const listMultiParityLoanInfo = (json) => {
 
 const listMultiParityLoanInfoAsync = (recordId) => {
     return dispatch => {
+        dispatch(fetchBegin())
         companyServices.listMultiParityLoanInfo(recordId).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listMultiParityLoanInfo(json))
             }
         )
@@ -310,7 +318,6 @@ const fetchSuccessForBlacklist = () => {
     }
 }
 
-
 export const companyActions = {
     listBlacklistAsync,
     listBlacklistByWeidAsync,
@@ -323,7 +330,7 @@ export const companyActions = {
     addToBlacklistAsync,
     requestVerifyMultiParityLoanAsync,
     listRequestVerifyMultiParityLoanRecordsAsync,
-    hanleRequestVerifyMultiParityLoanRecordAsync,
+    handleRequestVerifyMultiParityLoanRecordAsync,
     listMultiParityLoanInfoAsync,
     addToBlacklistAsync,
 }

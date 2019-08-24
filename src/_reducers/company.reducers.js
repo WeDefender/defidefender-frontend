@@ -97,15 +97,19 @@ function listRequestVerifyMultiParityLoanRecordsReducer(state = [], action) {
     }
 }
 
-function hanleRequestVerifyMultiParityLoanRecordReducer(state = [], action) {
+function handleRequestVerifyMultiParityLoanRecordReducer(state = [], action) {
     switch (action.type) {
         case types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
-            return action.payload
+            return state.map(item => {
+                if (item.id === action.payload.id) {
+                    item.status = action.payload.status
+                }
+                return item
+            })
         default:
             return state
     }
 }
-
 
 function listMultiParityLoanInfoReducer(state = [], action) {
     switch (action.type) {
@@ -197,12 +201,13 @@ export function companyReducer(state = {}, action) {
         case types.LIST_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
             return {
                 ...state,
-                requestMultiParityLoanRecords: listRequestVerifyMultiParityLoanRecordsReducer([], action)
+                listRequestMultiParityLoanRecords: listRequestVerifyMultiParityLoanRecordsReducer([], action)
             }
         case types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:
             return {
                 ...state,
-                hanleRequestVerifyMultiParityLoanRecord: hanleRequestVerifyMultiParityLoanRecordReducer([], action)
+                // 返回数据格式中根据status判断状态
+                listRequestMultiParityLoanRecords: handleRequestVerifyMultiParityLoanRecordReducer(state.listRequestMultiParityLoanRecords, action)
             }
         case types.LIST_MULTI_PARITY_LOAN_INFO:
             return {
