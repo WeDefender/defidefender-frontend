@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
     fetchStatus: state.company.fetchStatus,
     userInfo: state.common.claimData,
     fetchStatusForBlacklist: state.company.fetchStatusForBlacklist,
+    fetchStatusForCredential: state.common.fetchStatusForCredential,
 })
 
 const mapDispatchToProps = dispatch => ({

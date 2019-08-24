@@ -174,12 +174,22 @@ export function ListLoanRequestRecords(props) {
 
     // 根据查询黑名单的状态返回相应的组件
     const getElementForBlacklist = (status) => {
-        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST) {
+        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACKLIST) {
             return <CircularProgress />
         }
         return (
             <Button onClick={() => onHandleGetBlacklistByWeid && onHandleGetBlacklistByWeid(loanRequestInfo.weid)} variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
                 黑名单查询
+            </Button>
+        )
+    }
+    const getElementForCredential = (status) => {
+        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_CREDENTIAL) {
+            return <CircularProgress />
+        }
+        return (
+            <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('', 0)}>
+                查看凭证
             </Button>
         )
     }
@@ -283,9 +293,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('', 0)}>
-                                            查看凭证
-                                        </Button>
+                                        { getElementForCredential(props.fetchStatusForCredential) }
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>

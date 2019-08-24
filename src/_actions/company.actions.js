@@ -209,14 +209,14 @@ const fetchFail = () => {
 
 const fetchBeginForBlacklist = () => {
     return {
-        type: FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST,
-        payload: "FETCH_BEGIN_FOR_BLACK_LIST",
+        type: FETCH_STATUS.FETCH_BEGIN_FOR_BLACKLIST,
+        payload: "FETCH_BEGIN_FOR_BLACKLIST",
     }
 }
 const fetchSuccessForBlacklist = () => {
     return {
-        type: FETCH_STATUS.FETCH_SUCCESS_FOR_BLACK_LIST,
-        payload: "FETCH_SUCCESS_FOR_BLACK_LIST"
+        type: FETCH_STATUS.FETCH_SUCCESS_FOR_BLACKLIST,
+        payload: "FETCH_SUCCESS_FOR_BLACKLIST"
     }
 }
 
