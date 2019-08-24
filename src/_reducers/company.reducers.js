@@ -8,7 +8,7 @@ export function blacklistReducer(state = [], action) {
             // console.log("Reducer中列出黑名单：", action.payload) 
             // action.payload中传过来的是数组
             return [
-                ...state, 
+                ...state,
                 ...action.payload
             ]
         default:
@@ -21,7 +21,7 @@ export function loanRequestRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_REQUEST_RECORDS:
             return [
-                ...state, 
+                ...state,
                 ...action.payload
             ]
         default:
@@ -32,8 +32,8 @@ export function loanRequestRecordsReducer(state = [], action) {
 export function loanRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_RECORDS:
-            return [...state, 
-                ...action.payload
+            return [...state,
+            ...action.payload
             ]
         default:
             return state
@@ -116,6 +116,16 @@ function listMultiParityLoanInfoReducer(state = [], action) {
     switch (action.type) {
         case types.LIST_MULTI_PARITY_LOAN_INFO:
             return [...state, ...action.payload]
+        default:
+            return state
+    }
+}
+
+
+function addToBlacklistReducer(state = [], action) {
+    switch (action.type) {
+        case types.ADD_TO_BLACKLIST:
+            return action.payload
         default:
             return state
     }
@@ -209,6 +219,11 @@ export function companyReducer(state = {}, action) {
             return {
                 ...state,
                 multiPartyInfo: multiPartyInfoReducer([], action)
+            }
+        case types.ADD_TO_BLACKLIST:
+            return {
+                ...state,
+                addToBlacklist: addToBlacklistReducer([], action)
             }
         default:
             return state

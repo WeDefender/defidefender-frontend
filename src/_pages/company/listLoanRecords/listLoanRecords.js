@@ -16,6 +16,7 @@ import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
 import { FETCH_STATUS } from '../../../_constants'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { AwesomeCredentialCard } from '../../credential'
 
 
 const useStyles = makeStyles(theme => ({
@@ -69,6 +70,8 @@ export function ListLoanRecords(props) {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
 
+    const [credentialOpen, setCredentialOpen] = React.useState(false)
+
     const handleClickOpen = (row) => {
         setOpen(true)
         loanRequestInfo = row
@@ -77,6 +80,19 @@ export function ListLoanRecords(props) {
     const handleClose = () => {
         
         setOpen(false)
+    }
+    const onHandleAddToBlacklist = (id) => {
+        props.addToBlacklistAsync(id)
+        setOpen(false)
+    }
+
+    const handleCredentialClose = () => {
+        setCredentialOpen(false)
+    }
+
+    const handleCredentialOpen = (weid, type) => {
+        props.getCredentialAsync(weid, type)
+        setCredentialOpen(true)
     }
 
     let rows = []
@@ -97,6 +113,12 @@ export function ListLoanRecords(props) {
     }
     if (props.loanRecords !== undefined) {
         rows = props.loanRecords
+    }
+
+    let userInfo = {}
+
+    if (props.userInfo !== undefined) {
+        userInfo = props.userInfo
     }
 
     return (
@@ -166,7 +188,7 @@ export function ListLoanRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen(loanRequestInfo.weid, 1)}>
                                             查看凭证
                                         </Button>
                                     </TableCell>
@@ -195,12 +217,27 @@ export function ListLoanRecords(props) {
                         </DialogContent>
                         <DialogActions>
                             {loanRequestInfo.status === 3 ?
-                                <Button onClick={handleClose} variant="contained" color="primary" align="right">
+                                <Button onClick={() => onHandleAddToBlacklist && onHandleAddToBlacklist(loanRequestInfo.id)} variant="contained" color="primary" align="right">
                                     加入黑名单
-                                </Button>:
+                                </Button> :
                                 <div></div>
-                        }
+                            }
                         </DialogActions>
+                    </Dialog>
+                    { /* {查看凭证的Dialog} */}
+                    <Dialog
+                        open={credentialOpen}
+                        onClose={handleCredentialClose}
+                        PaperComponent={PaperComponent}
+                        aria-labelledby="draggable-dialog-title"
+                        maxWidth={100}
+                    >
+                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                            <Typography align="center" variant="h6">凭证详情</Typography>
+                        </DialogTitle>
+                        <DialogContent>
+                            <AwesomeCredentialCard userInfo={userInfo} />
+                        </DialogContent>
                     </Dialog>
                 </Paper>
             </Container>

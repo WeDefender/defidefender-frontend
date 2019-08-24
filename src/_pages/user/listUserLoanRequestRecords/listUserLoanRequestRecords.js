@@ -73,12 +73,13 @@ export function ListUserLoanRequestRecords(props) {
         setOpen(false)
     }
     let rows = []
-    
+
     useEffect(() => {
         // TODO weid从后端API抓取
         console.log("user loan request records fetch状态：", props.fetchStatus)
-        props.listUserLoanRequestRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
-        return () => {
+        return async () => {
+            let weid = await window.weID.getWeID()
+            props.listUserLoanRequestRecordsAsync(weid)
         };
     }, [])
 
@@ -192,5 +193,5 @@ export function ListUserLoanRequestRecords(props) {
             </div>
         )
     }
-    
+
 }

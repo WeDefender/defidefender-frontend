@@ -90,15 +90,7 @@ const useStyles = theme => ({
 
 var openCredential = false
 
-var userInfo = {
-    weid: '',
-    name: '',
-    gender: '',
-    birthday: '',
-    address: '',
-    identityNumber: '',
-    phoneNumber: ''
-}
+var userInfo = {}
 
 // 列出所有凭证
 class ListCredential extends Component {
@@ -136,77 +128,11 @@ class ListCredential extends Component {
 
         const modalStyle = this.getModalStyle()
         const { classes } = this.props
-        const rows = [
-            this.createData(`0xc83b2cf7d31acc2abc`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
-            this.createData(`0xc83b2cf7665acc2def`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
-            this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
-        ]
-
-        const cardDetails = [
-            {
-                "cptId": "CPT ID: 2000000",
-                "issuer": "颁发者: did:weid:1:0x8dc34e4...23f3bbe7",
-                "issuanceDate": "发行日期：20190814",
-                "expirationDate": "到期日期：20250814"
-            },
-            {
-                "cptId": "CPT ID:2000001",
-                "issuer": "颁发者: did:weid:1:0x8dc34e4...23f3bbe7",
-                "issuanceDate": "发行日期：20190814",
-                "expirationDate": "到期日期：20250814"
-            },
-            {
-                "cptId": "CPT ID: 2000002",
-                "issuer": "颁发者: did:weid:1:0x8dc34e4...23f3bbe7",
-                "issuanceDate": "发行日期：20190814",
-                "expirationDate": "到期日期：20250814"
-            }
-        ]
-
-        const credential = {
-            "context": "https://github.com/WeBankFinTech/WeIdentity/blob/master/context/v1",
-            "id": "ec0f4586-ebac-4948-b5a8-59bb4b9205f2",
-            "cptId": 2000000,
-            "issuer": "did:weid:1:0x8dc34e4cad4d86f5f20f5b63d96230f759f3bbe7",
-            "issuanceDate": 1565807327,
-            "expirationDate": 1565857393,
-            "claim": {
-                "birthday": "1995-05-09",
-                "address": "浙江省",
-                "gender": "M",
-                "identityNumber": "666",
-                "name": "Sher"
-            },
-            "proof": {
-                "creator": "did:weid:1:0x8dc34e4cad4d86f5f20f5b63d96230f759f3bbe7",
-                "salt": {
-                    "birthday": "02GNQ",
-                    "address": "kuoIq",
-                    "gender": "CQARI",
-                    "identityNumber": "LGvHg",
-                    "name": "nT03w"
-                },
-                "created": 1565807327,
-                "type": "EcdsaSignature",
-                "signatureValue": "G7Sp86csiH062ZljFWWHklioeNz7gpFqWBZn72xOGm9iAuPhATD1wlvXgZyL4b6ZW+w3ifpZv8agn7dN9cTn+8Y="
-            },
-            "type": [
-                "VerifiableCredential"
-            ],
-            "signature": "G7Sp86csiH062ZljFWWHklioeNz7gpFqWBZn72xOGm9iAuPhATD1wlvXgZyL4b6ZW+w3ifpZv8agn7dN9cTn+8Y=",
-            "salt": {
-                "birthday": "02GNQ",
-                "address": "kuoIq",
-                "gender": "CQARI",
-                "identityNumber": "LGvHg",
-                "name": "nT03w"
-            },
-            "proofType": "EcdsaSignature"
-        }
+        let rows = []
 
         return (
             <div>
-                <h3 className={classes.title}>用户凭证</h3>
+                <h2 className={classes.title}>用户凭证</h2>
                 <Grid container className={classes.root} spacing={2}>
                     {
                         rows.map((row, i) => (

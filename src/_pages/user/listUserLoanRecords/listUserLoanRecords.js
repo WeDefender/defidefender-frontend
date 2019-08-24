@@ -85,11 +85,12 @@ export function ListUserLoanRecords(props) {
     useEffect(() => {
         // 分发获取操作
         console.log("当前获取状态：", props.fetchStatus)
-        props.listUserLoanRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
-        return () => {
+        return async () => {
+            let weid = await window.weID.getWeID()
+            props.listUserLoanRecordsAsync(weid)
         };
     }, [])
-    
+
     if (props.listUserLoanRecords !== undefined) {
         rows = props.listUserLoanRecords
     }
@@ -182,10 +183,6 @@ export function ListUserLoanRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>最晚还款日期</TableCell>
                                     <TableCell align="right">{loanRequestInfo.endTime}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={3}>应还金额</TableCell>
-                                    <TableCell align="right">10323.5</TableCell>
                                 </TableRow>
                             </TableBody>
                         </DialogContent>
