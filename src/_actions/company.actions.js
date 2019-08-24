@@ -97,7 +97,7 @@ const verifyCredential = (json) => {
 
 const verifyCredentialAsync = (id, weid, issuer, type, verifyType) => {
     return dispatch => {
-        dispatch(fetchBegin())
+        // dispatch(fetchBegin())
         companyServices.verifyCredential(id, weid, issuer, type, verifyType).then(
             json => {
                 if (json.status === 200) {

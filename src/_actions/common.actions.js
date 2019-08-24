@@ -73,6 +73,7 @@ const getCredentialAsync = (weid, type) => {
             json => {
                 if (json.status === 200) {
                     console.log("分发获取成功...")
+                    console.log(json)
                     dispatch(fetchSuccessForCredential())
                 }
                 dispatch(getCredential(json))

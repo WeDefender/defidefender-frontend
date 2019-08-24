@@ -132,11 +132,11 @@ export function ListVerifiedUsers(props) {
                         aria-labelledby="draggable-dialog-title"
                         maxWidth={100}
                     >
-                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                        <DialogTitle style={{ cursor: 'move', background: 'rgba(0,0,0,0.5)', opacity: '1' }} id="draggable-dialog-title">
                             <Typography align="center" variant="h6">用户信息</Typography>
                         </DialogTitle>
                         <DialogContent>
-                            <AwesomeCredentialCard userInfo={userInfo}/>
+                            <AwesomeCredentialCard userInfo={userInfo} />
                         </DialogContent>
                     </Dialog>
                 </Paper>

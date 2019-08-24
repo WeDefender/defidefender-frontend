@@ -64,7 +64,8 @@ export function RequestLoan(props) {
         durationMonth: 1,
     });
     const [open, setOpen] = React.useState(false)
-    const handleClickOpen = () => {
+    const handleClickOpen = async () => {
+        let status = await window.weID.getCredential(values.companyName, 1)
         setOpen(true)
     }
     const handleClose = () => {
@@ -84,7 +85,6 @@ export function RequestLoan(props) {
 
     // let weid = window.weID.getWeID().then(data => data)
     const onHandleRequestLoan = async () => {
-        let status = await window.weID.getCredential(values.companyName, 1)
         let weid = await window.weID.getWeID()
         props.requestLoanAsync(values.companyName, values.amount, values.durationMonth, weid)
         setOpen(false)
