@@ -63,9 +63,6 @@ function PaperComponent(props) {
 // 用户借贷请求列表
 export function ListUserLoanRequestRecords(props) {
 
-    const createData = (weid, amount, rate, duration, createdTime) => {
-        return { weid, amount, rate, duration, createdTime }
-    }
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
     const handleClickOpen = (row) => {
