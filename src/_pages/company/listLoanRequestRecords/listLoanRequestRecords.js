@@ -315,9 +315,6 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen(loanRequestInfo.weid, 1)}>
-                                            查看凭证
-                                        </Button>
                                         { getElementForCredential(props.fetchStatusForCredential) }
                                     </TableCell>
                                 </TableRow>
