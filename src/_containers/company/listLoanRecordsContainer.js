@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { companyActions } from '../../_actions'
 
 const mapStateToProps = state => ({
-    loanRecords: state.company.loanRecords
+    loanRecords: state.company.loanRecords,
+    fetchStatus: state.company.fetchStatus,
 })
 
 const mapDispatchToProps = dispatch => ({

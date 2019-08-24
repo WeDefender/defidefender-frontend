@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
@@ -83,7 +83,14 @@ export function ListToBeCheckedUsers(props) {
     }
 
     let rows = []
-    props.listToBeCheckedUsersAsync()
+
+    useEffect(() => {
+        // TODO weid 后续要抓的
+        props.listToBeCheckedUsersAsync()
+        return () => {
+        };
+    }, [])
+
     
     // 判断是否为空
     if (props.listToBeCheckedUsers !== undefined) {

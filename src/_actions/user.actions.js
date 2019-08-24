@@ -12,7 +12,7 @@ const createWeIdAsync = () => {
         dispatch(fetchBegin())
         userServices.createWeId().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(createWeId(json))
@@ -32,7 +32,7 @@ const createSelectiveCredentialAsync = () => {
         dispatch(fetchBegin())
         userServices.createSelectiveCredential().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(createSelectiveCredential(json))
@@ -52,7 +52,7 @@ const createPresentationAsync = () => {
         dispatch(fetchBegin())
         userServices.createPresentationAsync().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(createPresentationAsync(json))
@@ -72,7 +72,7 @@ const requestVerifyWeIdAsync = () => {
         dispatch(fetchBegin())
         userServices.requestVerifyWeId().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(requestVerifyWeId(json))
@@ -93,7 +93,7 @@ const getCompaniesAsync = () => {
         dispatch(fetchBegin())
         userServices.getCompaniesAsync().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(getCompaniesAsync(json))
@@ -113,7 +113,7 @@ const requestLoanAsync = () => {
         dispatch(fetchBegin())
         userServices.requestLoan().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(requestLoan(json))
@@ -133,7 +133,7 @@ const listCredentialsAsync = () => {
         dispatch(fetchBegin())
         userServices.listCredentials().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listCredentials(json))
@@ -154,13 +154,12 @@ const listUserLoanRequestRecordsAsync = (weid) => {
         dispatch(fetchBegin())
         userServices.listLoanRequests(weid).then(
             json => {
-                if (json.status == "200") {
+                if (json.status == 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listLoanRequestRecords(json))
             }
         )
-        // dispatch(fetchSuccess())
     }
 }
 
@@ -173,8 +172,12 @@ const listUserLoanRecords = (json) => {
 }
 const listUserLoanRecordsAsync = (weid) => {
     return dispatch => {
+        dispatch(fetchBegin())
         userServices.listLoanRecords(weid).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listUserLoanRecords(json))
             }
         )
@@ -192,7 +195,7 @@ const returnLoanAsync = () => {
         dispatch(fetchBegin())
         userServices.returnLoan().then(
             json => {
-                if (json.status == "200") {
+                if (json.status == 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(returnLoan(json))

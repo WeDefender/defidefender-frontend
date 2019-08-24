@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -127,8 +127,15 @@ export function ListLoanRequestRecords(props) {
     let rows = []
     let blacklistByWeid = []
 
-    props.listLoanRequestRecordsAsync()
-
+    // 注入副作用操作
+    useEffect(() => {
+        // 分发获取操作
+        console.log("当前获取状态：", props.fetchStatus)  
+        props.listLoanRequestRecordsAsync()
+        return () => {
+        };
+    }, [])
+    
     if (props.loanRequestRecords !== undefined) {
         rows = props.loanRequestRecords
     }

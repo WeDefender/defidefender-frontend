@@ -19,7 +19,7 @@ export const listBlacklistAsync = () => {
         // 开始请求
         companyServices.listBlacklist().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listBlacklist(json)) // 分发action对象
@@ -39,7 +39,7 @@ const listBlacklistByWeidAsync = (weid) => {
         dispatch(fetchBegin())
         companyServices.listBlacklistByWeid(weid).then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listBlacklistByWeid(json))
@@ -59,7 +59,8 @@ const listLoanRequestRecordsAsync = () => {
         dispatch(fetchBegin())
         companyServices.listLoanRequestRecords("WeBank").then(
             json => {
-                if (json.status === "200") {
+                console.log("list loan request records: ", json)
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listLoanRequestRecords(json))
@@ -79,7 +80,9 @@ const listLoanRecordsAsync = () => {
         dispatch(fetchBegin())
         companyServices.listLoanRecords("WeBank").then(
             json => {
-                if (json.status === "200") {
+                // console.log("json.status: ", json.status)
+                console.log("查询结果: ", json)
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listLoanRecords(json))
@@ -100,7 +103,7 @@ const verifyCredentialAsync = (id, weid, issuer, type, verifyType) => {
         dispatch(fetchBegin())
         companyServices.verifyCredential(id, weid, issuer, type, verifyType).then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(verifyCredential(json))
@@ -120,7 +123,7 @@ const verifyUserAuthenticityAsync = (id) => {
         dispatch(fetchBegin())
         companyServices.verifyUserAuthenticity(id).then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(verifyUserAuthenticity(json))
@@ -139,7 +142,7 @@ const verifyMultiParityLoanAsync = () => {
         dispatch(fetchBegin())
         companyServices.verifyMultiParityLoan().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(verifyMultiParityLoan(json))
@@ -175,7 +178,7 @@ const addToBlacklistAsync = () => {
         dispatch(fetchBegin())
         companyServices.addToBlacklist().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(addToBlacklist(json))

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -60,12 +60,10 @@ function PaperComponent(props) {
 
 // 放款记录列表
 export function ListLoanRecords(props) {
-
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
     }
     const classes = useStyles()
-
     const [open, setOpen] = React.useState(false)
 
     const handleClickOpen = (row) => {
@@ -78,7 +76,13 @@ export function ListLoanRecords(props) {
     }
 
     let rows = []
-    props.listLoanRecordsAsync()
+    useEffect(() => {
+        // TODO weid 后续要抓的
+        props.listLoanRecordsAsync()
+        return () => {
+        };
+    }, [])
+
     if (props.loanRecords !== undefined) {
         rows = props.loanRecords
     }

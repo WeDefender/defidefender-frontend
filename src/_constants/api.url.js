@@ -1,4 +1,4 @@
-const SERVER = 'http://defi.sher.vip'
+const SERVER = 'http://192.168.1.111:8080'
 
 const BASE_URLS = {
     COMPANY: SERVER + '/company',

@@ -13,7 +13,7 @@ const listVerifiedUsersAsync = () => {
         dispatch(fetchBegin())
         governmentServices.listVerifiedUsers().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listVerifiedUsers(json))
@@ -33,7 +33,7 @@ const listToBeCheckedUsersAsync = () => {
         dispatch(fetchBegin())
         governmentServices.listToBeCheckedUsers().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listToBeCheckedUsers(json))
@@ -52,7 +52,7 @@ const listIssuedCredentialsAsync = (json) => {
         dispatch(fetchBegin())
         governmentServices.listIssuedCredentials().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(listIssuedCredentials(json))
@@ -71,7 +71,7 @@ const createCredentialAsync = (json) => {
         dispatch(fetchBegin())
         governmentServices.createCredential().then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(createCredential(json))
@@ -92,7 +92,7 @@ const checkUserAsync = (weid, type) => {
         dispatch(fetchBegin())
         governmentServices.checkUser(weid, type).then(
             json => {
-                if (json.status === "200") {
+                if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
                 dispatch(checkUser(json))
