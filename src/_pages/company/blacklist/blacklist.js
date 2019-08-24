@@ -44,16 +44,17 @@ class Blacklist extends Component {
 
     render() {
         // this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, "xx于xx年xx月xx日未还款金额xx元"),
-        const rows = []
+        let rows = []
         this.props.listBlacklistAsync() // 先分发查询修改状态树
         // 需要根据状态判定是否已经结束获取
         
         console.log("组件内显示黑名单：", this.props.blacklist)
 
         if (this.props.blacklist !== undefined) {
-            this.props.blacklist.map((item, i) => {
-                rows.push(this.createData(item.weid, item.record))
-            })
+            // this.props.blacklist.map((item, i) => {
+            //     rows.push(this.createData(item.weid, item.record))
+            // })
+            rows = this.props.blacklist
         }
 
         const { classes } = this.props
@@ -68,13 +69,15 @@ class Blacklist extends Component {
                                 <TableRow>
                                     <TableCell align="center">WeID</TableCell>
                                     <TableCell align="center">违约记录</TableCell>
+                                    <TableCell align="center">创建时间</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {rows.map(row => (
                                     <TableRow >
                                         <TableCell align="center">{row.weid}</TableCell>
-                                        <TableCell align="center">{row.violate_record} </TableCell>
+                                        <TableCell align="center">{row.record} </TableCell>
+                                        <TableCell align="center">{row.createdTime} </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
