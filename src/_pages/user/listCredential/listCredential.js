@@ -139,7 +139,7 @@ class ListCredential extends Component {
         const rows = [
             this.createData(`0xc83b2cf7d31acc2abc`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
             this.createData(`0xc83b2cf7665acc2def`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
-            this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),  
+            this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
         ]
 
         const cardDetails = [
@@ -211,11 +211,7 @@ class ListCredential extends Component {
                     {
                         rows.map((row, i) => (
                             <Grid item xs={4}>
-                                <AwesomeCredentialCard />
-                                <br></br>
-                                <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
-                                    查看原始凭证
-                                </Button>
+                                <AwesomeCredentialCard userInfo={row} />
                             </Grid>
                         ))
                     }
