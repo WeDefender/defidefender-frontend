@@ -70,6 +70,7 @@ class Blacklist extends Component {
                 </div>
             )
         }
+
         return (
             <div>
                 <h3 className={classes.title}>查看多头借贷情况</h3>

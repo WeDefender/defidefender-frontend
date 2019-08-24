@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 // const SERVER = 'http://defi.sher.vip'
 const SERVER = 'http://localhost:8080'
-=======
-const SERVER = 'http://192.168.1.111:8080'
->>>>>>> 75e708e31105fe899bc4e685ecc05e338c636e1e
 
 const BASE_URLS = {
     COMPANY: SERVER + '/company',

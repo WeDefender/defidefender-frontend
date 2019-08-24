@@ -50,7 +50,7 @@ class Blacklist extends Component {
 
     render() {
         // this.createData(`0xc83b2cf766d3165acc2fc9164641380088defd1b`, "xx于xx年xx月xx日未还款金额xx元"),
-        const rows = []
+        let rows = []
         // 需要根据状态判定是否已经结束获取
         console.log("组件内显示黑名单：", this.props.blacklist)
 
