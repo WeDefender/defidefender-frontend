@@ -72,7 +72,7 @@ class Blacklist extends Component {
         }
         return (
             <div>
-                <h3 className={classes.title}>查看黑名单</h3>
+                <h3 className={classes.title}>查看多头借贷情况</h3>
                 <Container maxWidth="lg" className={classes.container}>
                     <Paper className={classes.root}>
                         <Table className={classes.table}>

@@ -76,7 +76,7 @@ export function ListVerifiedUsers(props) {
 
     const [open, setOpen] = React.useState(false)
     let rows = []
-    
+
     // 分发查询请求
     useEffect(() => {
         props.listVerifiedUsersAsync()
@@ -92,7 +92,8 @@ export function ListVerifiedUsers(props) {
         console.log("")
         return (
             <div align="center">
-               <CircularProgress />
+                <br />
+                <CircularProgress />
             </div>
         )
     }

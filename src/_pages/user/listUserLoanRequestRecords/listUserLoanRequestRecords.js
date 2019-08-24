@@ -15,7 +15,6 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
 import { FETCH_STATUS } from "../../../_constants"
-// import { SpinningButton } from '../../../_components/Spinning'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles(theme => ({
@@ -79,7 +78,7 @@ export function ListUserLoanRequestRecords(props) {
     let rows = []
     
     useEffect(() => {
-        // TODO weid 后续要抓的
+        // TODO weid从后端API抓取
         console.log("user loan request records fetch状态：", props.fetchStatus)
         props.listUserLoanRequestRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
         return () => {
@@ -94,7 +93,7 @@ export function ListUserLoanRequestRecords(props) {
     if (props.fetchStatus === FETCH_STATUS.FETCH_BEGIN) {
         // 加载spining组件
         return (
-            <div>
+            <div align="center">
                 <h2 className={classes.title}>借贷请求列表</h2>
                 <Container maxWidth="lg" className={classes.container}>
                     <CircularProgress />

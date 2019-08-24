@@ -269,14 +269,9 @@ export function ListLoanRequestRecords(props) {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>多头借贷情况</TableCell>
-                                    <TableCell align="right">
-                                        <Typography>
-                                            已借平台:<div style={{ color: 'red' }}>2个</div>
-                                        </Typography>
-                                        <Typography>
-                                            已借金额:<div style={{ color: 'red' }}>3万</div>
-                                        </Typography>
-                                    </TableCell>
+                                    <Button>
+                                        
+                                    </Button>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>借贷金额</TableCell>

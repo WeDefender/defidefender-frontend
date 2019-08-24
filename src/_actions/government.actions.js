@@ -77,7 +77,6 @@ const createCredentialAsync = (json) => {
                 dispatch(createCredential(json))
             }
         )
-        console.log("请求结束...")
     }
 }
 
@@ -98,7 +97,6 @@ const checkUserAsync = (weid, type) => {
                 dispatch(checkUser(json))
             }
         )
-        console.log("请求结束...")
     }
 }
 

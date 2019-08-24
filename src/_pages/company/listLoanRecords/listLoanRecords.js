@@ -14,6 +14,9 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -83,6 +86,14 @@ export function ListLoanRecords(props) {
         };
     }, [])
 
+    // 添加获取状态显示组件
+    if (props.fetchStatus === FETCH_STATUS.FETCH_BEGIN) {
+        return (
+            <div align="center">
+                <CircularProgress />
+            </div>
+        )
+    }
     if (props.loanRecords !== undefined) {
         rows = props.loanRecords
     }
