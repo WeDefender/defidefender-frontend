@@ -15,6 +15,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
+import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -136,6 +138,15 @@ export function ListLoanRequestRecords(props) {
         };
     }, [])
     
+    if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
+        return (
+            <div align="center">
+                <br />
+                <CircularProgress />
+            </div>
+        )
+    }
+
     if (props.loanRequestRecords !== undefined) {
         rows = props.loanRequestRecords
     }

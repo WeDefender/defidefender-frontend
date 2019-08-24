@@ -59,7 +59,6 @@ const listLoanRequestRecordsAsync = () => {
         dispatch(fetchBegin())
         companyServices.listLoanRequestRecords("WeBank").then(
             json => {
-                console.log("list loan request records: ", json)
                 if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
@@ -80,8 +79,6 @@ const listLoanRecordsAsync = () => {
         dispatch(fetchBegin())
         companyServices.listLoanRecords("WeBank").then(
             json => {
-                // console.log("json.status: ", json.status)
-                console.log("查询结果: ", json)
                 if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
@@ -162,6 +159,9 @@ const handleLoanRequestAsync = (id, type) => {
         dispatch(fetchBegin())
         companyServices.handleLoanRequest(id, type).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(handleLoanRequest(json))
             }
         )

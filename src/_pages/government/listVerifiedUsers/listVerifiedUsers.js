@@ -16,6 +16,8 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { CredentialCard } from '../../credential'
 import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 const useStyles = makeStyles(theme => ({
     userInfo: {
@@ -74,27 +76,26 @@ export function ListVerifiedUsers(props) {
 
     const [open, setOpen] = React.useState(false)
     let rows = []
+    
     // 分发查询请求
     useEffect(() => {
         props.listVerifiedUsersAsync()
         return () => {
         };
     }, [])
+
     if (props.listVerifiedUsers !== undefined) {
-        rows = props.listVerifiedUsers
-    } if (props.listVerifiedUsers !== undefined) {
         rows = props.listVerifiedUsers
     }
       
     if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
         console.log("")
         return (
-            <div>
-                正在加载数据...
+            <div align="center">
+               <CircularProgress />
             </div>
         )
     }
-
 
     const handleClickOpen = (row) => {
         setOpen(true)
