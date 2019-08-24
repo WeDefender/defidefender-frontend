@@ -97,6 +97,7 @@ function listRequestVerifyMultiParityLoanRecordsReducer(state = [], action) {
     }
 }
 
+// 处理更新数据方式
 function handleRequestVerifyMultiParityLoanRecordReducer(state = [], action) {
     switch (action.type) {
         case types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS:

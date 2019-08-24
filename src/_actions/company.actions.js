@@ -101,6 +101,7 @@ const verifyCredentialAsync = (id, weid, issuer, type, verifyType) => {
         companyServices.verifyCredential(id, weid, issuer, type, verifyType).then(
             json => {
                 if (json.status === 200) {
+                    console.log("验证凭证成功！")
                     dispatch(fetchSuccess())
                 }
                 dispatch(verifyCredential(json))
