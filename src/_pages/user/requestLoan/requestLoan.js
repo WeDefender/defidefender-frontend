@@ -92,9 +92,7 @@ export function RequestLoan(props) {
 
     return (
         <Container maxWidth="lg" className={classes.container}>
-            <Grid alignContent="center">
-                <Typography variant="h4">小额信贷</Typography>
-            </Grid>
+            <h3>小额借贷</h3>
             <Grid alignContent="space-between">
                 <TextField
                     id="filled-select-currency-native"

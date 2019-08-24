@@ -107,7 +107,7 @@ export function ListToBeCheckedUsers(props) {
 
     return (
         <div>
-            <h2 className={classes.title}>用户注册信息列表</h2>
+            <h2 className={classes.title}>待核验用户列表</h2>
             <Container maxWidth="lg" className={classes.container}>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>

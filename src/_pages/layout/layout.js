@@ -175,7 +175,7 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                             <FavoriteIcon />
                         </ListItemIcon>
                         <Typography align="center" variant="h6">
-                            机构
+                            借贷平台
                         </Typography>
                     </ListItem>
 
