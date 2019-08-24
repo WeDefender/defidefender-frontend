@@ -194,7 +194,7 @@ export function ListLoanRequestRecords(props) {
 
     // 根据查询黑名单的状态返回相应的组件
     const getElementForBlacklist = (status) => {
-        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST) {
+        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACKLIST) {
             return <CircularProgress />
         }
         return (
@@ -204,6 +204,17 @@ export function ListLoanRequestRecords(props) {
         )
     }
 
+    const getElementForCredential = (status) => {
+        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_CREDENTIAL) {
+            return <CircularProgress />
+        }
+        return (
+            <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('', 0)}>
+                查看凭证
+            </Button>
+        )
+    }
+    
     return (
         <div>
             <h2 className={classes.title}>借贷请求列表</h2>
@@ -307,6 +318,7 @@ export function ListLoanRequestRecords(props) {
                                         <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen(loanRequestInfo.weid, 1)}>
                                             查看凭证
                                         </Button>
+                                        { getElementForCredential(props.fetchStatusForCredential) }
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>

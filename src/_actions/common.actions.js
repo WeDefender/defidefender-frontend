@@ -1,5 +1,6 @@
 import { COMMON_ACTION_TYPES as types } from '../_constants/actions.types'
 import { commonServices } from '../_services/common.services'
+import { FETCH_STATUS } from '../_constants'
 
 // 创建CPT
 const createCPT = (json) => {
@@ -66,8 +67,12 @@ const getCredential = (json) => {
 }
 const getCredentialAsync = (weid, type) => {
     return dispatch => {
+        dispatch(fetchBeginForCredential())
         commonServices.getCredential(weid, type).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccessForCredential())
+                }
                 dispatch(getCredential(json))
             }
         )
@@ -82,10 +87,8 @@ const getPresentation = (json) => {
 }
 const getPresentationAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
         commonServices.getPresentation().then(
             json => {
-                console.log("")
                 dispatch(getPresentation(json))
             }
         )
@@ -108,6 +111,20 @@ const initializeAndDeployAsync = () => {
         )
     }
 }
+
+const fetchBeginForCredential = () => {
+    return {
+        type: FETCH_STATUS.FETCH_BEGIN_FOR_CREDENTIAL,
+        payload: "FETCH_BEGIN_FOR_CREDENTIAL",
+    }
+}
+const fetchSuccessForCredential = () => {
+    return {
+        type: FETCH_STATUS.FETCH_SUCCESS_FOR_CREDENTIAL,
+        payload: "FETCH_SUCCESS_FOR_CREDENTIAL",
+    }
+}
+
 
 export const commonActions = {
     createCPT,

@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
     fetchStatusForBlacklist: state.company.fetchStatusForBlacklist,
     requestVerifyMultiParityLoanRecords: state.company.requestVerifyMultiParityLoanRecords,
     multiParityLoanInfo: state.company.multiParityLoanInfo,
+    fetchStatusForCredential: state.common.fetchStatusForCredential,
 })
 
 const mapDispatchToProps = dispatch => ({
