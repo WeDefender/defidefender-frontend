@@ -142,18 +142,8 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                        DeFiDefender Project
+                        FinDefender
                     </Typography>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={2} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <Badge color="secondary">
-                            <PersonIcon />
-                        </Badge>
-                    </IconButton>
                 </Toolbar>
             </AppBar>
             <Drawer

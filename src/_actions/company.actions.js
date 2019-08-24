@@ -169,24 +169,20 @@ const handleLoanRequestAsync = (id, type) => {
     }
 }
 
-const addToBlacklist = () => {
-    return {
-        type: ""
-    }
-}
-const addToBlacklistAsync = () => {
-    return dispatch => {
-        dispatch(fetchBegin())
-        companyServices.addToBlacklist().then(
-            json => {
-                if (json.status === 200) {
-                    dispatch(fetchSuccess())
-                }
-                dispatch(addToBlacklist(json))
-            }
-        )
-    }
-}
+
+// const addToBlacklistAsync = () => {
+//     return dispatch => {
+//         dispatch(fetchBegin())
+//         companyServices.addToBlacklist().then(
+//             json => {
+//                 if (json.status === 200) {
+//                     dispatch(fetchSuccess())
+//                 }
+//                 dispatch(addToBlacklist(json))
+//             }
+//         )
+//     }
+// }
 
 const requestVerifyMultiParityLoan = (json) => {
     return {
@@ -265,6 +261,23 @@ const listMultiParityLoanInfoAsync = (recordId) => {
     }
 }
 
+const addToBlacklist = (json) => {
+    return {
+        type: types.ADD_TO_BLACKLIST,
+        payload: json.data
+    }
+}
+
+const addToBlacklistAsync = (id) => {
+    return dispatch => {
+        companyServices.addToBlacklist(id).then(
+            json => {
+                dispatch(addToBlacklist(json))
+            }
+        )
+    }
+}
+
 const fetchBegin = () => {
     return {
         type: FETCH_STATUS.FETCH_BEGIN,
@@ -312,6 +325,7 @@ export const companyActions = {
     listRequestVerifyMultiParityLoanRecordsAsync,
     hanleRequestVerifyMultiParityLoanRecordAsync,
     listMultiParityLoanInfoAsync,
+    addToBlacklistAsync,
 }
 
 

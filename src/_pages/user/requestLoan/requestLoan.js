@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
@@ -75,8 +75,18 @@ export function RequestLoan(props) {
         setValues({ ...values, [name]: event.target.value })
     }
 
-    const onHandleRequestLoan = () => {
-        props.requestLoanAsync(values.companyName, values.amount, values.durationMonth, "did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d")
+    useEffect(() => {
+        // TODO weid从后端API抓取
+        return () => {
+            let weID = window.weID
+        };
+    }, [])
+
+    // let weid = window.weID.getWeID().then(data => data)
+    const onHandleRequestLoan = async () => {
+        let status = await window.weID.getCredential(values.companyName, 1)
+        let weid = await window.weID.getWeID()
+        props.requestLoanAsync(values.companyName, values.amount, values.durationMonth, weid)
         setOpen(false)
     }
 

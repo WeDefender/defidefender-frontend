@@ -1,6 +1,6 @@
 import { ListLoanRecords } from '../../_pages/company'
 import { connect } from 'react-redux'
-import { companyActions } from '../../_actions'
+import { companyActions, commonActions } from '../../_actions'
 
 const mapStateToProps = state => ({
     loanRecords: state.company.loanRecords,
@@ -8,7 +8,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    listLoanRecordsAsync: () => dispatch(companyActions.listLoanRecordsAsync())
+    listLoanRecordsAsync: () => dispatch(companyActions.listLoanRecordsAsync()),
+    addToBlacklistAsync: (id) => dispatch(companyActions.addToBlacklistAsync(id)),
+    getCredentialAsync: (weid, type) => dispatch(commonActions.getCredentialAsync(weid, type)),
 })
 
 // 连接到展示组件
