@@ -20,9 +20,9 @@ function MadeWithLove() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'All Rights Reserved by '}
-            <Link color="inherit" href="https://material-ui.com/">
-                UltraGeeks
-      </Link>
+            <Link color="inherit" href="https://github.com/DeFiDefender/">
+                BitHacks
+            </Link>
             {' team.'}
         </Typography>
     )
