@@ -1,6 +1,6 @@
-import { USER_ACTION_TYPES as types } from '../_constants/actions.types'
+import { USER_ACTION_TYPES as types } from '../_constants'
 import { userServices } from '../_services/user.services'
-
+import { FETCH_STATUS } from '../_constants'
 // 1.创建weid
 const createWeId = () => {
     return {
@@ -9,10 +9,12 @@ const createWeId = () => {
 }
 const createWeIdAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.createWeId().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(createWeId(json))
             }
         )
@@ -27,10 +29,12 @@ const createSelectiveCredential = () => {
 }
 const createSelectiveCredentialAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.createSelectiveCredential().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(createSelectiveCredential(json))
             }
         )
@@ -45,10 +49,12 @@ const createPresentation = () => {
 }
 const createPresentationAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.createPresentationAsync().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(createPresentationAsync(json))
             }
         )
@@ -63,10 +69,12 @@ const requestVerifyWeId = () => {
 }
 const requestVerifyWeIdAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.requestVerifyWeId().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(requestVerifyWeId(json))
             }
         )
@@ -82,10 +90,12 @@ const getCompanies = () => {
 }
 const getCompaniesAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.getCompaniesAsync().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(getCompaniesAsync(json))
             }
         )
@@ -100,10 +110,12 @@ const requestLoan = () => {
 }
 const requestLoanAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.requestLoan().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(requestLoan(json))
             }
         )
@@ -118,10 +130,12 @@ const listCredentials = () => {
 }
 const listCredentialsAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.listCredentials().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listCredentials(json))
             }
         )
@@ -137,8 +151,12 @@ const listLoanRequestRecords = (json) => {
 }
 const listUserLoanRequestRecordsAsync = (weid) => {
     return dispatch => {
+        dispatch(fetchBegin())
         userServices.listLoanRequests(weid).then(
             json => {
+                if (json.status == 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listLoanRequestRecords(json))
             }
         )
@@ -154,8 +172,12 @@ const listUserLoanRecords = (json) => {
 }
 const listUserLoanRecordsAsync = (weid) => {
     return dispatch => {
+        dispatch(fetchBegin())
         userServices.listLoanRecords(weid).then(
             json => {
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listUserLoanRecords(json))
             }
         )
@@ -170,13 +192,35 @@ const returnLoan = () => {
 }
 const returnLoanAsync = () => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         userServices.returnLoan().then(
             json => {
-                console.log("")
+                if (json.status == 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(returnLoan(json))
             }
         )
+        
+    }
+}
+
+const fetchBegin = () => {
+    return {
+        type: FETCH_STATUS.FETCH_BEGIN,
+        payload: "FETCH_BEGIN",
+    }
+}
+const fetchSuccess = () => {
+    return {
+        type: FETCH_STATUS.FETCH_SUCCESS,
+        payload: "FETCH_SUCCESS",
+    }
+}
+const fetchFail = () => {
+    return {
+        type: FETCH_STATUS.FETCH_FAIL,
+        payload: "FETCH_FAIL"
     }
 }
 
@@ -191,4 +235,7 @@ export const userActions = {
     listCredentialsAsync,
     listUserLoanRecordsAsync,
     returnLoanAsync,
+    fetchBegin,
+    fetchSuccess,
+    fetchFail,
 }

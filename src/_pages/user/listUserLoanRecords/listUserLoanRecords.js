@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -14,6 +14,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -79,9 +81,26 @@ export function ListUserLoanRecords(props) {
     }
 
     let rows = []
-    props.listUserLoanRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+    // 注入副作用操作
+    useEffect(() => {
+        // 分发获取操作
+        console.log("当前获取状态：", props.fetchStatus)
+        props.listUserLoanRecordsAsync("did:weid:1:0x73e0d1d0f3d87b1385d104a470f2fa0ab46dbc49")
+        return () => {
+        };
+    }, [])
+    
     if (props.listUserLoanRecords !== undefined) {
         rows = props.listUserLoanRecords
+    }
+
+    if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
+        return (
+            <div align="center">
+                <br />
+                <CircularProgress />
+            </div>
+        )
     }
 
     return (

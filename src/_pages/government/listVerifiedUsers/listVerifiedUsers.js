@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
@@ -15,6 +15,9 @@ import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { CredentialCard } from '../../credential'
+import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 const useStyles = makeStyles(theme => ({
     userInfo: {
@@ -75,13 +78,25 @@ export function ListVerifiedUsers(props) {
     let rows = []
 
     // 分发查询请求
-    props.listVerifiedUsersAsync()
+    useEffect(() => {
+        props.listVerifiedUsersAsync()
+        return () => {
+        };
+    }, [])
 
     if (props.listVerifiedUsers !== undefined) {
         rows = props.listVerifiedUsers
     }
-
-    console.log("已核验用户列表：", rows)
+      
+    if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
+        console.log("")
+        return (
+            <div align="center">
+                <br />
+                <CircularProgress />
+            </div>
+        )
+    }
 
     const handleClickOpen = (row) => {
         setOpen(true)

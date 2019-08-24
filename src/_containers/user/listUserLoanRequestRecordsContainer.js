@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { userActions } from '../../_actions'
 
 const mapStateToProps = state => ({
-    listUserLoanRequestRecords: state.user.listUserLoanRequestRecords
+    listUserLoanRequestRecords: state.user.listUserLoanRequestRecords,
+    fetchStatus: state.user.fetchStatus,
 })
 
 const mapDispatchToProps = dispatch => ({
-    listUserLoanRequestRecordsAsync: (weid) => dispatch(userActions.listUserLoanRequestRecordsAsync(weid))
+    listUserLoanRequestRecordsAsync: (weid) => dispatch(userActions.listUserLoanRequestRecordsAsync(weid)),
 })
 
 // 连接到展示组件

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { governmentActions } from '../../_actions'
 
 const mapStateToProps = state => ({
-    listVerifiedUsers: state.government.listVerifiedUsers
+    listVerifiedUsers: state.government.listVerifiedUsers,
+    fetchStatus: state.government.fetchStatus
 })
 
 // 注入到展示组件的props中的回调方法

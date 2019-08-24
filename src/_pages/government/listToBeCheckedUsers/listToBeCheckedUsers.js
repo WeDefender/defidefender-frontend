@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
@@ -14,6 +14,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { FETCH_STATUS } from '../../../_constants'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -83,8 +85,20 @@ export function ListToBeCheckedUsers(props) {
     }
 
     let rows = []
-    props.listToBeCheckedUsersAsync()
-    
+    useEffect(() => {
+        // TODO weid 后续要抓的
+        props.listToBeCheckedUsersAsync()
+        return () => {
+        };
+    }, [])
+
+    if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN ) {
+        return (
+            <div align="center">
+                <CircularProgress />
+            </div>
+        )
+    }
     // 判断是否为空
     if (props.listToBeCheckedUsers !== undefined) {
         rows = props.listToBeCheckedUsers

@@ -1,5 +1,6 @@
 import { GOVERNMENT_ACTION_TYPES as types } from '../_constants/actions.types'
 import { governmentServices } from '../_services/government.services'
+import { FETCH_STATUS } from '../_constants'
 
 const listVerifiedUsers = (json) => {
     return {
@@ -9,14 +10,15 @@ const listVerifiedUsers = (json) => {
 }
 const listVerifiedUsersAsync = () => {
     return dispatch => {
-        console.log("已核验用户列表请求开始...")
+        dispatch(fetchBegin())
         governmentServices.listVerifiedUsers().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listVerifiedUsers(json))
             }
         )
-        console.log("已核验用户列表请求结束...")
     }
 }
 
@@ -28,10 +30,12 @@ const listToBeCheckedUsers = (json) => {
 }
 const listToBeCheckedUsersAsync = () => {
     return dispatch => {
-        console.log("列出待核验用户请求开始...")
+        dispatch(fetchBegin())
         governmentServices.listToBeCheckedUsers().then(
             json => {
-                console.log("actions,待核验用户列表：", json)
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listToBeCheckedUsers(json))
             }
         )
@@ -45,10 +49,12 @@ const listIssuedCredentials = (json) => {
 }
 const listIssuedCredentialsAsync = (json) => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         governmentServices.listIssuedCredentials().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(listIssuedCredentials(json))
             }
         )
@@ -62,14 +68,15 @@ const createCredential = (json) => {
 }
 const createCredentialAsync = (json) => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         governmentServices.createCredential().then(
             json => {
-                console.log("")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(createCredential(json))
             }
         )
-        console.log("请求结束...")
     }
 }
 
@@ -81,14 +88,35 @@ const checkUser = (json) => {
 }
 const checkUserAsync = (weid, type) => {
     return dispatch => {
-        console.log("请求开始...")
+        dispatch(fetchBegin())
         governmentServices.checkUser(weid, type).then(
             json => {
-                console.log("开始核验用户")
+                if (json.status === 200) {
+                    dispatch(fetchSuccess())
+                }
                 dispatch(checkUser(json))
             }
         )
-        console.log("请求结束...")
+    }
+}
+
+
+const fetchBegin = () => {
+    return {
+        type: FETCH_STATUS.FETCH_BEGIN,
+        payload: "FETCH_BEGIN",
+    }
+}
+const fetchSuccess = () => {
+    return {
+        type: FETCH_STATUS.FETCH_SUCCESS,
+        payload: "FETCH_SUCCESS",
+    }
+}
+const fetchFail = () => {
+    return {
+        type: FETCH_STATUS.FETCH_FAIL,
+        payload: "FETCH_FAIL"
     }
 }
 
@@ -98,4 +126,5 @@ export const governmentActions = {
     listIssuedCredentialsAsync,
     createCredentialAsync,
     checkUserAsync,
+    
 }

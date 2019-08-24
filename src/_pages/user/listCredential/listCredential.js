@@ -11,6 +11,7 @@ import JSONTree from 'react-json-tree'
 import jsonTheme from '../../company/jsonResult'
 import Modal from '@material-ui/core/Modal'
 import { CredentialCard } from '../../credential';
+import { AwesomeCredentialCard } from '../../credential'
 
 const useStyles = theme => ({
     root: {
@@ -135,23 +136,12 @@ class ListCredential extends Component {
 
         const modalStyle = this.getModalStyle()
         const { classes } = this.props
-        const faces = [
-            "http://i.pravatar.cc/300?img=1",
-            "http://i.pravatar.cc/300?img=2",
-            "http://i.pravatar.cc/300?img=3",
-            "http://i.pravatar.cc/300?img=4"
-        ]
         const rows = [
             this.createData(`0xc83b2cf7d31acc2abc`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
             this.createData(`0xc83b2cf7665acc2def`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
-            this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),
+            this.createData(`0xc83b2cf763165acadf`, 'cpt_name', `QmSsw6EcnwEiTT9c4rnAGeSENvsJMepNHmbrgi2S9bXNJr`),  
         ]
 
-        const images = [
-            "https://cdn.dribbble.com/users/42659/screenshots/6988457/aquila_logo_4x.png",
-            "https://cdn.dribbble.com/users/74401/screenshots/6990193/ivory.png",
-            "https://cdn.dribbble.com/users/14059/screenshots/6989899/laceemup.jpg",
-        ]
         const cardDetails = [
             {
                 "cptId": "CPT ID: 2000000",
@@ -221,47 +211,7 @@ class ListCredential extends Component {
                     {
                         rows.map((row, i) => (
                             <Grid item xs={4}>
-                                {/* <Card className={classes.card}>
-                                    <CardContent className={classes.content}>
-                                        <Typography
-                                            className={classes.cardContent}
-                                            variant={"h6"}
-                                            gutterBottom
-                                        >
-                                            {"ID:" + row.weid}
-                                        </Typography>
-                                        <Typography
-                                            className={classes.cardContent}
-                                            variant={"caption"}
-                                        >
-                                            {cardDetails[i].cptId} <br />
-                                            {cardDetails[i].issuer} <br />
-                                            {cardDetails[i].issuanceDate}<br />
-                                            {cardDetails[i].expirationDate}
-                                        </Typography>
-                                        <Divider className={classes.divider} light />
-                                        <Button variant="outlined" color="primary" className={classes.button} onClick={this.handleOpenCredential}>
-                                            查看凭证
-                                                </Button>
-                                        <Modal
-                                            aria-labelledby="simple-modal-title"
-                                            aria-describedby="simple-modal-description"
-                                            open={this.state.openCredential}
-                                            onClose={this.handleCloseCredential}
-                                        >
-                                            <div style={modalStyle} className={classes.modalPaper}>
-                                                <JSONTree
-                                                    data={credential}
-                                                    theme={jsonTheme}
-                                                    shouldExpandNode={() => {
-                                                        return false
-                                                    }}
-                                                />
-                                            </div>
-                                        </Modal>
-                                    </CardContent>
-                                </Card> */}
-                                <CredentialCard userInfo={userInfo} />
+                                <AwesomeCredentialCard />
                                 <br></br>
                                 <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
                                     查看原始凭证

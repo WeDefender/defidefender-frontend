@@ -24,7 +24,6 @@ var userInfo = {
 export function CredentialCard(props) {
 
     const classes = useStyles()
-
     userInfo = props.userInfo
 
     return (

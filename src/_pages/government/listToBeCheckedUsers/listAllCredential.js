@@ -10,9 +10,10 @@ import Paper from '@material-ui/core/Paper'
 import { Button } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import { Link } from 'react-router-dom'
+import HealthCard from 'react-health-card';
+
 // 测试卡片
 import PaymentCard from 'react-payment-card-component'
-
 
 const useStyles = theme => ({
     title: {
@@ -64,6 +65,7 @@ class ListAllCredential extends Component {
         return (
             <div>
                 <h3 className={classes.title}>查看凭证</h3>
+                
                 <PaymentCard
                     bank="itau"
                     model="personnalite"
@@ -73,8 +75,9 @@ class ListAllCredential extends Component {
                     cvv="202"
                     holderName="Owen Lars"
                     expiration="12/20"
-                    flipped={this.flipped}
+                    flipped={false}
                 />
+
                 <Button onClick={this.onFlippedCard}>翻转</Button>
                 <Container maxWidth="lg" className={classes.container}>
                     <Paper className={classes.root}>

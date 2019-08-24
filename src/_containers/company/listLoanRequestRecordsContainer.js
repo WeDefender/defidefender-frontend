@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
     blacklistByWeid: state.company.blacklistByWeid,
     verifyUserAuthenticity: state.company.verifyUserAuthenticity,
     verifyCredential: state.company.verifyCredential,
+    fetchStatus: state.company.fetchStatus,
 })
 
 const mapDispatchToProps = dispatch => ({

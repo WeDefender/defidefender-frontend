@@ -55,10 +55,9 @@ class Blacklist extends Component {
         console.log("组件内显示黑名单：", this.props.blacklist)
 
         if (this.props.blacklist !== undefined) {
-            // this.props.blacklist.map((item, i) => {
-            //     rows.push(this.createData(item.weid, item.record))
-            // })
-            rows = this.props.blacklist
+            this.props.blacklist.map((item, i) => {
+                rows.push(this.createData(item.weid, item.record))
+            })
         }
 
         const { classes } = this.props
@@ -73,7 +72,7 @@ class Blacklist extends Component {
         }
         return (
             <div>
-                <h3 className={classes.title}>查看黑名单</h3>
+                <h3 className={classes.title}>查看多头借贷情况</h3>
                 <Container maxWidth="lg" className={classes.container}>
                     <Paper className={classes.root}>
                         <Table className={classes.table}>
@@ -81,15 +80,13 @@ class Blacklist extends Component {
                                 <TableRow>
                                     <TableCell align="center">WeID</TableCell>
                                     <TableCell align="center">违约记录</TableCell>
-                                    <TableCell align="center">创建时间</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {rows.map(row => (
                                     <TableRow >
                                         <TableCell align="center">{row.weid}</TableCell>
-                                        <TableCell align="center">{row.record} </TableCell>
-                                        <TableCell align="center">{row.createdTime} </TableCell>
+                                        <TableCell align="center">{row.violate_record} </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

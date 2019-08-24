@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -14,6 +14,9 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
+import { FETCH_STATUS } from '../../../_constants'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -60,12 +63,10 @@ function PaperComponent(props) {
 
 // 放款记录列表
 export function ListLoanRecords(props) {
-
     const createData = (weid, amount, rate, duration, createdTime) => {
         return { weid, amount, rate, duration, createdTime }
     }
     const classes = useStyles()
-
     const [open, setOpen] = React.useState(false)
 
     const handleClickOpen = (row) => {
@@ -78,7 +79,21 @@ export function ListLoanRecords(props) {
     }
 
     let rows = []
-    props.listLoanRecordsAsync()
+    useEffect(() => {
+        // TODO weid 后续要抓的
+        props.listLoanRecordsAsync()
+        return () => {
+        };
+    }, [])
+
+    // 添加获取状态显示组件
+    if (props.fetchStatus === FETCH_STATUS.FETCH_BEGIN) {
+        return (
+            <div align="center">
+                <CircularProgress />
+            </div>
+        )
+    }
     if (props.loanRecords !== undefined) {
         rows = props.loanRecords
     }
