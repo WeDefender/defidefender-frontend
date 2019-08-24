@@ -55,9 +55,10 @@ class Blacklist extends Component {
         console.log("组件内显示黑名单：", this.props.blacklist)
 
         if (this.props.blacklist !== undefined) {
-            this.props.blacklist.map((item, i) => {
-                rows.push(this.createData(item.weid, item.record))
-            })
+            // this.props.blacklist.map((item, i) => {
+            //     rows.push(this.createData(item.weid, item.record))
+            // })
+            rows = this.props.blacklist
         }
 
         const { classes } = this.props
@@ -80,13 +81,15 @@ class Blacklist extends Component {
                                 <TableRow>
                                     <TableCell align="center">WeID</TableCell>
                                     <TableCell align="center">违约记录</TableCell>
+                                    <TableCell align="center">创建时间</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {rows.map(row => (
                                     <TableRow >
                                         <TableCell align="center">{row.weid}</TableCell>
-                                        <TableCell align="center">{row.violate_record} </TableCell>
+                                        <TableCell align="center">{row.record} </TableCell>
+                                        <TableCell align="center">{row.createdTime} </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
