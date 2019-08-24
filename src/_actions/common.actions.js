@@ -65,6 +65,7 @@ const getCredential = (json) => {
         payload: json.data
     }
 }
+
 const getCredentialAsync = (weid, type) => {
     return dispatch => {
         dispatch(fetchBeginForCredential())

@@ -195,7 +195,7 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                         <ListItemText primary={"借贷请求列表"} />
                     </ListItem>
                     <ListItem button component={Link} to="/listLoanRecords" selected={'/listLoanRecords' === pathname} className={classes.nested}>
-                        <ListItemText primary={"借贷记录"} />
+                        <ListItemText primary={"用户借贷记录"} />
                     </ListItem>
                     <ListItem button component={Link} to="/blacklist" selected={'/blacklist' === pathname} className={classes.nested}>
                         <ListItemText primary={"黑名单"} />
