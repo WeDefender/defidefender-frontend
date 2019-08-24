@@ -103,19 +103,16 @@ const getCompaniesAsync = () => {
 }
 
 // 6.请求借贷
-const requestLoan = () => {
+const requestLoan = (json) => {
     return {
-        type: ""
+        type: types.REQUEST_LOAN,
+        payload: json.data
     }
 }
-const requestLoanAsync = () => {
+const requestLoanAsync = (companyName, amount, durationMonth, weid) => {
     return dispatch => {
-        dispatch(fetchBegin())
-        userServices.requestLoan().then(
+        userServices.requestLoan(companyName, amount, durationMonth, weid).then(
             json => {
-                if (json.status === 200) {
-                    dispatch(fetchSuccess())
-                }
                 dispatch(requestLoan(json))
             }
         )
@@ -201,7 +198,7 @@ const returnLoanAsync = () => {
                 dispatch(returnLoan(json))
             }
         )
-        
+
     }
 }
 

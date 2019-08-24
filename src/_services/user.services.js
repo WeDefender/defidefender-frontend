@@ -89,18 +89,18 @@ const createPresentation = (ownerWeId, policyJson) => {
 	"phoneNumber":"18862173084"
 }
 */
-const requestVerifyWeId = (weid, 
-                    name, 
-                    gender, 
-                    birthday,
-                    address,
-                    identityNumber,
-                    phoneNumber
-                     ) => {
-    const url  = API_URLS.USER_REQUESTVERIFIEDWEID_URL
+const requestVerifyWeId = (weid,
+    name,
+    gender,
+    birthday,
+    address,
+    identityNumber,
+    phoneNumber
+) => {
+    const url = API_URLS.USER_REQUESTVERIFIEDWEID_URL
     const body = JSON.stringify({
         weid: weid,
-        name: name, 
+        name: name,
         gender: gender,
         birthday: birthday,
         address: address,
@@ -120,17 +120,14 @@ const requestVerifyWeId = (weid,
 	"credentialOwner": "did:weid:1:0xa4a3be6469d4d59747c3f5da320af37c045a3441"
 }
  */
-const requestLoan = (companyName, 
-               amount, 
-               expiredDate, 
-               credentialOwner) => {
+const requestLoan = (companyName, amount, durationMonth, weid) => {
     const url = API_URLS.USER_REQUESTLOAN_URL
     const body = JSON.stringify({
-            companyName: companyName,
-            amount: amount,
-            expiredDate: expiredDate,
-            credentialOwner: credentialOwner
-        }
+        companyName: companyName,
+        amount: amount,
+        durationMonth: durationMonth,
+        weid: weid
+    }
     )
     return fetch_post_helper(url, body)
 }

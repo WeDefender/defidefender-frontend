@@ -10,6 +10,8 @@ const mapStateToProps = state => ({
     fetchStatus: state.company.fetchStatus,
     userInfo: state.common.claimData,
     fetchStatusForBlacklist: state.company.fetchStatusForBlacklist,
+    requestVerifyMultiParityLoanRecords: state.company.requestVerifyMultiParityLoanRecords,
+    multiParityLoanInfo: state.company.multiParityLoanInfo,
     fetchStatusForCredential: state.common.fetchStatusForCredential,
 })
 
@@ -20,6 +22,8 @@ const mapDispatchToProps = dispatch => ({
     handleLoanRequestAsync: (id, type) => dispatch(companyActions.handleLoanRequestAsync(id, type)),
     listBlacklistByWeidAsync: (weid) => dispatch(companyActions.listBlacklistByWeidAsync(weid)),
     getCredentialAsync: (weid, type) => dispatch(commonActions.getCredentialAsync(weid, type)),
+    requestVerifyMultiParityLoanAsync: (requester, loanRecordId, weid) => dispatch(companyActions.requestVerifyMultiParityLoanAsync(requester, loanRecordId, weid)),
+    listMultiParityLoanInfoAsync: (recordId) => dispatch(companyActions.listMultiParityLoanInfoAsync(recordId)),
 })
 
 // 连接到展示组件

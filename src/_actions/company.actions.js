@@ -188,6 +188,83 @@ const addToBlacklistAsync = () => {
     }
 }
 
+const requestVerifyMultiParityLoan = (json) => {
+    return {
+        type: types.REQUEST_VERIFY_MULTI_PARITY_LOAN,
+        payload: json.data
+    }
+}
+
+
+const requestVerifyMultiParityLoanAsync = (requester, loanRecordId, weid) => {
+    return dispatch => {
+        companyServices.requestVerifyMultiParityLoan(requester, loanRecordId, weid).then(
+            json => {
+                console.log('requestVerifyMultiParityLoanAsync:', json)
+                dispatch(requestVerifyMultiParityLoan(json))
+            }
+        )
+    }
+}
+
+
+const listRequestVerifyMultiParityLoanRecords = (json) => {
+    return {
+        type: types.LIST_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS,
+        payload: json.data
+    }
+}
+
+const listRequestVerifyMultiParityLoanRecordsAsync = (companyName) => {
+    return dispatch => {
+        companyServices.listRequestVerifyMultiParityLoanRecords(companyName).then(
+            json => {
+                dispatch(listRequestVerifyMultiParityLoanRecords(json))
+            }
+        )
+    }
+}
+
+
+const hanleRequestVerifyMultiParityLoanRecord = (json) => {
+    return {
+        type: types.HANDLE_REQUEST_VERIFY_MULTIPARITY_LOAN_RECORDS,
+        payload: json.data
+    }
+}
+
+
+
+const hanleRequestVerifyMultiParityLoanRecordAsync = (id, type) => {
+    return dispatch => {
+        companyServices.hanleRequestVerifyMultiParityLoanRecord(id, type).then(
+            json => {
+                console.log('handleRequestLoan', json)
+                dispatch(hanleRequestVerifyMultiParityLoanRecord(json))
+            }
+        )
+    }
+}
+
+
+const listMultiParityLoanInfo = (json) => {
+    return {
+        type: types.LIST_MULTI_PARITY_LOAN_INFO,
+        payload: json.data
+    }
+}
+
+
+const listMultiParityLoanInfoAsync = (recordId) => {
+    return dispatch => {
+        companyServices.listMultiParityLoanInfo(recordId).then(
+            json => {
+                dispatch(listMultiParityLoanInfo(json))
+            }
+        )
+    }
+}
+
 const fetchBegin = () => {
     return {
         type: FETCH_STATUS.FETCH_BEGIN,
@@ -220,6 +297,7 @@ const fetchSuccessForBlacklist = () => {
     }
 }
 
+
 export const companyActions = {
     listBlacklistAsync,
     listBlacklistByWeidAsync,
@@ -230,6 +308,10 @@ export const companyActions = {
     verifyMultiParityLoanAsync,
     handleLoanRequestAsync,
     addToBlacklistAsync,
+    requestVerifyMultiParityLoanAsync,
+    listRequestVerifyMultiParityLoanRecordsAsync,
+    hanleRequestVerifyMultiParityLoanRecordAsync,
+    listMultiParityLoanInfoAsync,
 }
 
 

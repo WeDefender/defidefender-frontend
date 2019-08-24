@@ -21,7 +21,9 @@ let initialState = {
         "blacklistByWeid": [],
         "verifyUserAuthenticity": 0,
         "verifyCredential": 0,
-        "claimData": {}
+        "claimData": {},
+        "requestMultiParityLoanRecords": [],
+        "multiParityLoanInfo": [],
     },
 
     "government": {},

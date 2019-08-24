@@ -19,6 +19,15 @@ const listUserLoanRecordsReducer = (state = [], action) => {
     }
 }
 
+const requestLoanReducer = (state = [], action) => {
+    switch (action.type) {
+        case types.REQUEST_LOAN:
+            return action.payload
+        default:
+            return state
+    }
+}
+
 // 对应state.user的reducer
 export const userReducer = (state = {}, action) => {
     switch (action.type) {
@@ -27,7 +36,7 @@ export const userReducer = (state = {}, action) => {
                 ...state,
                 fetchStatus: action.payload
             }
-        case FETCH_STATUS.FETCH_SUCCESS: 
+        case FETCH_STATUS.FETCH_SUCCESS:
             return {
                 ...state,
                 fetchStatus: action.payload
@@ -50,6 +59,11 @@ export const userReducer = (state = {}, action) => {
             return {
                 ...state,
                 listUserLoanRecords: listUserLoanRecordsReducer([], action)
+            }
+        case types.REQUEST_LOAN:
+            return {
+                ...state,
+                requestLoan: requestLoanReducer([], action)
             }
         default:
             return state

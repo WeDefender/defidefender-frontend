@@ -200,6 +200,9 @@ const LayoutWithRouter = withRouter(function Layout(props) {
                     <ListItem button component={Link} to="/blacklist" selected={'/blacklist' === pathname} className={classes.nested}>
                         <ListItemText primary={"黑名单"} />
                     </ListItem>
+                    <ListItem button component={Link} to="/listMultiParityLoanRecords" selected={'/listMultiParityLoanRecords' === pathname} className={classes.nested}>
+                        <ListItemText primary={"多头查询记录"} />
+                    </ListItem>
 
                     <ListItem button>
                         <ListItemIcon>

@@ -79,6 +79,10 @@ function PaperComponent(props) {
     )
 }
 
+function ccyFormat(num) {
+    return `${num.toFixed(2)}`;
+}
+
 // 个人借贷请求列表
 export function ListLoanRequestRecords(props) {
     const [modalStyle] = React.useState(getModalStyle)
@@ -88,13 +92,14 @@ export function ListLoanRequestRecords(props) {
     const [credentialOpen, setCredentialOpen] = React.useState(false)
 
     const [modalOpen, setModalOpen] = React.useState(false)
+    const [multiModalOpen, setMultiModalOpen] = React.useState(false)
 
     const handleCredentialClose = () => {
         setCredentialOpen(false)
     }
 
     const handleCredentialOpen = (weid, type) => {
-        props.getCredentialAsync("did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d", type)
+        props.getCredentialAsync(weid, type)
         setCredentialOpen(true)
     }
 
@@ -103,6 +108,16 @@ export function ListLoanRequestRecords(props) {
     }
     const handleClickModalClose = () => {
         setModalOpen(false)
+    }
+
+    const handleClickMultiModalOpen = (requester, loanRecordId, weid) => {
+        props.requestVerifyMultiParityLoanAsync("WeBank", loanRecordId, weid)
+        props.listMultiParityLoanInfoAsync(loanRecordId)
+        setMultiModalOpen(true)
+    }
+
+    const handleClickMultiModalClose = () => {
+        setMultiModalOpen(false)
     }
 
     const handleClickOpen = (row, i) => {
@@ -172,6 +187,11 @@ export function ListLoanRequestRecords(props) {
         userInfo = props.userInfo
     }
 
+    let multiParityLoanInfo = []
+    if (props.multiParityLoanInfo !== undefined) {
+        multiParityLoanInfo = props.multiParityLoanInfo
+    }
+
     // 根据查询黑名单的状态返回相应的组件
     const getElementForBlacklist = (status) => {
         if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACKLIST) {
@@ -183,6 +203,7 @@ export function ListLoanRequestRecords(props) {
             </Button>
         )
     }
+
     const getElementForCredential = (status) => {
         if (status === FETCH_STATUS.FETCH_BEGIN_FOR_CREDENTIAL) {
             return <CircularProgress />
@@ -234,6 +255,7 @@ export function ListLoanRequestRecords(props) {
                             ))}
                         </TableBody>
                     </Table>
+                    { /* {查看借贷请求详情的Dialog} */}
                     <Dialog
                         open={open}
                         onClose={handleClose}
@@ -293,19 +315,22 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen(loanRequestInfo.weid, 1)}>
+                                            查看凭证
+                                        </Button>
                                         { getElementForCredential(props.fetchStatusForCredential) }
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>黑名单</TableCell>
                                     <TableCell align="center">
-                                        { getElementForBlacklist(props.fetchStatusForBlacklist) }
+                                        {getElementForBlacklist(props.fetchStatusForBlacklist)}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>多头借贷情况</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleClickMultiModalOpen && handleClickMultiModalOpen('', loanRequestInfo.id, loanRequestInfo.weid)}>
                                             多头借贷信息查询
                                         </Button>
                                     </TableCell>
@@ -333,6 +358,7 @@ export function ListLoanRequestRecords(props) {
                             </Button>
                         </DialogActions>
                     </Dialog>
+                    { /* {查看凭证的Dialog} */}
                     <Dialog
                         open={credentialOpen}
                         onClose={handleCredentialClose}
@@ -347,6 +373,7 @@ export function ListLoanRequestRecords(props) {
                             <AwesomeCredentialCard userInfo={userInfo} />
                         </DialogContent>
                     </Dialog>
+                    { /* {查看用户黑名单的Modal} */}
                     <Modal
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"
@@ -373,6 +400,40 @@ export function ListLoanRequestRecords(props) {
                                             </TableCell>
                                             <TableCell>
                                                 {row.createdTime}
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </Modal>
+                    { /* {查看多头借贷信息的Modal} */}
+                    <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={multiModalOpen}
+                        onClose={handleClickMultiModalClose}
+                    >
+                        <div style={modalStyle} className={classes.modalPaper}>
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center">匿名平台</TableCell>
+                                        <TableCell align="center">是否借贷</TableCell>
+                                        <TableCell align="center">待还金额</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {multiParityLoanInfo.map(row => (
+                                        <TableRow>
+                                            <TableCell>
+                                                {row.companyNameEncryption}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.multiCount}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.multiLoanAmount}
                                             </TableCell>
                                         </TableRow>
                                     ))}
