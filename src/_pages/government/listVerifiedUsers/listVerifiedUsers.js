@@ -14,9 +14,9 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Draggable from 'react-draggable'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { CredentialCard } from '../../credential'
 import { FETCH_STATUS } from '../../../_constants'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { AwesomeCredentialCard } from '../../credential'
 
 
 const useStyles = makeStyles(theme => ({
@@ -56,15 +56,7 @@ function PaperComponent(props) {
     )
 }
 
-var userInfo = {
-    weid: '',
-    name: '',
-    gender: '',
-    birthday: '',
-    address: '',
-    identityNumber: '',
-    phoneNumber: ''
-}
+var userInfo = {}
 
 export function ListVerifiedUsers(props) {
 
@@ -87,7 +79,7 @@ export function ListVerifiedUsers(props) {
     if (props.listVerifiedUsers !== undefined) {
         rows = props.listVerifiedUsers
     }
-      
+
     if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
         console.log("")
         return (
@@ -125,7 +117,7 @@ export function ListVerifiedUsers(props) {
                                 <TableRow >
                                     <TableCell align="center">{row.weid}</TableCell>
                                     <TableCell align="center">{row.name} </TableCell>
-                                    <TableCell align="center">{row.gender === "M"? "男":"女"}</TableCell>
+                                    <TableCell align="center">{row.gender === "M" ? "男" : "女"}</TableCell>
                                     <TableCell align="center">
                                         <Button size="medium" color="primary" variant="contained" onClick={() => handleClickOpen && handleClickOpen(row)}>查看用户</Button>
                                     </TableCell>
@@ -144,11 +136,8 @@ export function ListVerifiedUsers(props) {
                             <Typography align="center" variant="h6">用户信息</Typography>
                         </DialogTitle>
                         <DialogContent>
-                            <CredentialCard userInfo={userInfo} />
+                            <AwesomeCredentialCard userInfo={userInfo}/>
                         </DialogContent>
-                        <DialogActions>
-                            <Button variant="contained" color="primary">查看原始凭证</Button>
-                        </DialogActions>
                     </Dialog>
                 </Paper>
             </Container>

@@ -132,12 +132,12 @@ export function ListLoanRequestRecords(props) {
     // 注入副作用操作
     useEffect(() => {
         // 分发获取操作
-        console.log("当前获取状态：", props.fetchStatus)  
+        console.log("当前获取状态：", props.fetchStatus)
         props.listLoanRequestRecordsAsync()
         return () => {
         };
     }, [])
-    
+
     if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
         return (
             <div align="center">
@@ -269,9 +269,11 @@ export function ListLoanRequestRecords(props) {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>多头借贷情况</TableCell>
-                                    <Button>
-                                        
-                                    </Button>
+                                    <TableCell align="center">
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                            多头借贷信息查询
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3}>借贷金额</TableCell>

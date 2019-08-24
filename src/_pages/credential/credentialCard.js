@@ -2,6 +2,9 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, TableBody, TableRow, TableCell, Grid, Button } from '@material-ui/core';
+import './card.css'
+import './card-types.css'
+import HealthCard from 'react-health-card'
 
 const useStyles = makeStyles(theme => ({
     cardLabel: {
@@ -37,24 +40,19 @@ export function CredentialCard(props) {
             style={{ width: '350px', height: '350px' }} /// these are optional style, it is not necessary
         >
             <FrontSide>
-                <Typography align="center">
-                    姓名
-                </Typography>
-                <Typography align="center">
-                    性别
-                </Typography>
-                <Typography align="center">
-                    出生日期
-                </Typography>
-                <Typography align="center">
-                    户籍地址
-                </Typography>
-                <Typography align="center">
-                    身份证号
-                </Typography>
-                <Typography align="center">
-                    手机号
-                </Typography>
+                <HealthCard
+                    issueDateTitle="发行日期"
+                    cardNumber="12345678"
+                    namePosition="back"
+                    name="Jake Moxey"
+                    issueDate="12122020"
+                    issueNumber="12"
+                    rank="01"
+                    memberNumber="87654321A"
+                    memberNumberLength={9}
+                    focused="memberNumber"
+                    isFlipped={false}
+                />
             </FrontSide>
             <BackSide>
                 <TableBody>
