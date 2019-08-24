@@ -53,11 +53,11 @@ import { fetch_get_helper, fetch_post_helper } from './utils'
  */
 const createCPT = (publisher, cptSchema) => {
 	const url = API_URLS.COMMON_CREATECPT_URL
-    const body = JSON.stringify({
-        publisher: publisher,
-        cptSchema: cptSchema
-    })
-    return fetch_post_helper(url, body)
+	const body = JSON.stringify({
+		publisher: publisher,
+		cptSchema: cptSchema
+	})
+	return fetch_post_helper(url, body)
 }
 
 /**
@@ -68,11 +68,11 @@ const createCPT = (publisher, cptSchema) => {
 }
 */
 const getCPTById = (cptId) => {
-    const url = API_URLS.COMMON_GETCPTBYID_URL
-    const body = JSON.stringify({
-        cptId: cptId
-    })
-    return fetch_post_helper(url, body)
+	const url = API_URLS.COMMON_GETCPTBYID_URL
+	const body = JSON.stringify({
+		cptId: cptId
+	})
+	return fetch_post_helper(url, body)
 }
 
 /**
@@ -84,12 +84,12 @@ const getCPTById = (cptId) => {
 }
 */
 const registerIssuer = (issuer, authorityName) => {
-    const url = API_URLS.COMMON_REGISTERISSUER_URL
-    const body = JSON.stringify({
-        issuer: issuer,
-        authorityName: authorityName
-    })
-    return fetch_post_helper(url, body)
+	const url = API_URLS.COMMON_REGISTERISSUER_URL
+	const body = JSON.stringify({
+		issuer: issuer,
+		authorityName: authorityName
+	})
+	return fetch_post_helper(url, body)
 }
 
 /**
@@ -99,12 +99,13 @@ const registerIssuer = (issuer, authorityName) => {
 	"id":1
 }
 */
-const getCredential = (id) => {
-    const url = API_URLS.COMMON_GETCREDENTIAL_URL
-    const body = JSON.stringify({
-        id: id
-    })
-    return fetch_post_helper(url, body)
+const getCredential = (weid, type) => {
+	const url = API_URLS.COMMON_GETCREDENTIAL_URL
+	const body = JSON.stringify({
+		weid: weid,
+		type: type
+	})
+	return fetch_post_helper(url, body)
 }
 
 /**
@@ -115,11 +116,11 @@ const getCredential = (id) => {
 }
 */
 const getPresentation = (weid) => {
-    const url = API_URLS.COMMON_GETPRESENTATION_URL
-    const body = JSON.stringify({
-        weid: weid
-    })
-    return fetch_post_helper(url, body)
+	const url = API_URLS.COMMON_GETPRESENTATION_URL
+	const body = JSON.stringify({
+		weid: weid
+	})
+	return fetch_post_helper(url, body)
 }
 /**
  * 初始化网络并部署合约
@@ -127,10 +128,10 @@ const getPresentation = (weid) => {
  * @param {body} {}
  */
 const initializeAndDeploy = () => {
-    const url = API_URLS.COMMON_INITIALIZEANDDEPLOY_URL
-    const body = JSON.stringify({
-    })
-    return fetch_post_helper(url, body)
+	const url = API_URLS.COMMON_INITIALIZEANDDEPLOY_URL
+	const body = JSON.stringify({
+	})
+	return fetch_post_helper(url, body)
 }
 
 /**
@@ -141,11 +142,11 @@ const initializeAndDeploy = () => {
 }
 */
 const getCredentialsByWeid = (weid) => {
-	const  url = API_URLS.COMMON_GETCREDENTIALSBYWEID_URL
-    const body = JSON.stringify({
-        weid: weid
-    })
-    return fetch_post_helper(url, body)
+	const url = API_URLS.COMMON_GETCREDENTIALSBYWEID_URL
+	const body = JSON.stringify({
+		weid: weid
+	})
+	return fetch_post_helper(url, body)
 }
 
 export const commonServices = {

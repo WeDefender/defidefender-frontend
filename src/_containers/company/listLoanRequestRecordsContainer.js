@@ -1,6 +1,6 @@
 import { ListLoanRequestRecords } from '../../_pages/company'
 import { connect } from 'react-redux'
-import { companyActions } from '../../_actions'
+import { companyActions, commonActions } from '../../_actions'
 
 const mapStateToProps = state => ({
     loanRequestRecords: state.company.loanRequestRecords,
@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     verifyUserAuthenticity: state.company.verifyUserAuthenticity,
     verifyCredential: state.company.verifyCredential,
     fetchStatus: state.company.fetchStatus,
+    userInfo: state.common.claimData
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
     verifyCredentialAsync: (id, weid, issuer, type, verifyType) => dispatch(companyActions.verifyCredentialAsync(id, weid, issuer, type, verifyType)),
     handleLoanRequestAsync: (id, type) => dispatch(companyActions.handleLoanRequestAsync(id, type)),
     listBlacklistByWeidAsync: (weid) => dispatch(companyActions.listBlacklistByWeidAsync(weid)),
+    getCredentialAsync: (weid, type) => dispatch(commonActions.getCredentialAsync(weid, type)),
 })
 
 // 连接到展示组件

@@ -60,16 +60,14 @@ const registerIssuerAsync = () => {
 
 const getCredential = (json) => {
     return {
-        type: "",
-        payload: ""
+        type: types.GET_CREDENTIAL,
+        payload: json.data
     }
 }
-const getCredentialAsync = () => {
+const getCredentialAsync = (weid, type) => {
     return dispatch => {
-        console.log("请求开始...")
-        commonServices.getCredential().then(
+        commonServices.getCredential(weid, type).then(
             json => {
-                console.log("")
                 dispatch(getCredential(json))
             }
         )
@@ -115,7 +113,7 @@ export const commonActions = {
     createCPT,
     getCPTById,
     registerIssuer,
-    getCredential,
+    getCredentialAsync,
     getPresentation,
     initializeAndDeploy,
 }

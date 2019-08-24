@@ -4,7 +4,7 @@ const SERVER = 'http://localhost:8080'
 const BASE_URLS = {
     COMPANY: SERVER + '/company',
     GOVERNMENT: SERVER + '/government',
-    COMMON: SERVER + '/server',
+    COMMON: SERVER + '/common',
     USER: SERVER + '/user',
 }
 

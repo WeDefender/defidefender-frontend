@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { userReducer, companyReducer, governmentReducer } from '../_reducers'
+import { userReducer, companyReducer, governmentReducer, commonReducer } from '../_reducers'
 
 let initialState = {
     "company": {
@@ -21,6 +21,7 @@ let initialState = {
         "blacklistByWeid": [],
         "verifyUserAuthenticity": 0,
         "verifyCredential": 0,
+        "claimData": {}
     },
 
     "government": {},
@@ -34,7 +35,8 @@ let initialState = {
 const rootReducer = combineReducers({
     company: companyReducer,
     government: governmentReducer,
-    user: userReducer
+    user: userReducer,
+    common: commonReducer
 })
 
 const middlewares = [thunkMiddleware]

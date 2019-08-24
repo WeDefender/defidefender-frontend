@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
 import { FETCH_STATUS } from '../../../_constants'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { AwesomeCredentialCard } from '../../credential'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -84,8 +85,18 @@ export function ListLoanRequestRecords(props) {
     const classes = useStyles()
 
     const [open, setOpen] = React.useState(false)
+    const [credentialOpen, setCredentialOpen] = React.useState(false)
 
     const [modalOpen, setModalOpen] = React.useState(false)
+
+    const handleCredentialClose = () => {
+        setCredentialOpen(false)
+    }
+
+    const handleCredentialOpen = (weid, type) => {
+        props.getCredentialAsync("did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d", type)
+        setCredentialOpen(true)
+    }
 
     const handleClickModalOpen = () => {
         setModalOpen(true)
@@ -128,6 +139,7 @@ export function ListLoanRequestRecords(props) {
 
     let rows = []
     let blacklistByWeid = []
+    let userInfo = {}
 
     // 注入副作用操作
     useEffect(() => {
@@ -153,6 +165,10 @@ export function ListLoanRequestRecords(props) {
 
     if (props.blacklistByWeid !== undefined) {
         blacklistByWeid = props.blacklistByWeid
+    }
+
+    if (props.userInfo !== undefined) {
+        userInfo = props.userInfo
     }
 
     return (
@@ -254,7 +270,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>凭证</TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                                        <Button variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }} onClick={() => handleCredentialOpen && handleCredentialOpen('', 0)}>
                                             查看凭证
                                         </Button>
                                     </TableCell>
@@ -297,6 +313,20 @@ export function ListLoanRequestRecords(props) {
                                 拒绝
                             </Button>
                         </DialogActions>
+                    </Dialog>
+                    <Dialog
+                        open={credentialOpen}
+                        onClose={handleCredentialClose}
+                        PaperComponent={PaperComponent}
+                        aria-labelledby="draggable-dialog-title"
+                        maxWidth={100}
+                    >
+                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                            <Typography align="center" variant="h6">凭证详情</Typography>
+                        </DialogTitle>
+                        <DialogContent>
+                            <AwesomeCredentialCard userInfo={userInfo} />
+                        </DialogContent>
                     </Dialog>
                     <Modal
                         aria-labelledby="simple-modal-title"
