@@ -4,6 +4,12 @@ import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import { Button, Typography } from '@material-ui/core'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Draggable from 'react-draggable'
+import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -41,6 +47,14 @@ const durationMonths = [
     },
 ]
 
+function PaperComponent(props) {
+    return (
+        <Draggable cancel={'[class*="MuiDialogContent-root"]'}>
+            <Paper {...props} />
+        </Draggable>
+    )
+}
+
 // 用户请求贷款
 export function RequestLoan(props) {
     const classes = useStyles()
@@ -49,6 +63,13 @@ export function RequestLoan(props) {
         amount: 0,
         durationMonth: 1,
     });
+    const [open, setOpen] = React.useState(false)
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value })
@@ -56,6 +77,7 @@ export function RequestLoan(props) {
 
     const onHandleRequestLoan = () => {
         props.requestLoanAsync(values.companyName, values.amount, values.durationMonth, "did:weid:1:0xee0a94ba9341882c3a613b5bef5152987ac1440d")
+        setOpen(false)
     }
 
     return (
@@ -120,8 +142,23 @@ export function RequestLoan(props) {
                 </TextField>
             </Grid>
             <Grid>
-                <Button variant="contained" color="primary" onClick={onHandleRequestLoan}>借贷</Button>
+                <Button variant="contained" color="primary" onClick={handleClickOpen}>借贷</Button>
             </Grid>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                PaperComponent={PaperComponent}
+                aria-labelledby="draggable-dialog-title"
+                maxWidth={100}
+            >
+                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                    <Typography align="center" variant="h6">是否确认借贷</Typography>
+                </DialogTitle>
+                <DialogActions>
+                    <Button variant="contained" color="primary" onClick={onHandleRequestLoan}>确认</Button>
+                    <Button variant="contained" color="primary" onClick={handleClose}>取消</Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     )
 }
