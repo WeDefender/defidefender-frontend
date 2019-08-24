@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import { companyActions } from '../../_actions'
 
 const mapStateToProps = state => ({
-    listRequestVerifyMultiParityLoanRecords: state.company.requestMultiParityLoanRecords,
+    listRequestVerifyMultiParityLoanRecords: state.company.listRequestMultiParityLoanRecords,
+    fetchStatus: state.company.fetchStatus
 })
 
 const mapDispatchToProps = dispatch => ({
+    // 列出
     listRequestVerifyMultiParityLoanRecordsAsync: (companyName) => dispatch(companyActions.listRequestVerifyMultiParityLoanRecordsAsync(companyName)),
-    hanleRequestVerifyMultiParityLoanRecordAsync: (id, type) => dispatch(companyActions.hanleRequestVerifyMultiParityLoanRecordAsync(id, type)),
+    // 更新
+    handleRequestVerifyMultiParityLoanRecordAsync: (id, type) => dispatch(companyActions.handleRequestVerifyMultiParityLoanRecordAsync(id, type)),
 })
 
 // 连接到展示组件

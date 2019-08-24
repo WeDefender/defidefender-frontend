@@ -75,6 +75,7 @@ export function ListLoanRecords(props) {
     }
 
     const handleClose = () => {
+        
         setOpen(false)
     }
 

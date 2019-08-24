@@ -52,7 +52,8 @@ export function ListMultiParityLoanRecords(props) {
     }, [])
 
     const onHandleRequestMultiParityLoan = (id, type) => {
-        props.hanleRequestVerifyMultiParityLoanRecordAsync(id, type)
+        console.log("id, type: ", id, type)
+        props.handleRequestVerifyMultiParityLoanRecordAsync(id, type)
     }
 
     if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
@@ -62,6 +63,7 @@ export function ListMultiParityLoanRecords(props) {
             </div>
         )
     }
+
     // 判断是否为空
     if (props.listRequestVerifyMultiParityLoanRecords !== undefined) {
         rows = props.listRequestVerifyMultiParityLoanRecords
