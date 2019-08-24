@@ -7,7 +7,10 @@ export function blacklistReducer(state = [], action) {
         case types.BLACKLIST:
             // console.log("Reducer中列出黑名单：", action.payload) 
             // action.payload中传过来的是数组
-            return [...state, ...action.payload]
+            return [
+                ...state, 
+                ...action.payload
+            ]
         default:
             return state
     }
@@ -17,7 +20,10 @@ export function blacklistReducer(state = [], action) {
 export function loanRequestRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_REQUEST_RECORDS:
-            return [...state, ...action.payload]
+            return [
+                ...state, 
+                ...action.payload
+            ]
         default:
             return state
     }
@@ -26,7 +32,9 @@ export function loanRequestRecordsReducer(state = [], action) {
 export function loanRecordsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAN_RECORDS:
-            return [...state, ...action.payload]
+            return [...state, 
+                ...action.payload
+            ]
         default:
             return state
     }
@@ -53,7 +61,10 @@ function verifyCredentialReducer(state = [], action) {
 function handleLoanRequestReducer(state = [], action) {
     switch (action.type) {
         case types.HANDLE_LOAN_REQUEST:
-            return action
+            if (state.length > 0) {
+                console.log("处理请求时状态：", state)
+                return state.filter(item => (item.id !== action.payload.id))
+            }
         default:
             return state
     }
@@ -115,6 +126,12 @@ export function companyReducer(state = {}, action) {
                 ...state,
                 loanRequestRecords: loanRequestRecordsReducer([], action)
             }
+        // 执行删除该条请求操作
+        case types.HANDLE_LOAN_REQUEST:
+            return {
+                ...state,
+                loanRequestRecords: handleLoanRequestReducer(state.loanRequestRecords, action)
+            }
         case types.LOAN_RECORDS:
             return {
                 ...state,
@@ -129,11 +146,6 @@ export function companyReducer(state = {}, action) {
             return {
                 ...state,
                 verifyCredential: verifyCredentialReducer([], action)
-            }
-        case types.HANDLE_LOAN_REQUEST:
-            return {
-                ...state,
-                handleLoanRequest: handleLoanRequestReducer([], action)
             }
         case types.LIST_BLACKLIST_BY_WEID:
             return {

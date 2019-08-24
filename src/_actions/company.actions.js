@@ -159,6 +159,7 @@ const handleLoanRequestAsync = (id, type) => {
         dispatch(fetchBegin())
         companyServices.handleLoanRequest(id, type).then(
             json => {
+                console.log("处理借贷请求返回数据: ", json)
                 if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
