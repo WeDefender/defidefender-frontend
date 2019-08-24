@@ -43,10 +43,10 @@ export function RequestLoan() {
 
     return (
         <Container maxWidth="lg" className={classes.container}>
-            <Grid>
+            <Grid alignContent="center">
                 <Typography variant="h4">借贷</Typography>
             </Grid>
-            <Grid>
+            <Grid alignContent="space-between">
                 <TextField
                     id="filled-select-currency-native"
                     select
