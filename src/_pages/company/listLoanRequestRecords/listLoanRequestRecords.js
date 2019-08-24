@@ -138,6 +138,7 @@ export function ListLoanRequestRecords(props) {
         };
     }, [])
 
+    // 外层获取状态判断
     if (props.fetchStatus == FETCH_STATUS.FETCH_BEGIN) {
         return (
             <div align="center">
@@ -155,6 +156,18 @@ export function ListLoanRequestRecords(props) {
         blacklistByWeid = props.blacklistByWeid
     }
 
+    // 根据查询黑名单的状态返回相应的组件
+    const getElementForBlacklist = (status) => {
+        if (status === FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST) {
+            return <CircularProgress />
+        }
+        return (
+            <Button onClick={() => onHandleGetBlacklistByWeid && onHandleGetBlacklistByWeid(loanRequestInfo.weid)} variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
+                黑名单查询
+            </Button>
+        )
+    }
+      
     return (
         <div>
             <h2 className={classes.title}>借贷请求列表</h2>
@@ -262,9 +275,7 @@ export function ListLoanRequestRecords(props) {
                                 <TableRow>
                                     <TableCell colSpan={3}>黑名单</TableCell>
                                     <TableCell align="center">
-                                        <Button onClick={() => onHandleGetBlacklistByWeid && onHandleGetBlacklistByWeid(loanRequestInfo.weid)} variant="contained" style={{ backgroundColor: '#00BFFF', color: '#000000' }}>
-                                            黑名单查询
-                                        </Button>
+                                        { getElementForBlacklist(props.fetchStatusForBlacklist) }
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
