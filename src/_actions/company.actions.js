@@ -36,11 +36,11 @@ const listBlacklistByWeid = (json) => {
 }
 const listBlacklistByWeidAsync = (weid) => {
     return dispatch => {
-        dispatch(fetchBegin())
+        dispatch(fetchBeginForBlacklist())
         companyServices.listBlacklistByWeid(weid).then(
             json => {
                 if (json.status === 200) {
-                    dispatch(fetchSuccess())
+                    dispatch(fetchSuccessForBlacklist())
                 }
                 dispatch(listBlacklistByWeid(json))
             }
@@ -203,6 +203,19 @@ const fetchFail = () => {
     return {
         type: FETCH_STATUS.FETCH_FAIL,
         payload: "FETCH_FAIL"
+    }
+}
+
+const fetchBeginForBlacklist = () => {
+    return {
+        type: FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST,
+        payload: "FETCH_BEGIN_FOR_BLACK_LIST",
+    }
+}
+const fetchSuccessForBlacklist = () => {
+    return {
+        type: FETCH_STATUS.FETCH_SUCCESS_FOR_BLACK_LIST,
+        payload: "FETCH_SUCCESS_FOR_BLACK_LIST"
     }
 }
 

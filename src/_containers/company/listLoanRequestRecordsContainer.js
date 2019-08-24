@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
     verifyUserAuthenticity: state.company.verifyUserAuthenticity,
     verifyCredential: state.company.verifyCredential,
     fetchStatus: state.company.fetchStatus,
-    userInfo: state.common.claimData
+    userInfo: state.common.claimData,
+    fetchStatusForBlacklist: state.company.fetchStatusForBlacklist,
 })
 
 const mapDispatchToProps = dispatch => ({

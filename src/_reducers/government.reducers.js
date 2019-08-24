@@ -17,7 +17,7 @@ export const listToBeCheckedUsersReducer = (state=[], action) => {
 export const checkUserReducer = (state=[], action) => {
     switch (action.type) {
         case types.CHECK_USER:
-            console.log("删除时待过滤的数组是：", state)
+            // console.log("删除时待过滤的数组是：", state)
             if (state.length > 0) {
                 return state.filter(item => (item.weid !== action.payload.weid))
             }

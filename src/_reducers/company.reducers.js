@@ -95,6 +95,16 @@ export function companyReducer(state = {}, action) {
                 ...state,
                 fetchStatus: action.payload
             }
+        case FETCH_STATUS.FETCH_BEGIN_FOR_BLACK_LIST:
+            return {
+                ...state,
+                fetchStatusForBlacklist: action.payload
+            }
+        case FETCH_STATUS.FETCH_SUCCESS_FOR_BLACK_LIST:
+            return {
+                ...state,
+                fetchStatusForBlacklist: action.payload
+            }
         case types.BLACKLIST:
             return {
                 ...state,
