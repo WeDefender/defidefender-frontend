@@ -13,6 +13,19 @@ export const listToBeCheckedUsersReducer = (state=[], action) => {
     }
 }
 
+// 根据返回的数据过滤当前的state
+export const checkUserReducer = (state=[], action) => {
+    switch (action.type) {
+        case types.CHECK_USER:
+            console.log("删除时待过滤的数组是：", state)
+            if (state.length > 0) {
+                return state.filter(item => (item.weid !== action.payload.weid))
+            }
+        default:
+            return state;
+    }
+}
+
 export const listVerifiedUsersReducer = (state=[], action) => {
     switch (action.type) {
         case types.LIST_VERIFIED_USERS:
@@ -46,7 +59,12 @@ export const governmentReducer = (state={}, action) => {
         case types.LIST_TO_BE_CHECKED_USERS: 
             return {
                 ...state,
-                listToBeCheckedUsers: listToBeCheckedUsersReducer([], action)
+                listToBeCheckedUsers: listToBeCheckedUsersReducer([], action),
+            }
+        case types.CHECK_USER:
+            return {
+                ...state,
+                listToBeCheckedUsers: checkUserReducer(state.listToBeCheckedUsers, action),
             }
         case types.LIST_VERIFIED_USERS: 
             return {

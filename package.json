@@ -8,6 +8,7 @@
     "cross-fetch": "^3.0.4",
     "n": "^5.0.2",
     "react": "^16.9.0",
+    "react-credit-cards": "^0.7.0",
     "react-dom": "^16.9.0",
     "react-draggable": "^3.3.2",
     "react-flippy": "^0.1.5",

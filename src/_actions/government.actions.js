@@ -80,20 +80,25 @@ const createCredentialAsync = (json) => {
     }
 }
 
+// 修改store
 const checkUser = (json) => {
     return {
         type: types.CHECK_USER,
         payload: json.data
     }
 }
+// 返回的数据不是全部的待查信息
+// 本函数负责删除数据
 const checkUserAsync = (weid, type) => {
     return dispatch => {
         dispatch(fetchBegin())
+        // 删除数据
         governmentServices.checkUser(weid, type).then(
             json => {
                 if (json.status === 200) {
                     dispatch(fetchSuccess())
                 }
+                console.log("待删除数据：", json.data)
                 dispatch(checkUser(json))
             }
         )
